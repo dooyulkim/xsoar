@@ -1,0 +1,446 @@
+category: Case Management
+commonfields:
+  id: MSS Portal - MDR
+  version: -1
+configuration:
+- defaultvalue: https://tssapi-preprod.telus.com
+  display: Server URL (e.g. 'https://tssapi-preprod.telus.com)
+  name: url
+  required: true
+  type: 0
+- additionalinfo: This parameter does not have any effect since v1 will be added automatically
+    into api url
+  defaultvalue: v1
+  display: Currently, we use v1 of MSS Portal API
+  name: api_version
+  required: true
+  type: 0
+- display: MSS Portal API Key
+  name: api_key
+  required: true
+  type: 0
+- display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This is the MSS Portal integration.
+display: MSS Portal - MDR
+image: data:image/png;base64,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
+name: MSS Portal - MDR
+script:
+  commands:
+  - arguments:
+    - description: Alert ID.
+      name: alert_id
+      required: true
+    description: Retrieve alert extra data by ID.
+    name: mssportal-get-alert
+    outputs:
+    - contextPath: MSSPortal.Alert.id
+      description: Alert ID.
+      type: String
+    - contextPath: MSSPorta.Alert.createdAt
+      description: Alert created time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+      type: Date
+    - contextPath: MSSPorta.Alert.providerId
+      description: Alert description.
+      type: String
+    - contextPath: MSSPorta.Alert.providerCreatedAt
+      description: ID of the device involved in the alert.
+      type: date
+    - contextPath: MSSPorta.Alert.providerModifiedAt
+      description: IP Address of the device involved in the alert.
+      type: date
+    - contextPath: MSSPorta.Alert.providerAlertId
+      description: Location of the device involved in the alert.
+      type: number
+    - contextPath: MSSPorta.Alert.providerRaw
+      description: User involved in the alert.
+      type: String
+    - contextPath: MSSPorta.Alert.severity
+      type: string
+    - contextPath: MSSPorta.Alert.customerId
+      type: number
+    - contextPath: MSSPorta.Alert.investigationCaseId
+      type: number
+    - contextPath: MSSPorta.Alert.acknowledgedBy
+    - contextPath: MSSPorta.Alert.acknowledgedAt
+      type: date
+    - contextPath: MSSPorta.Alert.name
+      type: string
+  - arguments:
+    - description: Provider's ID ex)XSOAR_LOGRYTHME
+      name: provider_id
+      required: true
+    - description: Source alert created date . Format) 2022-07-18T13:44:36.769Z (ISO
+        8601))
+      name: created_at
+      required: true
+    - description: Source alert modified date Source.  Format ) 2022-07-18T13:44:36.769Z
+        (ISO 8601))
+      name: modified_at
+      required: true
+    - description: Source alert ID
+      name: alert_id
+      required: true
+    - defaultValue: '''{}'''
+      description: Source raw data in JSON
+      name: raw_data
+      required: true
+    - description: Source alert's severity ex)HIGH
+      name: severity
+      required: true
+    - description: Customer's ID ex)123475
+      name: customer_id
+      required: true
+    - description: Source alert name
+      name: name
+      required: true
+    - description: Related case description
+      name: related_case_description
+    - description: Related case title
+      name: related_case_title
+    description: Create an alert using Portal's MDR API
+    name: mssportal-create-alert
+    outputs:
+    - contextPath: MSSPortal.Alert.id
+      description: The ID of the new alert
+      type: number
+    - contextPath: MSSPortal.Alert.createdAt
+      description: The creation time of the new alert
+      type: date
+    - contextPath: MSSPortal.Alert.providerId
+      description: The ID of the source system
+      type: string
+    - contextPath: MSSPortal.Alert.providerCreatedAt
+      description: The creation timestamp in the source system
+      type: date
+    - contextPath: MSSPortal.Alert.providerModifiedAt
+      description: The modification timestamp in the source system
+      type: date
+    - contextPath: MSSPortal.Alert.providerAlertId
+      description: The Id in the source system
+      type: string
+    - contextPath: MSSPortal.Alert.providerRaw
+      description: Raw json from the source system
+      type: string
+    - contextPath: MSSPortal.Alert.severity
+      description: The severity of the alert
+      type: string
+    - contextPath: MSSPortal.Alert.customerId
+      description: The ID of the related case
+      type: number
+    - contextPath: MSSPortal.Alert.investigationCaseId
+      description: The  ID of the related case
+      type: number
+    - contextPath: MSSPortal.Alert.acknowledgedBy
+      description: The alert was acknowledgedBy
+      type: string
+    - contextPath: MSSPortal.Alert.acknowledgedAt
+      description: The alert was acknowledgedAt
+      type: date
+    - contextPath: MSSPortal.Alert.name
+      description: Alert name
+      type: string
+  dockerimage: demisto/python3:3.8.3.9324
+  isremotesyncin: true
+  isremotesyncout: true
+  runonce: true
+  script: |
+    register_module_line('MSS Portal - MDR', 'start', __line__())
+
+
+    import json
+    import urllib3
+    import dateparser
+    import traceback
+    from typing import Any, Dict, Tuple, List, Optional, Union, cast
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    ''' CONSTANTS '''
+
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """Client class to interact with the service API
+
+        This Client implements API calls, and does not contain any Demisto logic.
+        Should only do requests and return data.
+        It inherits from BaseClient defined in CommonServer Python.
+        Most calls use _http_request() that handles proxy, SSL verification, etc.
+        For this MSSPortal implementation, no special attributes defined
+        """
+
+        def getCurrentUserIdentity(self) -> Dict[str, Any]:
+            """Gets cirremt user's identity
+            This methods will be used mainly to test API connectivity
+            """
+
+            return self._http_request('get', '/identities/current')
+
+        def get_alert(self, alert_id: str) -> Dict[str, Any]:
+            """Gets a specific MSSPortal alert by id
+
+            :type alert_id: ``str``
+            :param alert_id: id of the alert to return
+
+            :return: dict containing the alert as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            return self._http_request('get', f'/alerts/{alert_id}')
+
+        def create_alert(self, json_data: Dict[str, Any]) -> Dict[str, Any]:
+            """Gets a specific MSSPortal alert by id
+
+            :type: dict containing the alert
+            :param ``Dict[str, Any]``
+
+            :return: dict containing the alert as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            return self._http_request('post', '/alerts', json_data=json_data)
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type name: ``str``
+        :param name: name to append to the 'Hello' string
+
+        :return: 'ok' if test passed, anything else will fail the test.
+        :rtype: ``str``
+        """
+
+        # INTEGRATION DEVELOPER TIP
+        # Client class should raise the exceptions, but if the test fails
+        # the exception text is printed to the Cortex XSOAR UI.
+        # If you have some specific errors you want to capture (i.e. auth failure)
+        # you should catch the exception here and return a string with a more
+        # readable output (for example return 'Authentication Error, API Key
+        # invalid').
+        # Cortex XSOAR will print everything you return different than 'ok' as
+        # an error
+        try:
+            client.getCurrentUserIdentity()
+        except DemistoException as e:
+            if 'Forbidden' in str(e):
+                return 'Authorization Error: make sure API Key is correctly set'
+            else:
+                raise e
+        return 'ok'
+
+
+    def get_alert_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-get-alert command: Returns a MSSPortal alert
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['alert_id']`` alert ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains an alert
+
+        :rtype: ``CommandResults``
+        """
+
+        alert_id = args.get('alert_id', None)
+        if not alert_id:
+            raise ValueError('alert_id not specified')
+
+        alert = client.get_alert(alert_id)
+
+        # tableToMarkdown() is defined is CommonServerPython.py and is used very
+        # often to convert lists and dicts into a human readable format in markdown
+        readable_output = tableToMarkdown(f'MSSPortal Alert {alert_id}', alert)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='MSSPortal.Alert',
+            outputs_key_field='id',
+            outputs=alert
+        )
+
+
+    def create_alert_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-get-alert command: Returns a MSSPortal alert
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['alert_id']`` alert ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains an alert
+
+        :rtype: ``CommandResults``
+        """
+
+        provider_id = args.get('provider_id')
+        if not provider_id:
+            raise ValueError('provider_id not specified')
+        alert_id = args.get('alert_id')
+        if not alert_id:
+            raise ValueError('alert_id not specified')
+        created_at = args.get('created_at')
+        if not created_at:
+            raise ValueError('created_at not specified')
+        modified_at = args.get('modified_at')
+        if not modified_at:
+            raise ValueError('modified_at not specified')
+        raw_data = args.get('raw_data', '{}')
+        if not raw_data:
+            raise ValueError('raw_data not specified')
+        severity = args.get('severity')
+        if not severity:
+            raise ValueError('severity not specified')
+        customer_id = args.get('customer_id',)
+        if not customer_id:
+            raise ValueError('customer_id not specified')
+        investigation_case_id = args.get('investigation_case_id')
+        name = args.get('name')
+        if not name:
+            raise ValueError('name not specified')
+        related_case_description = args.get('related_case_description')
+        related_case_title = args.get('related_case_title')
+
+        json_data = {
+            "providerId": provider_id,
+            "providerCreatedAt": created_at,
+            "providerModifiedAt": modified_at,
+            "providerAlertId": alert_id,
+            "providerRaw": raw_data,
+            "severity": severity,
+            "customerId": customer_id,
+            "investigationCaseId": investigation_case_id,
+            "name": name,
+            "Related case description": related_case_description,
+            "Related case title": related_case_title
+        }
+
+        alert = client.create_alert(json_data)
+
+        # INTEGRATION DEVELOPER TIP
+        # We want to convert the "created" time from timestamp(s) to ISO8601 as
+        # Cortex XSOAR customers and integrations use this format by default
+
+        # tableToMarkdown() is defined is CommonServerPython.py and is used very
+        # often to convert lists and dicts into a human readable format in markdown
+
+        readable_output = tableToMarkdown(f'MSSPortal Alert {alert_id}', alert)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='MSSPortal.Alert',
+            outputs_key_field='alert_id',
+            outputs=alert
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+
+        :return:
+        :rtype:
+        """
+
+        api_key = demisto.params().get('api_key')
+
+        # get the service API url
+        base_url = urljoin(demisto.params()['url'], '/api/v1')
+
+        # if your Client class inherits from BaseClient, SSL verification is
+        # handled out of the box by it, just pass ``verify_certificate`` to
+        # the Client constructor
+        verify_certificate = not demisto.params().get('insecure', True)
+
+        # if your Client class inherits from BaseClient, system proxy is handled
+        # out of the box by it, just pass ``proxy`` to the Client constructor
+        proxy = demisto.params().get('proxy', False)
+
+        # INTEGRATION DEVELOPER TIP
+        # You can use functions such as ``demisto.debug()``, ``demisto.info()``,
+        # etc. to print information in the XSOAR server log. You can set the log
+        # level on the server configuration
+        # See: https://xsoar.pan.dev/docs/integrations/code-conventions#logging
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers = {
+                'X-Lestrade-Key-ID': 'xsoar',
+                'X-Lestrade-Key': api_key
+            }
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                headers=headers,
+                proxy=proxy)
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+
+            elif demisto.command() == 'mssportal-get-alert':
+                return_results(get_alert_command(client, demisto.args()))
+            elif demisto.command() == 'mssportal-create-alert':
+                return_results(create_alert_command(client, demisto.args()))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('MSS Portal - MDR', 'end', __line__())
+  subtype: python3
+  type: python
+sourcemoduleid: MSS Portal
