@@ -68,7 +68,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.4.15
+    itemVersion: 1.5.1
     packID: Active_Directory_Query
     packName: Active Directory Query
     packPropagationLabels:
@@ -152,6 +152,11 @@ script:
       predefined:
       - "yes"
       - "no"
+    - description: The page size to query. The size-limit value will be ignored.
+      name: page-size
+    - description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      name: page-cookie
     description: Runs Active Directory queries.
     name: ad-search
     outputs:
@@ -161,6 +166,10 @@ script:
     - contextPath: ActiveDirectory.Search
       description: The result of the search.
       type: unknown
+    - contextPath: ActiveDirectory.SearchPageCookie
+      description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      type: string
   - arguments:
     - description: The username of the user to add to the group. If this argument
         is not specified, the computer name argument must be specified.
@@ -308,6 +317,8 @@ script:
       name: name
     - description: Adds AD attributes of the resulting objects to the default attributes.
       name: attributes
+    - description: Removes AD attributes of the resulting objects from the attributes.
+      name: attributes-to-exclude
     - description: Queries users by custom field type.
       name: custom-field-type
     - description: Queries users by custom field data (relevant only if the `custom-field-type`
@@ -317,9 +328,6 @@ script:
       name: username
     - description: Queries users by the samAccountName attribute.
       name: sAMAccountName
-    - defaultValue: "20"
-      description: The maximum number of objects to return.
-      name: limit
     - description: Queries by the user's email address.
       name: email
     - auto: PREDEFINED
@@ -330,6 +338,14 @@ script:
       predefined:
       - "true"
       - "false"
+    - defaultValue: "20"
+      description: The maximum number of objects to return.
+      name: limit
+    - description: The page size to query. The limit value will be ignored.
+      name: page-size
+    - description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      name: page-cookie
     description: Retrieves detailed information about a user account. The user can
       be specified by name, email address, or as an Active Directory Distinguished
       Name (DN). If no filter is specified, all users are returned.
@@ -442,6 +458,10 @@ script:
     - contextPath: ActiveDirectory.Users.userAccountControlFields.PARTIAL_SECRETS_ACCOUNT
       description: Whether the account is a read-only domain controller (RODC).
       type: bool
+    - contextPath: ActiveDirectory.UsersPageCookie
+      description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      type: string
     - contextPath: Account.DisplayName
       description: The user display name.
       type: string
@@ -472,6 +492,13 @@ script:
       name: custom-field-data
     - description: Search the computer by custom field type.
       name: custom-field-type
+    - description: The maximum number of records to return.
+      name: limit
+    - description: The page size to query. The limit value will be ignored.
+      name: page-size
+    - description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      name: page-cookie
     description: Retrieves detailed information about a computer account. The computer
       can be specified by name, email address, or as an Active Directory Distinguished
       Name (DN). If no filters are provided, all computers are returned.
@@ -489,6 +516,10 @@ script:
       description: The computer host name.
     - contextPath: Endpoint.Groups
       description: Groups for which the computer is listed as a member.
+    - contextPath: ActiveDirectory.ComputersPageCookie
+      description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      type: string
   - arguments:
     - description: The Distinguished Name of the Group's Active Directory.
       name: group-dn
@@ -520,6 +551,13 @@ script:
     - defaultValue: '*'
       description: Queries results by the samAccountName attribute.
       name: sAMAccountName
+    - description: The maximum number of records to return.
+      name: limit
+    - description: The page size to query. The limit value will be ignored.
+      name: page-size
+    - description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
+      name: page-cookie
     description: Retrieves the list of users or computers that are members of the
       specified group.
     name: ad-get-group-members
@@ -532,6 +570,10 @@ script:
       type: string
     - contextPath: ActiveDirectory.Groups.members.category
       description: The group members category.
+      type: string
+    - contextPath: ActiveDirectory.GroupsPageCookie
+      description: An opaque string received in a paged search, used for requesting
+        subsequent entries.
       type: string
   - arguments:
     - description: The Active Directory name of the group.
@@ -794,7 +836,7 @@ script:
     description: Modifies the AD account attribute "Password Never Expire".
     execution: true
     name: ad-modify-password-never-expire
-  dockerimage: demisto/py3-tools:1.0.0.31193
+  dockerimage: demisto/py3-tools:1.0.0.34956
   ismappable: true
   isremotesyncout: true
   runonce: false
@@ -1054,7 +1096,6 @@ script:
 
 
     def generate_unique_cn(default_base_dn, cn):
-
         changing_cn = cn
         i = 1
         while check_if_user_exists_by_attribute(default_base_dn, "cn", changing_cn):
@@ -1204,7 +1245,8 @@ script:
         return conn.entries
 
 
-    def search_with_paging(search_filter, search_base, attributes=None, page_size=100, size_limit=0, time_limit=0):
+    def search_with_paging(search_filter, search_base, attributes=None, page_size=100, size_limit=0,
+                           time_limit=0, page_cookie=None):
         """
         find entries in the DIT
 
@@ -1212,11 +1254,10 @@ script:
             search_base: the location in the DIT where the search will start
             search_filter: LDAP query string
             attributes: the attributes to specify for each entry found in the DIT
-
         """
         assert conn is not None
         total_entries = 0
-        cookie = None
+        cookie = base64.b64decode(page_cookie) if page_cookie else None
         start = datetime.now()
 
         entries: List[Entry] = []
@@ -1224,7 +1265,6 @@ script:
         while True:
             if 0 < entries_left_to_fetch < page_size:
                 page_size = entries_left_to_fetch
-
             conn.search(
                 search_base,
                 search_filter,
@@ -1233,7 +1273,6 @@ script:
                 paged_size=page_size,
                 paged_cookie=cookie
             )
-
             entries_left_to_fetch -= len(conn.entries)
             total_entries += len(conn.entries)
             cookie = dict_safe_get(conn.result, ['controls', '1.2.840.113556.1.4.319', 'value', 'cookie'])
@@ -1262,10 +1301,11 @@ script:
 
             raw.append(entry)
             flat.append(flat_entry)
-
+        encode_cookie = b64_encode(cookie) if cookie else None
         return {
             "raw": raw,
-            "flat": flat
+            "flat": flat,
+            "page_cookie": encode_cookie
         }
 
 
@@ -1322,7 +1362,6 @@ script:
 
 
     def free_search(default_base_dn, page_size):
-
         args = demisto.args()
 
         search_filter = args.get('filter')
@@ -1338,16 +1377,25 @@ script:
         if attributes:
             attributes = ALL_ATTRIBUTES if attributes == 'ALL' else attributes.split(',')
 
+        page_cookie = args.get('page-cookie')
+        if args.get('page-size'):
+            page_size = arg_to_number(args['page-size'])
+            size_limit = page_size
+
         entries = search_with_paging(
             search_filter,
             search_base,
             attributes=attributes,
             size_limit=size_limit,
             time_limit=time_limit,
-            page_size=page_size
+            page_size=page_size,
+            page_cookie=page_cookie
         )
 
-        ec = {} if context_output == 'no' else {'ActiveDirectory.Search(obj.dn == val.dn)': entries['flat']}
+        ec = {} if context_output == 'no' else {'ActiveDirectory.Search(obj.dn == val.dn)': entries['flat'],
+                                                'ActiveDirectory(obj.SearchPageCookie)': {
+                                                    'SearchPageCookie': entries['page_cookie']}
+                                                }
         demisto_entry = {
             'ContentsFormat': formats['json'],
             'Type': entryTypes['note'],
@@ -1373,9 +1421,13 @@ script:
         if limit <= 0:
             limit = 20
 
+        page_cookie = args.get('page-cookie')
+        if args.get('page-size'):
+            page_size = arg_to_number(args['page-size'])
+            limit = page_size
+
         # default query - list all users
         query = "(&(objectClass=User)(objectCategory=person))"
-
         # query by user DN
         if args.get('dn'):
             dn = escape_filter_chars(args['dn'])
@@ -1411,26 +1463,28 @@ script:
         if args.get('attributes'):
             custom_attributes = args['attributes'].split(",")
 
-        attributes = list(set(custom_attributes + DEFAULT_PERSON_ATTRIBUTES))
+        attributes = list(set(custom_attributes + DEFAULT_PERSON_ATTRIBUTES)
+                          - set(argToList(args.get('attributes-to-exclude'))))
 
         entries = search_with_paging(
             query,
             default_base_dn,
+            page_cookie=page_cookie,
             attributes=attributes,
             size_limit=limit,
             page_size=page_size
         )
 
         accounts = [account_entry(entry, custom_attributes) for entry in entries['flat']]
+        if 'userAccountControl' in attributes:
+            for user in entries['flat']:
+                user_account_control = user.get('userAccountControl')[0]
+                user['userAccountControlFields'] = user_account_to_boolean_fields(user_account_control)
 
-        for user in entries['flat']:
-            user_account_control = user.get('userAccountControl')[0]
-            user['userAccountControlFields'] = user_account_to_boolean_fields(user_account_control)
-
-            # display a literal translation of the numeric account control flag
-            if args.get('user-account-control-out', '') == 'true':
-                user['userAccountControl'] = COMMON_ACCOUNT_CONTROL_FLAGS.get(user_account_control) or user_account_control
-
+                # display a literal translation of the numeric account control flag
+                if args.get('user-account-control-out', '') == 'true':
+                    user['userAccountControl'] = COMMON_ACCOUNT_CONTROL_FLAGS.get(
+                        user_account_control) or user_account_control
         demisto_entry = {
             'ContentsFormat': formats['json'],
             'Type': entryTypes['note'],
@@ -1440,7 +1494,8 @@ script:
             'EntryContext': {
                 'ActiveDirectory.Users(obj.dn == val.dn)': entries['flat'],
                 # 'backward compatability' with ADGetUser script
-                'Account(obj.ID == val.ID)': accounts
+                'Account(obj.ID == val.ID)': accounts,
+                'ActiveDirectory(obj.UsersPageCookie)': {'UsersPageCookie': entries['page_cookie']}
             }
         }
         demisto.results(demisto_entry)
@@ -1536,6 +1591,12 @@ script:
             query = "(&(objectClass=user)(objectCategory=computer)({}={}))".format(
                 args['custom-field-type'], args['custom-field-data'])
 
+        size_limit = int(args.get('limit', '0'))
+        page_cookie = args.get('page-cookie')
+        if args.get('page-size'):
+            page_size = arg_to_number(args['page-size'])
+            size_limit = page_size
+
         if args.get('attributes'):
             custom_attributes = args['attributes'].split(",")
         attributes = list(set(custom_attributes + DEFAULT_COMPUTER_ATTRIBUTES))
@@ -1543,7 +1604,9 @@ script:
             query,
             default_base_dn,
             attributes=attributes,
-            page_size=page_size
+            page_size=page_size,
+            size_limit=size_limit,
+            page_cookie=page_cookie
         )
 
         endpoints = [endpoint_entry(entry, custom_attributes) for entry in entries['flat']]
@@ -1556,6 +1619,7 @@ script:
                     'ActiveDirectory.Computers(obj.dn == val.dn)': entries['flat'],
                     # 'backward compatability' with ADGetComputer script
                     'Endpoint(obj.ID == val.ID)': endpoints,
+                    'ActiveDirectory(obj.ComputersPageCookie)': {'ComputersPageCookie': entries['page_cookie']}
                 },
                 raw_response=entries['raw'],
             )
@@ -1576,7 +1640,6 @@ script:
         nested_search = '' if args.get('disable-nested-search') == 'true' else ':1.2.840.113556.1.4.1941:'
         time_limit = int(args.get('time_limit', 180))
         account_name = args.get('sAMAccountName')
-
         custom_attributes: List[str] = []
 
         default_attribute_mapping = {
@@ -1598,16 +1661,22 @@ script:
             query = "(&(objectCategory={})(objectClass=user)(memberOf{}={})(sAMAccountName={}))"\
                 .format(member_type, nested_search, group_dn, account_name)
 
+        size_limit = int(args.get('limit', '0'))
+        page_cookie = args.get('page-cookie')
+        if args.get('page-size'):
+            page_size = arg_to_number(args['page-size'])
+            size_limit = page_size
+
         entries = search_with_paging(
             query,
             default_base_dn,
             attributes=attributes,
             page_size=page_size,
-            time_limit=time_limit
+            time_limit=time_limit,
+            size_limit=size_limit,
+            page_cookie=page_cookie
         )
-
         members = [{'dn': entry['dn'], 'category': member_type} for entry in entries['flat']]
-
         demisto_entry = {
             'ContentsFormat': formats['json'],
             'Type': entryTypes['note'],
@@ -1618,7 +1687,8 @@ script:
                 'ActiveDirectory.Groups(obj.dn ==' + group_dn + ')': {
                     'dn': group_dn,
                     'members': members
-                }
+                },
+                'ActiveDirectory(obj.GroupsPageCookie)': {'GroupsPageCookie': entries['page_cookie']}
             }
         }
 
@@ -1734,7 +1804,7 @@ script:
                 raise DemistoException("User must have an Organizational Unit (OU). Please make sure you've added a "
                                        "transformer script which determines the OU of the user "
                                        "in \"" + mapper_out + "\" outgoing mapper, in the User Profile incident type "
-                                       "and schema type, under the \"ou\" field.")
+                                                              "and schema type, under the \"ou\" field.")
 
             user_exists = check_if_user_exists_by_attribute(default_base_dn, "sAMAccountName", sam_account_name)
 
@@ -1816,7 +1886,7 @@ script:
                 raise DemistoException("User must have an Organizational Unit (OU). Please make sure you've added a "
                                        "transformer script which determines the OU of the user "
                                        "in \"" + mapper_out + "\" outgoing mapper, in the User Profile incident type "
-                                       "and schema type, under the \"ou\" field.")
+                                                              "and schema type, under the \"ou\" field.")
 
             new_ou = ad_user.get("ou")
             user_exists = check_if_user_exists_by_attribute(default_base_dn, "sAMAccountName", sam_account_name)
@@ -2257,7 +2327,7 @@ script:
             except Exception as e:
                 error_msg = 'Please validate your instance configuration and make sure all of the ' \
                             'required attributes are mapped correctly in "' + mapper_out + '" outgoing mapper.\n' \
-                            'Error is: ' + str(e)
+                                                                                           'Error is: ' + str(e)
                 raise DemistoException(error_msg)
 
             if disabled_users_group_cn:
@@ -2287,13 +2357,12 @@ script:
 
 
     def add_member_to_group(default_base_dn):
-
         args = demisto.args()
 
         search_base = args.get('base-dn') or default_base_dn
 
         # get the  dn of the member - either user or computer
-        args_err = "Pleade provide either username or computer-name"
+        args_err = "Please provide either username or computer-name"
         member_dn = ''
 
         if args.get('username') and args.get('computer-name'):
@@ -2325,7 +2394,6 @@ script:
 
 
     def remove_member_from_group(default_base_dn):
-
         args = demisto.args()
 
         search_base = args.get('base-dn') or default_base_dn
@@ -2550,7 +2618,7 @@ script:
             except Exception as e:
                 exc_msg = str(e)
                 demisto.info("Failed bind to: {}:{}. {}: {}".format(SERVER_IP, PORT, type(e), exc_msg
-                             + "\nTrace:\n{}".format(traceback.format_exc())))
+                                                                    + "\nTrace:\n{}".format(traceback.format_exc())))
                 message = "Failed to access LDAP server. Please validate the server host and port are configured correctly"
                 if 'ssl wrapping error' in exc_msg:
                     message = "Failed to access LDAP server. SSL error."
@@ -2563,8 +2631,8 @@ script:
 
             if not base_dn_verified(DEFAULT_BASE_DN):
                 message = "Failed to verify the base DN configured for the instance.\n" \
-                    "Last connection result: {}\n" \
-                    "Last error from LDAP server: {}".format(json.dumps(conn.result), json.dumps(conn.last_error))
+                          "Last connection result: {}\n" \
+                          "Last error from LDAP server: {}".format(json.dumps(conn.result), json.dumps(conn.last_error))
                 return_error(message)
                 return
 
