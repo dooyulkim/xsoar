@@ -19,14 +19,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.7.16
+    itemVersion: 1.8.1
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python:2.7.18.27799
+dockerimage: demisto/python3:3.10.6.33415
 engineinfo: {}
 mainengineinfo: {}
 name: URLSSLVerification
@@ -95,7 +95,7 @@ script: |
       return set_http_as_suspicious != 'false'
 
 
-  def main():
+  def main():     # pragma: no cover
       url_arg = demisto.get(demisto.args(), "url")
       urls = arg_to_list_with_regex(url_arg)
 
@@ -171,7 +171,7 @@ script: |
 
   register_module_line('URLSSLVerification', 'end', __line__())
 scripttarget: 0
-subtype: python2
+subtype: python3
 system: true
 tags:
 - url
