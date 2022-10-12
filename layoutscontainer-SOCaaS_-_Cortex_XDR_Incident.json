@@ -898,7 +898,7 @@
 	"itemVersion": "4.8.19",
 	"locked": false,
 	"mobile": null,
-	"name": "Cortex XDR Incident_copy",
+	"name": "SOCaaS - Cortex XDR Incident",
 	"packID": "",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"propagationLabels": [],
