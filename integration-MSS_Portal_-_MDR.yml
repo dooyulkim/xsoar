@@ -1,0 +1,597 @@
+category: Case Management
+commonfields:
+  id: MSS Portal - MDR
+  version: -1
+configuration:
+- defaultvalue: https://tssapi-preprod.telus.com
+  display: Server URL (e.g. 'https://tssapi-preprod.telus.com)
+  name: url
+  required: true
+  type: 0
+- additionalinfo: This parameter does not have any effect since v1 will be added automatically
+    into api url
+  defaultvalue: v1
+  display: Currently, we use v1 of MSS Portal API
+  name: api_version
+  required: true
+  type: 0
+- display: MSS Portal API Key
+  name: api_key
+  required: true
+  type: 0
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This is the MSS Portal integration.
+detaileddescription: |
+  ### Partner Contributed Integration
+  #### Integration Author: Doo Yul Kim
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [doo_yul.kim@telus.copm](mailto:doo_yul.kim@telus.copm)
+  ***
+  ## BaseIntegration Help
+
+  Markdown file for integration configuration  help snippet. In this file add:
+
+  - Brief information about how to retrieve the API key of your product
+  - Other useful information on how to configure your integration in XSOAR
+
+  Since this is a Markdown file, we encourage you to use MD formatting for sections, sub-sections, lists, etc.
+display: MSS Portal - MDR (Developer Contribution)
+image: data:image/png;base64,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
+name: MSS Portal - MDR
+script:
+  commands:
+  - arguments:
+    - description: Alert ID.
+      name: alert_id
+      required: true
+    description: Retrieve alert extra data by ID.
+    name: mssportal-get-alert
+    outputs:
+    - contextPath: MSSPortal.Alert.id
+      description: Alert ID.
+      type: String
+    - contextPath: MSSPortal.Alert.createdAt
+      description: Alert created time. Format is ISO8601 (i.e. '2020-04-30T10:35:00.000Z').
+      type: Date
+    - contextPath: MSSPortal.Alert.providerId
+      description: Alert description.
+      type: String
+    - contextPath: MSSPortal.Alert.providerCreatedAt
+      description: ID of the device involved in the alert.
+      type: date
+    - contextPath: MSSPortal.Alert.providerModifiedAt
+      description: IP Address of the device involved in the alert.
+      type: date
+    - contextPath: MSSPortal.Alert.providerAlertId
+      description: Location of the device involved in the alert.
+      type: number
+    - contextPath: MSSPortal.Alert.providerRaw
+      description: User involved in the alert.
+      type: String
+    - contextPath: MSSPortal.Alert.severity
+      type: string
+    - contextPath: MSSPortal.Alert.customerId
+      type: number
+    - contextPath: MSSPortal.Alert.investigationCaseId
+      type: number
+    - contextPath: MSSPortal.Alert.acknowledgedBy
+    - contextPath: MSSPortal.Alert.acknowledgedAt
+      type: date
+    - contextPath: MSSPortal.Alert.name
+      type: string
+  - arguments:
+    - description: Case ID.
+      name: case_id
+      required: true
+    description: Acknowledge case to change the status to "IN_PROGRESS".
+    name: mssportal-acknowledge-case
+  - arguments:
+    - description: The Case ID
+      name: case_id
+      required: true
+    - description: The status of the case. Ex) PENDING, IN_PROGRESS, CLOSED;
+      name: status
+    - description: The Telus user accountable for the case. Ex) https://mssportal.telus.com/api/users/1
+      name: telusPrime
+    - description: The description of the case. Ex) This is a case description
+      name: description
+    - description: The caseTitle of the case. Ex) This is a case title.
+      name: caseTitle
+    - description: The priority of the case. Ex) VERY_LOW, LOW, MEDIUM, HIGH, CRITICAL
+      name: priority
+    - description: The resolution notes of the case. Ex) This is a resolution notes
+      name: resolutionNotes
+    description: Update a case.
+    name: mssportal-update-case
+  - arguments:
+    - description: Provider's ID ex) XSOAR_LOGRYTHME
+      name: provider_id
+      required: true
+    - description: Source alert created date . Format) 2022-07-18T13:44:36.769Z (ISO
+        8601))
+      name: created_at
+      required: true
+    - description: Source alert modified date Source.  Format ) 2022-07-18T13:44:36.769Z
+        (ISO 8601))
+      name: modified_at
+      required: true
+    - description: Source alert ID
+      name: alert_id
+      required: true
+    - defaultValue: '''{}'''
+      description: Source raw data in JSON
+      name: raw_data
+      required: true
+    - description: Source alert's severity ex)HIGH
+      name: severity
+      required: true
+    - description: Customer's ID ex)123475
+      name: customer_id
+      required: true
+    - description: Source alert name
+      name: name
+      required: true
+    - description: Related case description
+      name: related_case_description
+    - description: Related case title
+      name: related_case_title
+    description: Create an alert using Portal's MDR API
+    name: mssportal-create-alert
+    outputs:
+    - contextPath: MSSPortal.Alert.id
+      description: The ID of the new alert
+      type: number
+    - contextPath: MSSPortal.Alert.createdAt
+      description: The creation time of the new alert
+      type: date
+    - contextPath: MSSPortal.Alert.providerId
+      description: The ID of the source system
+      type: string
+    - contextPath: MSSPortal.Alert.providerCreatedAt
+      description: The creation timestamp in the source system
+      type: date
+    - contextPath: MSSPortal.Alert.providerModifiedAt
+      description: The modification timestamp in the source system
+      type: date
+    - contextPath: MSSPortal.Alert.providerAlertId
+      description: The Id in the source system
+      type: string
+    - contextPath: MSSPortal.Alert.providerRaw
+      description: Raw json from the source system
+      type: string
+    - contextPath: MSSPortal.Alert.severity
+      description: The severity of the alert
+      type: string
+    - contextPath: MSSPortal.Alert.customerId
+      description: The ID of the related case
+      type: number
+    - contextPath: MSSPortal.Alert.investigationCaseId
+      description: The  ID of the related case
+      type: number
+    - contextPath: MSSPortal.Alert.acknowledgedBy
+      description: The alert was acknowledgedBy
+      type: string
+    - contextPath: MSSPortal.Alert.acknowledgedAt
+      description: The alert was acknowledgedAt
+      type: date
+    - contextPath: MSSPortal.Alert.name
+      description: Alert name
+      type: string
+  dockerimage: demisto/python3:3.10.7.33922
+  isremotesyncin: true
+  isremotesyncout: true
+  runonce: true
+  script: |
+    register_module_line('MSS Portal - MDR', 'start', __line__())
+
+
+    # import json
+    import urllib3
+    # import dateparser
+    import traceback
+    # from typing import Any, Dict, Tuple, List, Optional, Union, cast
+    from typing import Any, Dict
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    ''' CONSTANTS '''
+
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        """Client class to interact with the service API
+
+        This Client implements API calls, and does not contain any Demisto logic.
+        Should only do requests and return data.
+        It inherits from BaseClient defined in CommonServer Python.
+        Most calls use _http_request() that handles proxy, SSL verification, etc.
+        For this MSSPortal implementation, no special attributes defined
+        """
+
+        def getCurrentUserIdentity(self) -> Dict[str, Any]:
+            """Gets cirremt user's identity
+            This methods will be used mainly to test API connectivity
+            """
+
+            return self._http_request('get', '/identities/current')
+
+        def get_alert(self, alert_id: str) -> Dict[str, Any]:
+            """Gets a specific MSSPortal alert by id
+
+            :type alert_id: ``str``
+            :param alert_id: id of the alert to return
+
+            :return: dict containing the alert as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            return self._http_request('get', f'/alerts/{alert_id}')
+
+        def update_case(self, case_id: str, data: Dict[str, Any]) -> str:
+            """Updates a specific MSSPortal case by id
+
+            :type case_id: ``str``
+            :param case_id: id of the case to update
+
+            :return: string from the API call
+            :rtype: ``str``
+            """
+
+            return self._http_request('put', f'/cases/{case_id}', json_data=data, resp_type='text')
+
+        def acknowledge_case(self, case_id: str) -> str:
+            """Acknowledge a specific MSSPortal case by id
+
+            :type case_id: ``str``
+            :param case_id: id of the case to acknowledge
+
+            :return: string from the API call
+            :rtype: ``str``
+            """
+
+            return self._http_request('put', f'/cases/{case_id}/acknowledgement', resp_type='text')
+
+        def create_alert(self, data: Dict[str, Any]) -> Dict[str, Any]:
+            """Gets a specific MSSPortal alert by id
+
+            :type: dict containing the alert
+            :param ``Dict[str, Any]``
+
+            :return: dict containing the alert as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            return self._http_request('post', '/alerts', json_data=data)
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type name: ``str``
+        :param name: name to append to the 'Hello' string
+
+        :return: 'ok' if test passed, anything else will fail the test.
+        :rtype: ``str``
+        """
+
+        # INTEGRATION DEVELOPER TIP
+        # Client class should raise the exceptions, but if the test fails
+        # the exception text is printed to the Cortex XSOAR UI.
+        # If you have some specific errors you want to capture (i.e. auth failure)
+        # you should catch the exception here and return a string with a more
+        # readable output (for example return 'Authentication Error, API Key
+        # invalid').
+        # Cortex XSOAR will print everything you return different than 'ok' as
+        # an error
+        try:
+            client.getCurrentUserIdentity()
+        except DemistoException as e:
+            if 'Forbidden' in str(e):
+                return 'Authorization Error: make sure API Key is correctly set'
+            else:
+                raise e
+        return 'ok'
+
+
+    def get_alert_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-get-alert command: Returns a MSSPortal alert
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['alert_id']`` alert ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains an alert
+
+        :rtype: ``CommandResults``
+        """
+
+        alert_id = args.get('alert_id', None)
+        if not alert_id:
+            raise ValueError('alert_id not specified')
+
+        alert = client.get_alert(alert_id)
+
+        # tableToMarkdown() is defined is CommonServerPython.py and is used very
+        # often to convert lists and dicts into a human readable format in markdown
+        readable_output = tableToMarkdown(f'MSSPortal Alert {alert_id}', alert)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='MSSPortal.Alert',
+            outputs_key_field='id',
+            outputs=alert
+        )
+
+
+    def update_case_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-update-case command: Returns a MSSPortal case
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['case_id']`` alert ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains the result of case update
+
+        :rtype: ``CommandResults``
+        """
+
+        case_id = args.get('case_id', None)
+        if not case_id:
+            raise ValueError('case_id not specified')
+
+        json_data: Dict[str, Any] = {}
+
+        status = args.get('status')
+        if not status:
+            json_data['status'] = status
+        telusPrime = args.get('telusPrime')
+        if not status:
+            json_data['telusPrime'] = telusPrime
+        description = args.get('description')
+        if not status:
+            json_data['description'] = description
+        caseTitle = args.get('caseTitle')
+        if not status:
+            json_data['caseTitle'] = caseTitle
+        priority = args.get('priority')
+        if not priority:
+            json_data['priority'] = priority
+        resolutionNotes = args.get('resolutionNotes')
+        if not resolutionNotes:
+            json_data['resolutionNotes'] = resolutionNotes
+
+        client.update_case(case_id, json_data)
+
+        return CommandResults(
+            readable_output=f'MSSPortal Case {case_id} updated'
+        )
+
+
+    def acknowledge_case_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-acknowledge-alert command: Returns a MSSPortal case
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['case_id']`` case ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains an alert
+
+        :rtype: ``CommandResults``
+        """
+
+        case_id = args.get('case_id', None)
+        if not case_id:
+            raise ValueError('case_id not specified')
+
+        client.acknowledge_case(case_id)
+
+        return CommandResults(
+            readable_output=f'MSSPortal Case {case_id} acknowledged'
+        )
+
+
+    def create_alert_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """mssportal-get-alert command: Returns a MSSPortal alert
+
+        :type client: ``Client``
+        :param Client: MSSPortal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['alert_id']`` alert ID to return
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains an alert
+
+        :rtype: ``CommandResults``
+        """
+
+        provider_id = args.get('provider_id')
+        if not provider_id:
+            raise ValueError('provider_id not specified')
+        alert_id = args.get('alert_id')
+        if not alert_id:
+            raise ValueError('alert_id not specified')
+        created_at = args.get('created_at')
+        if not created_at:
+            raise ValueError('created_at not specified')
+        modified_at = args.get('modified_at')
+        if not modified_at:
+            raise ValueError('modified_at not specified')
+        raw_data = args.get('raw_data', '{}')
+        if not raw_data:
+            raise ValueError('raw_data not specified')
+        severity = args.get('severity')
+        if not severity:
+            raise ValueError('severity not specified')
+        customer_id = args.get('customer_id',)
+        if not customer_id:
+            raise ValueError('customer_id not specified')
+        investigation_case_id = args.get('investigation_case_id')
+        name = args.get('name')
+        if not name:
+            raise ValueError('name not specified')
+        related_case_description = args.get('related_case_description')
+        related_case_title = args.get('related_case_title')
+
+        json_data = {
+            "providerId": provider_id,
+            "providerCreatedAt": created_at,
+            "providerModifiedAt": modified_at,
+            "providerAlertId": alert_id,
+            "providerRaw": raw_data,
+            "severity": severity,
+            "customerId": customer_id,
+            "investigationCaseId": investigation_case_id,
+            "name": name,
+            "Related case description": related_case_description,
+            "Related case title": related_case_title
+        }
+
+        alert = client.create_alert(json_data)
+
+        # INTEGRATION DEVELOPER TIP
+        # We want to convert the "created" time from timestamp(s) to ISO8601 as
+        # Cortex XSOAR customers and integrations use this format by default
+
+        # tableToMarkdown() is defined is CommonServerPython.py and is used very
+        # often to convert lists and dicts into a human readable format in markdown
+
+        readable_output = tableToMarkdown(f'MSSPortal Alert {alert_id}', alert)
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix='MSSPortal.Alert',
+            outputs_key_field='alert_id',
+            outputs=alert
+        )
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+
+        :return:
+        :rtype:
+        """
+
+        api_key = demisto.params().get('api_key')
+
+        # get the service API url
+        base_url = urljoin(demisto.params()['url'], '/api/v1')
+
+        # if your Client class inherits from BaseClient, SSL verification is
+        # handled out of the box by it, just pass ``verify_certificate`` to
+        # the Client constructor
+        verify_certificate = not demisto.params().get('insecure', True)
+
+        # if your Client class inherits from BaseClient, system proxy is handled
+        # out of the box by it, just pass ``proxy`` to the Client constructor
+        proxy = demisto.params().get('proxy', False)
+
+        # INTEGRATION DEVELOPER TIP
+        # You can use functions such as ``demisto.debug()``, ``demisto.info()``,
+        # etc. to print information in the XSOAR server log. You can set the log
+        # level on the server configuration
+        # See: https://xsoar.pan.dev/docs/integrations/code-conventions#logging
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers = {
+                'X-Lestrade-Key-ID': 'xsoar',
+                'X-Lestrade-Key': api_key
+            }
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                headers=headers,
+                proxy=proxy)
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+
+            elif demisto.command() == 'mssportal-get-alert':
+                return_results(get_alert_command(client, demisto.args()))
+            elif demisto.command() == 'mssportal-update-case':
+                return_results(update_case_command(client, demisto.args()))
+            elif demisto.command() == 'mssportal-acknowledge-case':
+                return_results(acknowledge_case_command(client, demisto.args()))
+            elif demisto.command() == 'mssportal-create-alert':
+                return_results(create_alert_command(client, demisto.args()))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('MSS Portal - MDR', 'end', __line__())
+  subtype: python3
+  type: python
+sourcemoduleid: MSS Portal
