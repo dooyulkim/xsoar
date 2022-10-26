@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -19,18 +18,12 @@ inputs:
   key: Hostname
   playbookInputQuery: null
   required: false
-  value:
-    complex:
-      accessor: Hostname
-      root: Endpoint
+  value: {}
 - description: Endpoint ID to isolate using Traps.
   key: EndpointId
   playbookInputQuery: null
   required: false
-  value:
-    complex:
-      accessor: Endpoint.endpoint_id
-      root: PaloAltoNetworksXDR
+  value: {}
 - description: The endpoint ID (string) to isolate using Cortex XDR. You can retrieve
     the string from the xdr-get-endpoints command.
   key: xdr_endpoint_id
@@ -88,7 +81,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -120,7 +112,6 @@ tasks:
         }
       }
   "2":
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -147,7 +138,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -175,7 +165,7 @@ tasks:
       id: 33a00cbb-bc23-47d0-8062-81dbcc134d25
       iscommand: false
       name: Traps Isolate Endpoint
-      playbookName: Traps Isolate Endpoint
+      playbookId: Traps Isolate Endpoint
       type: playbook
       version: -1
     taskid: 33a00cbb-bc23-47d0-8062-81dbcc134d25
@@ -189,7 +179,6 @@ tasks:
         }
       }
   "6":
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -218,7 +207,7 @@ tasks:
       id: 0342c5df-d2ff-448e-8ef1-3f4674c42bff
       iscommand: false
       name: Isolate Endpoint - Cybereason
-      playbookName: Isolate Endpoint - Cybereason
+      playbookId: Isolate Endpoint - Cybereason
       type: playbook
       version: -1
     taskid: 0342c5df-d2ff-448e-8ef1-3f4674c42bff
@@ -232,7 +221,6 @@ tasks:
         }
       }
   "7":
-    continueonerrortype: ""
     id: "7"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -284,7 +272,6 @@ tasks:
         }
       }
   "8":
-    continueonerrortype: ""
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -310,7 +297,7 @@ tasks:
       id: ed275240-5110-4452-88ba-66244c7a914a
       iscommand: false
       name: Block Endpoint - Carbon Black Response
-      playbookName: Block Endpoint - Carbon Black Response
+      playbookId: block_endpoint_-_carbon_black_response
       type: playbook
       version: -1
     taskid: ed275240-5110-4452-88ba-66244c7a914a
