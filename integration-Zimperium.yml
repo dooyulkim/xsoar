@@ -1,0 +1,1735 @@
+category: Network Security
+commonfields:
+  id: Zimperium
+  version: -1
+configuration:
+- defaultvalue: https://domain.zimperium.com
+  display: Server URL (e.g. https://domain.zimperium.com)
+  name: url
+  required: true
+  type: 0
+- display: API Key
+  name: api_key
+  required: true
+  type: 4
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Fetch Query. e.g, severity==CRITICAL
+  name: fetch_query
+  required: false
+  type: 0
+- defaultvalue: "50"
+  display: Max fetch
+  name: max_fetch
+  required: false
+  type: 0
+- defaultvalue: 7 days
+  display: First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days, 3
+    months, 1 year)
+  name: fetch_time
+  required: false
+  type: 0
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: 1.0.5
+    packID: Zimperium
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+defaultclassifier: Zimperium
+defaultmapperin: Zimperium-mapper
+description: Fetch and investigate mobile security alerts, generated based on anomalous
+  or unauthorized activities detected on a user's mobile device.
+detaileddescription: |-
+  ## Zimperium
+  Zimperium uses RSQL to query for events, devices, and users.
+  Here's some more information about [RSQL query syntax](https://github.com/jirutka/rsql-parser).
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/zimperium)
+display: Zimperium
+image: data:image/png;base64,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
+name: Zimperium
+script:
+  commands:
+  - arguments:
+    - defaultValue: eventId==*
+      description: Search events query.
+      name: query
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Retrieve event full details.
+      name: verbose
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: "10"
+      description: Maximum number of events to retrieve in each page. Default is 10.
+      name: size
+    - defaultValue: "0"
+      description: Page number.
+      name: page
+    description: Search events.
+    name: zimperium-events-search
+    outputs:
+    - contextPath: Zimperium.Events.appName
+      description: Application name.
+      type: String
+    - contextPath: Zimperium.Events.bssid
+      description: Network BSSID.
+      type: String
+    - contextPath: Zimperium.Events.bundleId
+      description: Bundle ID.
+      type: String
+    - contextPath: Zimperium.Events.country
+      description: Event country.
+      type: String
+    - contextPath: Zimperium.Events.customerContactName
+      description: Customer contact name.
+      type: String
+    - contextPath: Zimperium.Events.customerContactPhone
+      description: Customer contact phone.
+      type: String
+    - contextPath: Zimperium.Events.customerId
+      description: Customer ID.
+      type: String
+    - contextPath: Zimperium.Events.deviceHash
+      description: Device hash.
+      type: String
+    - contextPath: Zimperium.Events.deviceId
+      description: Device ID.
+      type: string
+    - contextPath: Zimperium.Events.deviceModel
+      description: Device model.
+      type: String
+    - contextPath: Zimperium.Events.deviceTime
+      description: Device time.
+      type: String
+    - contextPath: Zimperium.Events.eventDetail
+      description: Event additional details.
+      type: Unknown
+    - contextPath: Zimperium.Events.eventFullName
+      description: Event full name.
+      type: String
+    - contextPath: Zimperium.Events.eventId
+      description: Event ID.
+      type: String
+    - contextPath: Zimperium.Events.eventName
+      description: Event name.
+      type: String
+    - contextPath: Zimperium.Events.eventState
+      description: Event state.
+      type: String
+    - contextPath: Zimperium.Events.eventStateCode
+      description: Event status code.
+      type: Number
+    - contextPath: Zimperium.Events.eventVector
+      description: Device or network attack vector.
+      type: String
+    - contextPath: Zimperium.Events.firstName
+      description: First name of the phone owner.
+      type: String
+    - contextPath: Zimperium.Events.lastName
+      description: Last name of the phone owner.
+      type: String
+    - contextPath: Zimperium.Events.middleName
+      description: Middle name of the phone owner.
+      type: String
+    - contextPath: Zimperium.Events.incidentSummary
+      description: Incident summary.
+      type: String
+    - contextPath: Zimperium.Events.lastSeenTime
+      description: Event last seen time.
+      type: Date
+    - contextPath: Zimperium.Events.locationDetail
+      description: Location details.
+      type: String
+    - contextPath: Zimperium.Events.latitude
+      description: Latitude of the phone.
+      type: String
+    - contextPath: Zimperium.Events.longitude
+      description: Longitude of the phone.
+      type: String
+    - contextPath: Zimperium.Events.mdmId
+      description: MD ID.
+      type: String
+    - contextPath: Zimperium.Events.mitigatedDate
+      description: Mitigated date of the phone.
+      type: Date
+    - contextPath: Zimperium.Events.osType
+      description: OS type of the phone.
+      type: String
+    - contextPath: Zimperium.Events.osVersion
+      description: OS version of the phone.
+      type: String
+    - contextPath: Zimperium.Events.persistedTime
+      description: Persisted time of the event.
+      type: Date
+    - contextPath: Zimperium.Events.queuedTime
+      description: Queued time of the event.
+      type: Date
+    - contextPath: Zimperium.Events.severity
+      description: Severity of the event.
+      type: String
+    - contextPath: Zimperium.Events.ssid
+      description: Network SSID.
+      type: String
+    - contextPath: Zimperium.Events.tag1
+      description: User pre-defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Events.tag2
+      description: User pre defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Events.typeDesc
+      description: Event type description.
+      type: String
+    - contextPath: Zimperium.Events.userEmail
+      description: Email address of the phone user.
+      type: String
+    - contextPath: Zimperium.Events.userPhoneNumber
+      description: Phone number of the phone user.
+      type: String
+    - contextPath: Zimperium.Events.zdid
+      description: Zimperium device ID.
+      type: String
+    - contextPath: Zimperium.Events.zipsVersion
+      description: zIPS version where the event occurred.
+      type: String
+  - arguments:
+    - description: The query to search for users.
+      name: query
+    - description: Search users by email address.
+      name: email
+    - defaultValue: "10"
+      description: Maximum number of users to retrieve in each page. Default is 10.
+      name: size
+    - defaultValue: "0"
+      description: Page number.
+      name: page
+    description: Search users.
+    name: zimperium-users-search
+    outputs:
+    - contextPath: Zimperium.Users.activationTokenUrl
+      description: Activation token that is used to activate zIPS.
+      type: String
+    - contextPath: Zimperium.Users.agreedToTerms
+      description: Whether the user completed enrollment.
+      type: bool
+    - contextPath: Zimperium.Users.alias
+      description: User alias.
+      type: String
+    - contextPath: Zimperium.Users.createdDate
+      description: User created date.
+      type: Date
+    - contextPath: Zimperium.Users.dateJoined
+      description: User joined date.
+      type: Date
+    - contextPath: Zimperium.Users.email
+      description: User email address.
+      type: String
+    - contextPath: Zimperium.Users.firstName
+      description: User first name.
+      type: String
+    - contextPath: Zimperium.Users.lastLogin
+      description: User last login date.
+      type: Date
+    - contextPath: Zimperium.Users.lastName
+      description: User last name.
+      type: String
+    - contextPath: Zimperium.Users.middleName
+      description: User middle name.
+      type: String
+    - contextPath: Zimperium.Users.lastSyncFromMdm
+      description: Last time the user synced from MDM, e.g., AirWatch, Mobile Iron,
+        etc.
+      type: Date
+    - contextPath: Zimperium.Users.lastZconsoleLogin
+      description: User last login to the Zimperium console.
+      type: Date
+    - contextPath: Zimperium.Users.modifiedDate
+      description: User modified date.
+      type: Date
+    - contextPath: Zimperium.Users.objectId
+      description: User object ID.
+      type: String
+    - contextPath: Zimperium.Users.passwordExpirationDate
+      description: Use password expiration date.
+      type: Date
+    - contextPath: Zimperium.Users.phoneNumber
+      description: User phone number.
+      type: String
+    - contextPath: Zimperium.Users.phoneNumberVerified
+      description: Whether the user phone number is verified.
+      type: bool
+    - contextPath: Zimperium.Users.pwdRecoveryRequest
+      description: Whether the user requested password recovery.
+      type: bool
+    - contextPath: Zimperium.Users.role
+      description: User role.
+      type: Number
+    - contextPath: Zimperium.Users.roles.roleId
+      description: User role ID.
+      type: Number
+    - contextPath: Zimperium.Users.signupSteps
+      description: User sign-up steps.
+      type: Number
+    - contextPath: Zimperium.Users.staff
+      description: Whether the user is a staff member.
+      type: bool
+    - contextPath: Zimperium.Users.status
+      description: User status.
+      type: Number
+    - contextPath: Zimperium.Users.superuser
+      description: Whether the user is a superuser.
+      type: bool
+    - contextPath: Zimperium.Users.syncedFromMdm
+      description: Whether the user is synced from MDM, e.g., AirWatch, Mobile Iron,
+        etc.
+      type: bool
+    - contextPath: Zimperium.Users.termsVersion
+      description: User terms version.
+      type: String
+  - arguments:
+    - description: Object ID.
+      name: object_id
+      required: true
+    description: Retrieves details for a single user by object ID.
+    name: zimperium-user-get-by-id
+    outputs:
+    - contextPath: Zimperium.Users.activationTokenUrl
+      description: Activation token that is used to activate zIPS.
+      type: String
+    - contextPath: Zimperium.Users.agreedToTerms
+      description: Whether the user completed enrollment.
+      type: Number
+    - contextPath: Zimperium.Users.alias
+      description: User alias.
+      type: String
+    - contextPath: Zimperium.Users.createdDate
+      description: User created date.
+      type: Date
+    - contextPath: Zimperium.Users.dateJoined
+      description: User joined date.
+      type: Date
+    - contextPath: Zimperium.Users.email
+      description: User email address.
+      type: String
+    - contextPath: Zimperium.Users.firstName
+      description: User first name.
+      type: String
+    - contextPath: Zimperium.Users.lastName
+      description: User last name.
+      type: String
+    - contextPath: Zimperium.Users.middleName
+      description: User middle name.
+      type: String
+    - contextPath: Zimperium.Users.lastLogin
+      description: User last login date.
+      type: Date
+    - contextPath: Zimperium.Users.lastSyncFromMdm
+      description: Last time the user synced from MDM, e.g., AirWatch, Mobile Iron,
+        etc.
+      type: Unknown
+    - contextPath: Zimperium.Users.lastZconsoleLogin
+      description: User last login to the Zimperium console.
+      type: Date
+    - contextPath: Zimperium.Users.modifiedDate
+      description: User last modified date.
+      type: Date
+    - contextPath: Zimperium.Users.objectId
+      description: User object ID.
+      type: String
+    - contextPath: Zimperium.Users.passwordExpirationDate
+      description: Use password expiration date.
+      type: Date
+    - contextPath: Zimperium.Users.phoneNumber
+      description: User phone number.
+      type: String
+    - contextPath: Zimperium.Users.phoneNumberVerified
+      description: Whether the user phone number is verified.
+      type: bool
+    - contextPath: Zimperium.Users.pwdRecoveryRequest
+      description: Whether the user requested password recovery.
+      type: bool
+    - contextPath: Zimperium.Users.role
+      description: User role.
+      type: Number
+    - contextPath: Zimperium.Users.roles.roleId
+      description: User role ID.
+      type: Number
+    - contextPath: Zimperium.Users.signupSteps
+      description: User sign-up steps.
+      type: Number
+    - contextPath: Zimperium.Users.staff
+      description: Whether the user is a staff member.
+      type: bool
+    - contextPath: Zimperium.Users.status
+      description: User status.
+      type: Number
+    - contextPath: Zimperium.Users.superuser
+      description: Whether the user is a superuser.
+      type: bool
+    - contextPath: Zimperium.Users.syncedFromMdm
+      description: Whether the user is synced from MDM, e.g., AirWatch, Mobile Iron,
+        etc.
+      type: bool
+    - contextPath: Zimperium.Users.termsVersion
+      description: User terms version.
+      type: String
+  - arguments:
+    - defaultValue: deviceId==*
+      description: Search devices query.
+      name: query
+    - defaultValue: "10"
+      description: Maximum number of users to retrieve in each page. Default is 10.
+      name: size
+    - defaultValue: "0"
+      description: Page number.
+      name: page
+    description: Search devices.
+    name: zimperium-devices-search
+    outputs:
+    - contextPath: Zimperium.Devices.appName
+      description: Application name.
+      type: String
+    - contextPath: Zimperium.Devices.bundleId
+      description: Bundle ID.
+      type: String
+    - contextPath: Zimperium.Devices.country
+      description: Device country.
+      type: String
+    - contextPath: Zimperium.Devices.countryCode
+      description: Device country code.
+      type: String
+    - contextPath: Zimperium.Devices.createdAt
+      description: Created time of the device.
+      type: Date
+    - contextPath: Zimperium.Devices.deviceGroupName
+      description: Device group name.
+      type: String
+    - contextPath: Zimperium.Devices.deviceHash
+      description: Device hash.
+      type: String
+    - contextPath: Zimperium.Devices.deviceId
+      description: Device ID.
+      type: String
+    - contextPath: Zimperium.Devices.email
+      description: Email address associated to the device.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId1
+      description: User pre-defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId2
+      description: User pre-defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Devices.firstName
+      description: Device owner first name.
+      type: String
+    - contextPath: Zimperium.Devices.lastName
+      description: Device owner last name.
+      type: String
+    - contextPath: Zimperium.Devices.middleName
+      description: Device owner middle name.
+      type: String
+    - contextPath: Zimperium.Devices.lastSeen
+      description: Device last seen.
+      type: Date
+    - contextPath: Zimperium.Devices.mdmId
+      description: MDM ID, e.g., AirWatch, Mobile Iron.
+      type: String
+    - contextPath: Zimperium.Devices.model
+      description: Device model.
+      type: String
+    - contextPath: Zimperium.Devices.operatorAlpha
+      description: Name of the mobile operator.
+      type: String
+    - contextPath: Zimperium.Devices.osBuild
+      description: OS build.
+      type: String
+    - contextPath: Zimperium.Devices.osSecurityPatch
+      description: OS security patch.
+      type: String
+    - contextPath: Zimperium.Devices.osType
+      description: OS type of the phone.
+      type: String
+    - contextPath: Zimperium.Devices.osUpgradeable
+      description: Whether the OS is upgradable.
+      type: bool
+    - contextPath: Zimperium.Devices.osVersion
+      description: OS version.
+      type: String
+    - contextPath: Zimperium.Devices.osVulnerable
+      description: Whether the OS is vulnerable.
+      type: bool
+    - contextPath: Zimperium.Devices.phoneNumber
+      description: Device phone number.
+      type: String
+    - contextPath: Zimperium.Devices.processor
+      description: Device processor.
+      type: String
+    - contextPath: Zimperium.Devices.riskPosture
+      description: Device risk.
+      type: String
+    - contextPath: Zimperium.Devices.riskPostureCode
+      description: Device risk code.
+      type: Number
+    - contextPath: Zimperium.Devices.status
+      description: Device status.
+      type: String
+    - contextPath: Zimperium.Devices.statusCode
+      description: Device status code.
+      type: Number
+    - contextPath: Zimperium.Devices.systemToken
+      description: Device system token.
+      type: String
+    - contextPath: Zimperium.Devices.type
+      description: Device type.
+      type: String
+    - contextPath: Zimperium.Devices.updatedDate
+      description: Device updated date.
+      type: Date
+    - contextPath: Zimperium.Devices.userId
+      description: User ID of the device owner.
+      type: String
+    - contextPath: Zimperium.Devices.version
+      description: Device version.
+      type: String
+    - contextPath: Zimperium.Devices.vulnerabilities
+      description: Device vulnerabilities.
+      type: String
+    - contextPath: Zimperium.Devices.zdid
+      description: Device ZD ID.
+      type: String
+    - contextPath: Zimperium.Devices.zipsDistributionVersion
+      description: zIPS distribution version.
+      type: String
+    - contextPath: Zimperium.Devices.zipsVersion
+      description: zIPS version.
+      type: String
+  - arguments:
+    - description: Device ID.
+      name: device_id
+    - description: Zimperium ID.
+      name: zdid
+    description: Retrieves details for a single device.
+    name: zimperium-device-get-by-id
+    outputs:
+    - contextPath: Zimperium.Devices.appName
+      description: Application name.
+      type: String
+    - contextPath: Zimperium.Devices.bundleId
+      description: Bundle ID.
+      type: String
+    - contextPath: Zimperium.Devices.country
+      description: Device country.
+      type: String
+    - contextPath: Zimperium.Devices.countryCode
+      description: Device country code.
+      type: String
+    - contextPath: Zimperium.Devices.createdAt
+      description: Created time of the device.
+      type: Date
+    - contextPath: Zimperium.Devices.deviceGroupName
+      description: Device group name.
+      type: String
+    - contextPath: Zimperium.Devices.deviceHash
+      description: Device hash.
+      type: String
+    - contextPath: Zimperium.Devices.deviceId
+      description: Device ID.
+      type: String
+    - contextPath: Zimperium.Devices.email
+      description: Email address associated to the device.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId1
+      description: User pre-defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId2
+      description: User pre-defined Zimperium tag.
+      type: String
+    - contextPath: Zimperium.Devices.firstName
+      description: Device owner first name.
+      type: String
+    - contextPath: Zimperium.Devices.lastName
+      description: Device owner last name.
+      type: String
+    - contextPath: Zimperium.Devices.middleName
+      description: Device owner middle name.
+      type: String
+    - contextPath: Zimperium.Devices.lastSeen
+      description: Device last seen time.
+      type: Date
+    - contextPath: Zimperium.Devices.mdmId
+      description: 'MDM ID. e.g: AirWatch, Iron Mobile.'
+      type: String
+    - contextPath: Zimperium.Devices.model
+      description: Device model.
+      type: String
+    - contextPath: Zimperium.Devices.operatorAlpha
+      description: Name of the mobile operator.
+      type: String
+    - contextPath: Zimperium.Devices.osBuild
+      description: OS build.
+      type: String
+    - contextPath: Zimperium.Devices.osSecurityPatch
+      description: OS security patch.
+      type: String
+    - contextPath: Zimperium.Devices.osType
+      description: OS type of the phone.
+      type: String
+    - contextPath: Zimperium.Devices.osUpgradeable
+      description: Whether the OS is upgradable.
+      type: bool
+    - contextPath: Zimperium.Devices.osVersion
+      description: OS version.
+      type: String
+    - contextPath: Zimperium.Devices.osVulnerable
+      description: Whether the OS is vulnerable.
+      type: bool
+    - contextPath: Zimperium.Devices.phoneNumber
+      description: Phone number.
+      type: String
+    - contextPath: Zimperium.Devices.processor
+      description: Device processor.
+      type: String
+    - contextPath: Zimperium.Devices.riskPosture
+      description: Device risk.
+      type: String
+    - contextPath: Zimperium.Devices.riskPostureCode
+      description: Device risk code.
+      type: Number
+    - contextPath: Zimperium.Devices.status
+      description: Device status.
+      type: String
+    - contextPath: Zimperium.Devices.statusCode
+      description: Device status code.
+      type: Number
+    - contextPath: Zimperium.Devices.systemToken
+      description: Device system token.
+      type: String
+    - contextPath: Zimperium.Devices.type
+      description: Device type.
+      type: String
+    - contextPath: Zimperium.Devices.updatedDate
+      description: Device updated date.
+      type: Date
+    - contextPath: Zimperium.Devices.userId
+      description: Device owner user ID.
+      type: String
+    - contextPath: Zimperium.Devices.version
+      description: Device version.
+      type: String
+    - contextPath: Zimperium.Devices.vulnerabilities
+      description: Device vulnerabilities.
+      type: String
+    - contextPath: Zimperium.Devices.zdid
+      description: Device ZD ID.
+      type: String
+    - contextPath: Zimperium.Devices.zipsDistributionVersion
+      description: zIPS distribution version.
+      type: String
+    - contextPath: Zimperium.Devices.zipsVersion
+      description: zIPS version.
+      type: String
+  - arguments:
+    - defaultValue: 1 day
+      description: <number> <time unit>, e.g., 7 days, 3 months, 1 year
+      name: from_last_update
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Whether to exclude deleted devices. Default is True.
+      name: exclude_deleted
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: "10"
+      description: Number of devices to retrieve in each page.
+      name: size
+    - defaultValue: "0"
+      description: Page number.
+      name: page
+    description: Retrieves devices from Greater than Last Updated.
+    name: zimperium-devices-get-last-updated
+    outputs:
+    - contextPath: Zimperium.Devices.appName
+      description: Application name.
+      type: String
+    - contextPath: Zimperium.Devices.bundleId
+      description: Bundle ID.
+      type: String
+    - contextPath: Zimperium.Devices.country
+      description: Device country.
+      type: String
+    - contextPath: Zimperium.Devices.countryCode
+      description: Device country code.
+      type: String
+    - contextPath: Zimperium.Devices.createdAt
+      description: Created time of the device.
+      type: Date
+    - contextPath: Zimperium.Devices.deviceGroupName
+      description: Device group name.
+      type: String
+    - contextPath: Zimperium.Devices.deviceHash
+      description: Device hash.
+      type: String
+    - contextPath: Zimperium.Devices.deviceId
+      description: Device ID.
+      type: String
+    - contextPath: Zimperium.Devices.email
+      description: Email associated to the device.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId1
+      description: User pre defined Zimperium Tag.
+      type: String
+    - contextPath: Zimperium.Devices.externalTrackingId2
+      description: User pre defined Zimperium Tag.
+      type: String
+    - contextPath: Zimperium.Devices.firstName
+      description: Device owner first name.
+      type: String
+    - contextPath: Zimperium.Devices.lastName
+      description: Device owner last name.
+      type: String
+    - contextPath: Zimperium.Devices.middleName
+      description: Device owner middle name.
+      type: String
+    - contextPath: Zimperium.Devices.lastSeen
+      description: Device last seen time.
+      type: Date
+    - contextPath: Zimperium.Devices.mdmId
+      description: MDM ID, e.g., AirWatch, Mobile Iron.
+      type: String
+    - contextPath: Zimperium.Devices.model
+      description: Device model.
+      type: String
+    - contextPath: Zimperium.Devices.operatorAlpha
+      description: Name of the mobile operator.
+      type: String
+    - contextPath: Zimperium.Devices.osBuild
+      description: OS build.
+      type: String
+    - contextPath: Zimperium.Devices.osSecurityPatch
+      description: OS security patch.
+      type: String
+    - contextPath: Zimperium.Devices.osType
+      description: OS type of the phone.
+      type: String
+    - contextPath: Zimperium.Devices.osUpgradeable
+      description: Whether the OS is upgradable.
+      type: bool
+    - contextPath: Zimperium.Devices.osVersion
+      description: OS version.
+      type: String
+    - contextPath: Zimperium.Devices.osVulnerable
+      description: Whether the OS is vulnerable.
+      type: bool
+    - contextPath: Zimperium.Devices.phoneNumber
+      description: Phone number.
+      type: String
+    - contextPath: Zimperium.Devices.processor
+      description: Device processor.
+      type: String
+    - contextPath: Zimperium.Devices.riskPosture
+      description: Device risk.
+      type: String
+    - contextPath: Zimperium.Devices.riskPostureCode
+      description: Device risk code.
+      type: Number
+    - contextPath: Zimperium.Devices.status
+      description: Device status.
+      type: String
+    - contextPath: Zimperium.Devices.statusCode
+      description: Device status code.
+      type: Number
+    - contextPath: Zimperium.Devices.systemToken
+      description: Device system token.
+      type: String
+    - contextPath: Zimperium.Devices.type
+      description: Device type.
+      type: String
+    - contextPath: Zimperium.Devices.updatedDate
+      description: Device updated date.
+      type: Date
+    - contextPath: Zimperium.Devices.userId
+      description: Device owner user ID.
+      type: String
+    - contextPath: Zimperium.Devices.version
+      description: Device version.
+      type: String
+    - contextPath: Zimperium.Devices.vulnerabilities
+      description: Device vulnerabilities.
+      type: String
+    - contextPath: Zimperium.Devices.zdid
+      description: Device ZD ID.
+      type: String
+    - contextPath: Zimperium.Devices.zipsDistributionVersion
+      description: zIPS distribution version.
+      type: String
+    - contextPath: Zimperium.Devices.zipsVersion
+      description: zIPS version.
+      type: String
+  - arguments:
+    - description: Application name.
+      name: app_name
+    - description: Application hash.
+      name: app_hash
+    description: Retrieves application classification.
+    name: zimperium-app-classification-get
+    outputs:
+    - contextPath: Zimperium.Application.classification
+      description: Application classification.
+      type: String
+    - contextPath: Zimperium.Application.deviceCount
+      description: Application device count.
+      type: Number
+    - contextPath: Zimperium.Application.hash
+      description: Application hash.
+      type: String
+    - contextPath: Zimperium.Application.metadata
+      description: Application metadata.
+      type: Unknown
+    - contextPath: Zimperium.Application.modifiedDate
+      description: Application modified date.
+      type: Date
+    - contextPath: Zimperium.Application.name
+      description: Application name.
+      type: String
+    - contextPath: Zimperium.Application.namespace
+      description: Application name space.
+      type: String
+    - contextPath: Zimperium.Application.objectId
+      description: Application object ID.
+      type: String
+    - contextPath: Zimperium.Application.privacyEnum
+      description: Application privacy enum.
+      type: Number
+    - contextPath: Zimperium.Application.privacyRisk
+      description: Application privacy risk.
+      type: String
+    - contextPath: Zimperium.Application.processState
+      description: Application process state.
+      type: String
+    - contextPath: Zimperium.Application.score
+      description: Application score (0 to 100). 0 is the best, 100 is the worst.
+      type: Number
+    - contextPath: Zimperium.Application.securityEnum
+      description: Application security enum.
+      type: Number
+    - contextPath: Zimperium.Application.securityRisk
+      description: Application security risk.
+      type: String
+    - contextPath: Zimperium.Application.systemToken
+      description: System token.
+      type: String
+    - contextPath: Zimperium.Application.type
+      description: Application type.
+      type: Number
+    - contextPath: Zimperium.Application.version
+      description: Application version.
+      type: String
+  - arguments:
+    - description: Bundle ID.
+      name: bundle_id
+    - description: iTunes ID.
+      name: itunes_id
+    - description: Application hash.
+      name: app_hash
+    - auto: PREDEFINED
+      defaultValue: android
+      description: Application platform.
+      name: platform
+      predefined:
+      - ios
+      - android
+    description: Gets a report.
+    name: zimperium-report-get
+    outputs:
+    - contextPath: Zimperium.Reports.app_analysis.analysis
+      description: Application analysis data.
+      type: Unknown
+    - contextPath: Zimperium.Reports.behavior.count_sms
+      description: The number of SMS messages.
+      type: Number
+    - contextPath: Zimperium.Reports.behavior.network.http_requests
+      description: Network related data.
+      type: Unknown
+    - contextPath: Zimperium.Reports.behavior.telephony
+      description: Standard permissions of the application.
+      type: Telephony related data.
+    - contextPath: Zimperium.Reports.certificate.app_signature
+      description: Application signature.
+      type: String
+    - contextPath: Zimperium.Reports.certificate.serial_number_app_instances
+      description: Application serial number.
+      type: Number
+    - contextPath: Zimperium.Reports.certificate.serial_number_risk_score
+      description: Application risk score.
+      type: Number
+    - contextPath: Zimperium.Reports.distribution
+      description: Related distribution data.
+      type: Unknown
+    - contextPath: Zimperium.Reports.md5
+      description: Application md5 hash.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.detection_rate
+      description: Detection rate of the application.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.intell_privacy
+      description: Privacy intelligence,
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.intell_security
+      description: Security intelligence.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.overall_risk
+      description: Overall risk.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.privacy.Category
+      description: Privacy category
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.privacy.Risk Level
+      description: Privacy risk level.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.privacy.desc
+      description: Privacy description.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.privacy_risk
+      description: Privacy risk.
+      type: Number
+    - contextPath: Zimperium.Reports.risk_profile.security.Category
+      description: Security category.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.security.Risk Level
+      description: Security risk level.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.security.desc
+      description: Security description.
+      type: String
+    - contextPath: Zimperium.Reports.risk_profile.security_risk
+      description: Security risk.
+      type: Number
+    - contextPath: Zimperium.Reports.threats.detected
+      description: Threats detected.
+      type: Number
+    - contextPath: Zimperium.Reports.threats.detected_skip
+      description: Number of Skipped detected threats.
+      type: Number
+    - contextPath: Zimperium.Reports.threats.status
+      description: Threats status.
+      type: String
+    - contextPath: Zimperium.Reports.threats.total
+      description: Total threats.
+      type: Number
+  - arguments:
+    - default: true
+      description: The MD5 hash of the file.
+      name: file
+    description: Checks the reputation of an app in Zimperium.
+    name: file
+    outputs:
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: File.MD5
+      description: MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA256
+      description: SHA256 hash of the file.
+      type: String
+    - contextPath: File.Malicious.Vendor
+      description: For malicious files, the vendor that made the decision.
+      type: String
+  dockerimage: demisto/python3:3.8.6.12176
+  isfetch: true
+  runonce: false
+  script: |
+    import shutil
+    from typing import Dict, Tuple
+    from dateparser import parse
+    import urllib3
+
+
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+
+    class Client(BaseClient):
+        """
+        Client to use in the Zimperium integration. Overrides BaseClient
+        """
+
+        def __init__(self, base_url: str, api_key: str, verify: bool):
+            super().__init__(base_url=base_url, verify=verify)
+            self._headers = {'api_key': api_key, 'Accept': 'application/json'}
+            self._proxies = handle_proxy()
+
+        def users_search_request(self, query: str, size: str, page: str) -> dict:
+            """Search users by sending a GET request.
+
+            Args:
+                query: users search query.
+                size: response size.
+                page: response page.
+            Returns:
+                Response from API.
+            """
+            params = {
+                'rsql': query,
+                'size': size,
+                'page': page,
+            }
+            return self._http_request(method='GET', url_suffix='/users/public/search', headers=self._headers, params=params)
+
+        def user_get_by_id_request(self, object_id: str) -> dict:
+            """Retrieve user details by sending a GET request.
+
+            Args:
+                object_id: object ID.
+            Returns:
+                Response from API.
+            """
+            return self._http_request(method='GET', url_suffix=f'/users/public/{object_id}', headers=self._headers)
+
+        def devices_search_request(self, query: str, size: str, page: str) -> dict:
+            """Search devices by sending a GET request.
+
+            Args:
+                query: devices search query.
+                size: response size.
+                page: response page.
+            Returns:
+                Response from API.
+            """
+            params = {
+                'rsql': query,
+                'size': size,
+                'page': page,
+            }
+            return self._http_request(method='GET', url_suffix='/devices/public/search', headers=self._headers,
+                                      params=params)
+
+        def device_get_by_id_request(self, zdid: str, device_id: str) -> dict:
+            """Retrieve device details by sending a GET request.
+
+            Args:
+                zdid: zimperium ID.
+                device_id: device ID.
+            Returns:
+                Response from API.
+            """
+            if (zdid and device_id) or (not zdid and not device_id):
+                raise Exception("To get device by ID, use the zdid or the device_id argument.")
+
+            if zdid:
+                url_suffix = f'/devices/public/{zdid}'
+            else:
+                url_suffix = f'/devices/public/deviceId/{device_id}'
+
+            return self._http_request(method='GET', url_suffix=url_suffix, headers=self._headers)
+
+        def devices_get_last_updated_request(self, last_updated: str, exclude_deleted: bool, size: str, page: str)\
+                -> dict:
+            """Search last updated devices by sending a GET request.
+
+            Args:
+                last_updated: Last updated devices time frame.
+                exclude_deleted: whether to exclude deleted devices.
+                size: response size.
+                page: response page.
+            Returns:
+                Response from API.
+            """
+            params = {
+                'fromLastUpdate': last_updated,
+                'excludeDeleted': exclude_deleted,
+                'size': size,
+                'page': page,
+            }
+            return self._http_request(method='GET', url_suffix='/devices/public/device_updates', headers=self._headers,
+                                      params=params)
+
+        def app_classification_get_request(self, app_hash: str, app_name: str) -> dict:
+            """Retrieve device details by sending a GET request.
+
+            Args:
+                app_hash: application hash.
+                app_name: application name.
+            Returns:
+                Response from API.
+            """
+            if (app_hash and app_name) or (not app_hash and not app_name):
+                raise Exception("To get application classification, use the app_hash or the app_name argument.")
+
+            if app_hash:
+                url_suffix = f'/malware/public/classify/hash/{app_hash}'
+            else:
+                url_suffix = f'/malware/public/classify/name/{app_name}'
+
+            return self._http_request(method='GET', url_suffix=url_suffix, headers=self._headers)
+
+        def report_get_request(self, bundle_id: str, itunes_id: str, app_hash: str, platform: str) -> dict:
+            """Retrieve device details by sending a GET request.
+
+            Args:
+                bundle_id: bundle ID.
+                itunes_id: itunes ID.
+                app_hash: application hash.
+                platform: app platform
+            Returns:
+                Response from API.
+            """
+            if not bundle_id and not itunes_id and not app_hash:
+                raise Exception("To get a report, use the bundle_id or the itunes_id or the app_hash argument.")
+            if (bundle_id and itunes_id) or (bundle_id and app_hash) or (itunes_id and app_hash):
+                raise Exception("To get a report, use exactly one of the arguments: bundle_id, itunes_id, app_hash.")
+
+            params = {}
+            if bundle_id:
+                url_suffix = f'/malware/public/reports/bundle/{bundle_id}'
+                params['platform'] = platform
+            elif itunes_id:
+                url_suffix = f'/malware/public/reports/itunes/{itunes_id}'
+            else:
+                url_suffix = f'/malware/public/reports/hash/{app_hash}'
+                params['platform'] = platform
+
+            return self._http_request(method='GET', url_suffix=url_suffix, headers=self._headers,
+                                      params=params)
+
+        def app_upload_for_analysis_request(self, entry_id: str) -> dict:
+            """Upload an application for analysis by sending a POST request.
+
+            Args:
+                entry_id: entry ID.
+            Returns:
+                Response from API.
+            """
+
+            file_path = demisto.getFilePath(entry_id).get('path')
+            file_name = demisto.getFilePath(entry_id).get('name')
+            if not file_path or not file_name:
+                raise Exception('Failed to find the file to upload for analysis.')
+            try:
+                shutil.copy(file_path, file_name)
+            except Exception:
+                raise Exception('Failed to prepare application for upload.')
+
+            try:
+                with open(file_path, 'rb') as file:
+                    self._headers.update({'Content-Type': 'multipart/form-data'})
+                    result = self._http_request(method='POST', url_suffix='/malware/public/upload/app',
+                                                headers=self._headers, files={'file1': file.read()}, timeout=240)
+            except Exception as err:
+                raise Exception(str(err))
+            finally:
+                shutil.rmtree(file_name, ignore_errors=True)
+
+            return result
+
+        def events_search_request(self, query: str, size: str, page: str, verbose: bool):
+            """Search events by sending a GET request.
+
+            Args:
+                query: devices search query.
+                size: response size.
+                page: response page.
+                verbose: whether to include full event details.
+            Returns:
+                Response from API.
+            """
+            params = {
+                'rsql': query,
+                'size': size,
+                'page': page,
+                'sort': 'deviceTime,asc',
+                'includeFullEventDetail': verbose,
+            }
+
+            return self._http_request(method='GET', url_suffix='/events/public/search', headers=self._headers,
+                                      params=params)
+
+
+    def test_module(client: Client, *_) -> str:
+        """
+        Performs basic get request to get incident samples
+        """
+        client.users_search_request(query='objectId==*', size='10', page='0')
+        if demisto.params().get('isFetch'):
+            client.events_search_request(query='eventId==*', size='10', page='0', verbose=False)
+
+        return 'ok'
+
+
+    def users_search(client: Client, args: Dict) -> CommandResults:
+        """Search users
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        email = str(args.get('email', ''))
+        query = str(args.get('query', ''))
+        size = str(args.get('size', '10'))
+        page = str(args.get('page', '0'))
+
+        if email and query:
+            raise Exception('Provide either the email or the query arguments.')
+        elif email:
+            search_query = f'email=={email}'
+        elif query:
+            search_query = query
+        else:
+            search_query = 'objectId==*'
+
+        users = client.users_search_request(search_query, size, page)
+
+        users_data = users.get('content')
+        total_elements = users.get('totalElements', '0')
+        table_name = ''
+        if not users.get('last'):
+            table_name = ' More users are available in the next page.'
+        headers = ['objectId', 'alias', 'firstName', 'middleName', 'lastName', 'email']
+        readable_output = tableToMarkdown(name=f"Number of users found: {total_elements}. {table_name}",
+                                          t=users_data, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Users',
+            outputs_key_field='objectId',
+            outputs=users_data,
+            readable_output=readable_output,
+            raw_response=users
+        )
+
+        return command_results
+
+
+    def user_get_by_id(client: Client, args: Dict) -> CommandResults:
+        """Retrieve details for a single user.
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        object_id = str(args.get('object_id', ''))
+
+        user = client.user_get_by_id_request(object_id)
+
+        headers = ['objectId', 'alias', 'firstName', 'middleName', 'lastName', 'email']
+        readable_output = tableToMarkdown(name="User:", t=user, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Users',
+            outputs_key_field='objectId',
+            outputs=user,
+            readable_output=readable_output,
+            raw_response=user
+        )
+
+        return command_results
+
+
+    def devices_search(client: Client, args: Dict) -> CommandResults:
+        """Search devices
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        query = str(args.get('query', 'deviceId==*'))
+        size = str(args.get('size', '10'))
+        page = str(args.get('page', '0'))
+
+        devices = client.devices_search_request(query, size, page)
+
+        devices_data = devices.get('content')
+        total_elements = devices.get('totalElements', '0')
+        table_name = ''
+        if not devices.get('last'):
+            table_name = ' More Devices are available in the next page.'
+        headers = ['deviceId', 'zdid', 'deviceHash', 'model', 'osType', 'osVersion', 'updatedDate']
+        readable_output = tableToMarkdown(name=f"Number of devices found: {total_elements}. {table_name}",
+                                          t=devices_data, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Devices',
+            outputs_key_field='deviceId',
+            outputs=devices_data,
+            readable_output=readable_output,
+            raw_response=devices
+        )
+
+        return command_results
+
+
+    def device_get_by_id(client: Client, args: Dict) -> CommandResults:
+        """Retrieve details for a single device.
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        zdid = str(args.get('zdid', ''))
+        device_id = str(args.get('device_id', ''))
+
+        device = client.device_get_by_id_request(zdid, device_id)
+
+        headers = ['deviceId', 'zdid', 'model', 'osType', 'osVersion', 'updatedDate', 'deviceHash']
+        readable_output = tableToMarkdown(name=f"Device {device_id}:", t=device, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Devices',
+            outputs_key_field='deviceId',
+            outputs=device,
+            readable_output=readable_output,
+            raw_response=device
+        )
+
+        return command_results
+
+
+    def devices_get_last_updated(client: Client, args: Dict) -> CommandResults:
+        """Retrieve last updated devices
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        timestamp_format = '%Y-%m-%d'
+        from_last_update = str(args.get('from_last_update', '1 day'))
+        last_updated = parse_date_range(from_last_update, date_format=timestamp_format)[0]
+        exclude_deleted = args.get('exclude_deleted') == 'false'
+        size = str(args.get('size', '10'))
+        page = str(args.get('page', '0'))
+
+        devices = client.devices_get_last_updated_request(last_updated, exclude_deleted, size, page)
+
+        devices_data = devices.get('content')
+        total_elements = devices.get('totalElements', '0')
+        table_name = ''
+        if not devices.get('last'):
+            table_name = ' More Devices are available in the next page.'
+        headers = ['deviceId', 'zdid', 'model', 'osType', 'osVersion', 'updatedDate', 'deviceHash']
+        readable_output = tableToMarkdown(name=f"Number of devices found: {total_elements}. {table_name}",
+                                          t=devices_data, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Devices',
+            outputs_key_field='deviceId',
+            outputs=devices_data,
+            readable_output=readable_output,
+            raw_response=devices
+        )
+
+        return command_results
+
+
+    def app_classification_get(client: Client, args: Dict) -> CommandResults:
+        """Retrieve application classification.
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        app_hash = str(args.get('app_hash', ''))
+        app_name = str(args.get('app_name', ''))
+
+        application = client.app_classification_get_request(app_hash, app_name)
+
+        if isinstance(application, dict):  # an app name can have multiple results due to different versions.
+            application_data = application.get('content')
+        else:  # or it can have only one result, if queried using a hash or if it has only one version.
+            application_data = application[0]
+        headers = ['objectId', 'hash', 'name', 'version', 'classification', 'score', 'privacyEnum', 'securityEnum']
+        readable_output = tableToMarkdown(name="Application:", t=application_data, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Application',
+            outputs_key_field='objectId',
+            outputs=application_data,
+            readable_output=readable_output,
+            raw_response=application
+        )
+
+        return command_results
+
+
+    def calculate_dbot_score(application_data: dict) -> int:
+        """Determines app dbot score
+
+        Args:
+            application_data: app data
+
+        Returns:
+            a number representing the dbot score
+        """
+        if not application_data:  # no response from Zimperium
+            return 0
+
+        classification = application_data.get('classification')
+        if not classification:
+            return 0
+        if classification == 'Legitimate':
+            return 1
+        return 3  # classification == Malicious
+
+
+    def file_reputation(client: Client, args: Dict) -> List[CommandResults]:
+        """Get the reputation of a hash representing an App
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            list of CommandResults.
+        """
+        hash_list = argToList(args.get('file'))
+
+        command_results_list: List[CommandResults] = []
+        headers = ['objectId', 'hash', 'name', 'version', 'classification', 'score', 'privacyEnum', 'securityEnum']
+
+        for app_hash in hash_list:
+            try:
+                application = client.app_classification_get_request(app_hash, '')
+                application_data = application[0]
+            except Exception as err:
+                if 'Error in API call [404]' in str(err):
+                    application_data = {'hash': app_hash}
+                else:
+                    raise Exception(err)
+
+            score = calculate_dbot_score(application_data)
+
+            dbot_score = Common.DBotScore(
+                indicator=app_hash,
+                indicator_type=DBotScoreType.FILE,
+                integration_name='Zimperium',
+                score=score
+            )
+            hash_type = get_hash_type(app_hash)
+            if hash_type == 'md5':
+                file = Common.File(
+                    md5=app_hash,
+                    dbot_score=dbot_score
+                )
+            elif hash_type == 'sha1':
+                file = Common.File(
+                    sha1=app_hash,
+                    dbot_score=dbot_score
+                )
+            else:
+                file = Common.File(
+                    sha256=app_hash,
+                    dbot_score=dbot_score
+                )
+
+            if not score:
+                readable_output = tableToMarkdown(name=f"Hash {app_hash} reputation is unknown to Zimperium.",
+                                                  t=application_data, headers=headers, removeNull=True)
+            else:
+                readable_output = tableToMarkdown(name=f"Hash {app_hash} reputation:", t=application_data, headers=headers,
+                                                  removeNull=True)
+
+            command_results = CommandResults(
+                outputs_prefix='Zimperium.Application',
+                outputs_key_field='objectId',
+                outputs=application_data,
+                readable_output=readable_output,
+                raw_response=application_data,
+                indicator=file
+            )
+            command_results_list.append(command_results)
+
+        return command_results_list
+
+
+    def report_get(client: Client, args: Dict) -> CommandResults:
+        """Retrieve a report.
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        bundle_id = str(args.get('bundle_id', ''))
+        itunes_id = str(args.get('itunes_id', ''))
+        app_hash = str(args.get('app_hash', ''))
+        platform = str(args.get('platform', 'ios'))
+
+        report = client.report_get_request(bundle_id, itunes_id, app_hash, platform).get('report', {})
+        report_data = report.get('report')
+        if not report_data:
+            command_results = CommandResults(
+                readable_output='A report was not found.',
+                raw_response=report
+            )
+        else:
+            # deleting analysis metadata to not load the context
+            app_analysis = report_data.get('app_analysis')
+            if app_analysis and app_analysis.get('application_type') == 'Android':
+                analysis = app_analysis.get('analysis')
+                if analysis:
+                    report_data['app_analysis']['analysis'] = list(analysis.keys())
+
+            app_md5 = report.get('md5') if 'md5' in report else report_data.get('app_analysis', {}).get('md5_hash')
+            if app_md5:
+                report_data.update({'md5': app_md5})
+            headers = ['behavior', 'md5', 'threats']
+            readable_output = tableToMarkdown(name="Report:", t=report_data, headers=headers, removeNull=True)
+
+            command_results = CommandResults(
+                outputs_prefix='Zimperium.Reports',
+                outputs_key_field='app_md5',
+                outputs=report_data,
+                readable_output=readable_output,
+                raw_response=report
+            )
+
+        return command_results
+
+
+    def events_search(client: Client, args: Dict) -> CommandResults:
+        """Search events.
+
+        Args:
+            client: Client object with request.
+            args: Usually demisto.args()
+
+        Returns:
+            Outputs.
+        """
+        query = str(args.get('query', 'eventId==*'))
+        size = str(args.get('size', '10'))
+        page = str(args.get('page', '0'))
+        verbose = str(args.get('verbose')) == 'true'
+
+        events = client.events_search_request(query, size, page, verbose)
+        events_data = events.get('content')
+        total_elements = events.get('totalElements')
+
+        if not verbose:
+            for event_data in events_data:
+                event_data.pop('eventDetail', None)
+
+        table_name = ''
+        if not events.get('last'):
+            table_name = ' More events are available in the next page.'
+        headers = ['eventId', 'eventName', 'eventState', 'incidentSummary', 'severity', 'persistedTime']
+        readable_output = tableToMarkdown(name=f"Number of events found: {total_elements}. {table_name}",
+                                          t=events_data, headers=headers, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Zimperium.Events',
+            outputs_key_field='eventId',
+            outputs=events_data,
+            readable_output=readable_output,
+            raw_response=events
+        )
+
+        return command_results
+
+
+    def fetch_incidents(client: Client, last_run: dict, fetch_query: str, first_fetch_time: str, max_fetch: str = '50')\
+            -> Tuple[dict, list]:
+        """
+        This function will execute each interval (default is 1 minute).
+
+        Args:
+            client (Client): Zimperium client
+            last_run (dateparser.time): The greatest incident created_time we fetched from last fetch
+            fetch_query: fetch query to append to the persistedtime
+            first_fetch_time (dateparser.time): If last_run is None then fetch all incidents since first_fetch_time
+            max_fetch: max events to fetch
+
+        Returns:
+            next_run: This will be last_run in the next fetch-incidents
+            incidents: Incidents that will be created in Demisto
+        """
+        timestamp_format = '%Y-%m-%dT%H:%M:%S.%fZ'
+        if not last_run:  # if first time fetching
+            next_run = {
+                'time': parse_date_range(first_fetch_time, date_format=timestamp_format)[0],
+                'last_event_ids': []
+            }
+        else:
+            next_run = last_run
+
+        query = f"persistedTime=gt={next_run.get('time')}"
+        if fetch_query:
+            query += f";{fetch_query}"
+
+        events = client.events_search_request(query=query, size=max_fetch, page='0', verbose=False)
+        events_data = events.get('content')
+        incidents = []
+
+        if events_data:
+            last_event_ids = last_run.get('last_event_ids', [])
+            new_event_ids = []
+            last_event_created_time = None
+            for event_data in events_data:
+                event_data.pop('eventDetail', None)  # deleting eventDetail to not load the context
+                event_id = event_data.get('eventId')
+
+                if event_id not in last_event_ids:  # check that event was not fetched in the last fetch
+                    last_event_created_time = parse(event_data.get('persistedTime'))
+                    incident = {
+                        'name': event_data.get('incidentSummary'),
+                        'occurred': last_event_created_time.strftime(timestamp_format),
+                        'severity': event_severity_to_dbot_score(event_data.get('severity')),
+                        'rawJSON': json.dumps(event_data)
+                    }
+                    incidents.extend([incident])
+                    new_event_ids.extend([event_id])
+
+            if new_event_ids and last_event_created_time:
+                next_run = {
+                    'time': last_event_created_time.strftime(timestamp_format),
+                    'last_event_ids': json.dumps(new_event_ids)  # save the event IDs from the last fetch
+                }
+
+        demisto.debug(f'Zimperium last fetch data: {str(next_run)}')
+        return next_run, incidents
+
+
+    def event_severity_to_dbot_score(severity_str: str):
+        """Converts an severity string to DBot score representation
+            alert severity. Can be one of:
+            Low    ->  1
+            Medium ->  2
+            High   ->  3
+
+        Args:
+            severity_str: String representation of severity.
+
+        Returns:
+            Dbot representation of severity
+        """
+        severity = severity_str.lower()
+        if severity == 'low':
+            return 1
+        if severity == 'important':
+            return 2
+        if severity == 'critical':
+            return 3
+        demisto.info(f'Zimperium incident severity: {severity} is not known. Setting as unknown(DBotScore of 0).')
+        return 0
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        api_key = params.get('api_key')
+        base_url = urljoin(params.get('url'), '/api/v1/')
+        verify = not params.get('insecure', False)
+
+        # fetch params
+        fetch_query = params.get('fetch_query')
+        max_fetch = min('50', params.get('max_fetch', '50'))
+        first_fetch_time = params.get('fetch_time', '3 days').strip()
+
+        command = demisto.command()
+        LOG(f'Command being called is {demisto.command()}')
+        try:
+            client = Client(base_url=base_url, api_key=api_key, verify=verify)
+            commands = {
+                'zimperium-events-search': events_search,
+                'zimperium-users-search': users_search,
+                'zimperium-user-get-by-id': user_get_by_id,
+                'zimperium-devices-search': devices_search,
+                'zimperium-device-get-by-id': device_get_by_id,
+                'zimperium-devices-get-last-updated': devices_get_last_updated,
+                'zimperium-app-classification-get': app_classification_get,
+                'file': file_reputation,
+                'zimperium-report-get': report_get,
+            }
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                return_results(test_module(client))
+
+            elif demisto.command() == 'fetch-incidents':
+                next_run, incidents = fetch_incidents(
+                    client=client,
+                    last_run=demisto.getLastRun(),
+                    fetch_query=fetch_query,
+                    first_fetch_time=first_fetch_time,
+                    max_fetch=max_fetch
+                )
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+
+            elif command in commands:
+                return_results(commands[command](client, demisto.args()))
+
+            else:
+                raise NotImplementedError(f'Command "{command}" is not implemented.')
+
+        except Exception as err:
+            if 'Resource not found' in str(err):
+                return_results('Object was not found in Zimperium, please make sure your arguments are correct.')
+            else:
+                return_error(str(err), err)
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+  subtype: python3
+  type: python
+system: true
