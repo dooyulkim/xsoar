@@ -1,6 +1,5 @@
 {
 	"autorun": true,
-	"cacheVersn": 0,
 	"closureScript": "",
 	"color": "#fe5253",
 	"days": 1,
@@ -23,7 +22,6 @@
 	"name": "SOCaaS - Logrhythm Alarm - Portal",
 	"onChangeRepAlg": 1,
 	"packID": "",
-	"packName": "",
 	"playbookId": "6dc39833-9dd7-4176-8523-952309374dbe",
 	"preProcessingScript": "",
 	"propagationLabels": [
