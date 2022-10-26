@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -29,7 +28,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -58,7 +56,6 @@ tasks:
         }
       }
   "10":
-    continueonerrortype: ""
     id: "10"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -85,7 +82,6 @@ tasks:
         }
       }
   "22":
-    continueonerrortype: ""
     id: "22"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -133,7 +129,6 @@ tasks:
               simple: inputs.DBotScore
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "23"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -166,7 +161,6 @@ tasks:
         }
       }
   "24":
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -249,7 +243,6 @@ tasks:
                 root: DBotScoreCache.Score
           operator: isExists
       label: Low
-    continueonerrortype: ""
     id: "25"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -291,7 +284,6 @@ tasks:
         }
       }
   "27":
-    continueonerrortype: ""
     id: "27"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -330,7 +322,6 @@ tasks:
         }
       }
   "28":
-    continueonerrortype: ""
     id: "28"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -369,7 +360,6 @@ tasks:
         }
       }
   "29":
-    continueonerrortype: ""
     id: "29"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -408,7 +398,6 @@ tasks:
         }
       }
   "30":
-    continueonerrortype: ""
     id: "30"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -448,7 +437,6 @@ tasks:
         }
       }
   "31":
-    continueonerrortype: ""
     id: "31"
     ignoreworker: false
     isautoswitchedtoquietmode: false
