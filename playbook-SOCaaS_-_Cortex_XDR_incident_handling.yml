@@ -16,7 +16,7 @@ description: |-
   After the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.
 id: 1ac8a067-8edf-47c2-8021-ddfde8011533
 inputs: []
-name: 'SOCaaS - Cortex XDR incident handling '
+name: SOCaaS - Cortex XDR incident handling
 outputs: []
 sourceplaybookid: Cortex XDR incident handling v3
 starttaskid: "0"
@@ -29,18 +29,18 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "22"
+      - "26"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: 2731e6f1-0a05-4cbc-84f7-4d0be1f8580d
+      id: 133e176a-f057-402a-8c9d-5245116cfd64
       iscommand: false
       name: ""
       version: -1
-    taskid: 2731e6f1-0a05-4cbc-84f7-4d0be1f8580d
+    taskid: 133e176a-f057-402a-8c9d-5245116cfd64
     timertriggers: []
     type: start
     view: |-
@@ -79,19 +79,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ad7398e2-f2a3-484a-8e6f-ee63b914670d
+      id: 8019ab2c-abe5-4c0c-8ff7-843a1b9fc6e0
       iscommand: false
       name: Should handle the incident?
       type: condition
       version: -1
-    taskid: ad7398e2-f2a3-484a-8e6f-ee63b914670d
+    taskid: 8019ab2c-abe5-4c0c-8ff7-843a1b9fc6e0
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 582.5,
-          "y": 370
+          "y": 545
         }
       }
   "3":
@@ -102,69 +102,41 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "11"
-      - "12"
-      - "15"
+      - "24"
     note: false
     quietmode: 2
     scriptarguments:
-      alert_id:
-        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
-      created_at:
-        complex:
-          accessor: creation_time
-          root: PaloAltoNetworksXDR.Incident
-          transformers:
-          - operator: TimeStampToDate
-      customer_id:
-        simple: "33096"
-      modified_at:
-        complex:
-          accessor: modification_time
-          root: PaloAltoNetworksXDR.Incident
-          transformers:
-          - operator: TimeStampToDate
-      name:
-        simple: ${incident.name}
-      provider_id:
-        simple: ${incident.sourceInstance}
-      raw_data:
-        complex:
-          root: incident
-          transformers:
-          - operator: Stringify
-      severity:
-        complex:
-          accessor: severity
-          root: incident
-          transformers:
-          - args:
-              input_values:
-                value:
-                  simple: 0,1,2,3,4,5
-              mapped_values:
-                value:
-                  simple: LOW,LOW,MEDIUM,MEDIUM,HIGH,HIGH
-            operator: MapValuesTransformer
+      caseSource:
+        simple: Cortex XDR
+      caseTitle:
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
+      customerId:
+        simple: ${MSSPortal.tsp_customer_id}
+      description:
+        simple: ${PaloAltoNetworksXDR.Incident.description}
+      priority:
+        simple: ${PaloAltoNetworksXDR.Incident.severity}
+      serviceComponent:
+        simple: SOC
     separatecontext: false
     skipunavailable: false
     task:
-      brand: MSS Portal - MDR
-      description: Create an alert using Portal's MDR API
-      id: 2b13e64c-860a-4279-80e4-83191f1988ab
+      brand: ""
+      description: 'mssportal-create-case command: Returns a MSSPortal case'
+      id: 56cdea9a-bc3c-451e-8eaf-1f4e3d848e85
       iscommand: true
       name: Create a case in portal
-      script: MSS Portal - MDR|||mssportal-create-alert
+      script: '|||mssportal-create-case'
       type: regular
       version: -1
-    taskid: 2b13e64c-860a-4279-80e4-83191f1988ab
+    taskid: 56cdea9a-bc3c-451e-8eaf-1f4e3d848e85
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 1340,
-          "y": 545
+          "y": 720
         }
       }
   "4":
@@ -179,19 +151,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: eb0a7bf1-a9b3-4622-81f0-335abd7ecdd9
+      id: 9f72f1cc-3574-4a70-8bed-1729eb392cf1
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: eb0a7bf1-a9b3-4622-81f0-335abd7ecdd9
+    taskid: 9f72f1cc-3574-4a70-8bed-1729eb392cf1
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
           "x": 695,
-          "y": 2470
+          "y": 2995
         }
       }
   "7":
@@ -206,27 +178,28 @@ tasks:
     note: false
     quietmode: 2
     scriptarguments:
-      case_id:
-        simple: ${MSSPortal.Alert.id}
+      id:
+        simple: ${MSSPortal.Case.id}
     separatecontext: false
     skipunavailable: false
     task:
-      brand: MSS Portal - MDR
-      description: Acknowledge case to change the status to "IN_PROGRESS".
-      id: 98e88d96-27c5-4d2f-8bb9-935d71c60d70
+      brand: ""
+      description: 'mssportal-acknowledge-case command: Change case status from ''pending''
+        to ''Investigate'''
+      id: db169814-c84e-43ac-8eb2-22ecc4a95eeb
       iscommand: true
       name: Update the case in portal to change the case status from pending to inprogress
-      script: MSS Portal - MDR|||mssportal-acknowledge-case
+      script: '|||mssportal-acknowledge-case'
       type: regular
       version: -1
-    taskid: 98e88d96-27c5-4d2f-8bb9-935d71c60d70
+    taskid: db169814-c84e-43ac-8eb2-22ecc4a95eeb
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 265,
-          "y": 1420
+          "y": 2120
         }
       }
   "9":
@@ -241,29 +214,29 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      case_id:
-        simple: ${MSSPortal.Alert.id}
-      status:
-        simple: CLOSED
+      id:
+        simple: ${MSSPortal.Case.id}
+      resolutionNotes:
+        simple: False positive - auto closure
     separatecontext: false
     skipunavailable: false
     task:
-      brand: MSS Portal - MDR
-      description: Update a case.
-      id: 35da58ca-f335-4d90-88b5-70d4c81917ff
+      brand: ""
+      description: 'mssportal-resolve-case command:  resolve case in MSS Portal'
+      id: f0e5036e-1a68-4013-8f46-c69c5d43a445
       iscommand: true
       name: Close incident
-      script: MSS Portal - MDR|||mssportal-update-case
+      script: '|||mssportal-resolve-case'
       type: regular
       version: -1
-    taskid: 35da58ca-f335-4d90-88b5-70d4c81917ff
+    taskid: f0e5036e-1a68-4013-8f46-c69c5d43a445
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 910,
-          "y": 2295
+          "y": 2820
         }
       }
   "10":
@@ -293,20 +266,20 @@ tasks:
     task:
       brand: ""
       description: Generates random string
-      id: 894b8a8f-58d1-4a7c-8035-7acab5cfebd1
+      id: 848e852f-bdb1-4d84-85c5-d32ddd4932b8
       iscommand: false
       name: Check if the endpoint is VIP or server
       script: GenerateRandomString
       type: regular
       version: -1
-    taskid: 894b8a8f-58d1-4a7c-8035-7acab5cfebd1
+    taskid: 848e852f-bdb1-4d84-85c5-d32ddd4932b8
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 265,
-          "y": 1770
+          "y": 2470
         }
       }
   "11":
@@ -328,26 +301,26 @@ tasks:
     isoversize: false
     nexttasks:
       "yes":
-      - "23"
+      - "27"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: ""
+      id: f7e617c0-5841-4f9d-8e87-1bab9b22977a
       iscommand: false
       name: Malware on Host
       type: condition
       version: -1
-    taskid: b7114c26-ba33-4956-871e-9a65282e4f36
+    taskid: f7e617c0-5841-4f9d-8e87-1bab9b22977a
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 480,
-          "y": 720
+          "y": 1070
         }
       }
   "12":
@@ -365,19 +338,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 43c6b140-9c2d-421d-8b47-6dc0eb975fa8
+      id: daeb701d-58f0-4e42-8a76-37233c39cb11
       iscommand: false
       name: 'Alert Category #1'
       type: title
       version: -1
-    taskid: 43c6b140-9c2d-421d-8b47-6dc0eb975fa8
+    taskid: daeb701d-58f0-4e42-8a76-37233c39cb11
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
           "x": 1340,
-          "y": 2310
+          "y": 2835
         }
       }
   "13":
@@ -409,20 +382,20 @@ tasks:
     task:
       brand: ""
       description: Generates random string
-      id: ef731c5a-1890-4069-8fb4-8891fd604dbd
+      id: 5e71f998-3ba2-4e87-8388-0cd9bbe2baca
       iscommand: false
       name: Check if false positive
       script: GenerateRandomString
       type: regular
       version: -1
-    taskid: ef731c5a-1890-4069-8fb4-8891fd604dbd
+    taskid: 5e71f998-3ba2-4e87-8388-0cd9bbe2baca
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 480,
-          "y": 1070
+          "y": 1770
         }
       }
   "14":
@@ -453,19 +426,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: fc813a6a-639e-42a6-8a51-d85819b3ee19
+      id: cf909f8b-1ed9-4df8-8cbf-7f67c9870028
       iscommand: false
       name: Is false positive?
       type: condition
       version: -1
-    taskid: fc813a6a-639e-42a6-8a51-d85819b3ee19
+    taskid: cf909f8b-1ed9-4df8-8cbf-7f67c9870028
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 480,
-          "y": 1245
+          "y": 1945
         }
       }
   "15":
@@ -483,19 +456,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 7377f5a5-5915-4b53-83fd-28df64671054
+      id: e730891a-d9c0-4477-8c5e-058973c63aa2
       iscommand: false
       name: 'Alert Category #2'
       type: title
       version: -1
-    taskid: 7377f5a5-5915-4b53-83fd-28df64671054
+    taskid: e730891a-d9c0-4477-8c5e-058973c63aa2
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
           "x": 1770,
-          "y": 2310
+          "y": 2835
         }
       }
   "16":
@@ -518,28 +491,28 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "18"
-      "yes":
       - "17"
+      "yes":
+      - "25"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: 0aefbb0d-ff55-4751-89af-9a578924a28d
+      id: 67052944-bbc9-4d69-88f7-6f5104984c7d
       iscommand: false
       name: Is the endpoint VIP or Server?
       type: condition
       version: -1
-    taskid: 0aefbb0d-ff55-4751-89af-9a578924a28d
+    taskid: 67052944-bbc9-4d69-88f7-6f5104984c7d
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 265,
-          "y": 1945
+          "y": 2645
         }
       }
   "17":
@@ -553,86 +526,56 @@ tasks:
       - "4"
     note: false
     quietmode: 0
+    scriptarguments:
+      aboutToExpireThresholdInDays:
+        simple: "2"
+      caseId:
+        simple: ${MSSPortal.Case.id}
+      description:
+        simple: Create a portal tassk to handle VIP or SERVER Malware detection
+      dueDate:
+        complex:
+          root: MSSPortal.Case.createdAt
+          transformers:
+          - args:
+              variation:
+                value:
+                  simple: in 3 days
+            operator: ModifyDateTime
+          - args:
+              format:
+                value:
+                  simple: "2006-01-02"
+            operator: toString
+      modifiedByTelus:
+        simple: "false"
+      name:
+        simple: Create a portal tassk to handle VIP or SERVER Malware detection
+      phase:
+        simple: INVESTIGATE
+      priority:
+        simple: MEDIUM
+      status:
+        simple: PENDING
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: b7059362-3571-477d-8292-dd655a35f21d
-      iscommand: false
-      name: Create portal task
-      type: regular
-      version: -1
-    taskid: b7059362-3571-477d-8292-dd655a35f21d
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 480,
-          "y": 2295
-        }
-      }
-  "18":
-    continueonerror: true
-    continueonerrortype: ""
-    id: "18"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "19"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Cortex XDR - IR
-      description: Isolates the specified endpoint.
-      id: fcc8756a-7107-4c8d-8bd2-5bf0dc0e2d39
+      description: 'mssportal-create-task command: Returns a MSSPortal task'
+      id: 85e4f29b-ef6f-48f0-841f-9793069e60e8
       iscommand: true
-      name: handle endpoint isolation
-      script: Cortex XDR - IR|||xdr-endpoint-isolate
+      name: Create portal task to clean up hosts
+      script: '|||mssportal-create-task'
       type: regular
       version: -1
-    taskid: fcc8756a-7107-4c8d-8bd2-5bf0dc0e2d39
+    taskid: 85e4f29b-ef6f-48f0-841f-9793069e60e8
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 50,
-          "y": 2120
-        }
-      }
-  "19":
-    continueonerrortype: ""
-    id: "19"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "4"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: f420bda0-89ba-492c-809c-ef98c4c5a91e
-      iscommand: false
-      name: create task for customer to clean up host
-      type: regular
-      version: -1
-    taskid: f420bda0-89ba-492c-809c-ef98c4c5a91e
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 50,
-          "y": 2295
+          "y": 2820
         }
       }
   "21":
@@ -646,23 +589,29 @@ tasks:
       - "10"
     note: false
     quietmode: 0
+    scriptarguments:
+      id:
+        simple: ${MSSPortal.Case.id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: b1e9b94a-c11b-4557-8f7f-acc252a682c8
-      iscommand: false
-      name: create a task to assign it to customer
+      description: 'mssportal-confirm-incident command: confirms the case as a true
+        incident'
+      id: 437e43db-e601-4ab4-83eb-20a0e1a0cea1
+      iscommand: true
+      name: Confirm the portal case as a true incident
+      script: '|||mssportal-confirm-incident'
       type: regular
       version: -1
-    taskid: b1e9b94a-c11b-4557-8f7f-acc252a682c8
+    taskid: 437e43db-e601-4ab4-83eb-20a0e1a0cea1
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 265,
-          "y": 1595
+          "y": 2295
         }
       }
   "22":
@@ -685,20 +634,20 @@ tasks:
       brand: Cortex XDR - IR
       description: Returns additional data for the specified incident, for example,
         related alerts, file artifacts, network artifacts, and so on.
-      id: f23da29a-008e-4ebc-8e07-0836d318de6a
+      id: 0cdf20d5-517a-418b-8149-fd10cb773b31
       iscommand: true
       name: 'Get extra incident data '
       script: Cortex XDR - IR|||xdr-get-incident-extra-data
       type: regular
       version: -1
-    taskid: f23da29a-008e-4ebc-8e07-0836d318de6a
+    taskid: 0cdf20d5-517a-418b-8149-fd10cb773b31
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 582.5,
-          "y": 195
+          "y": 370
         }
       }
   "23":
@@ -724,20 +673,230 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 197c5278-c15c-4eb0-8b03-876dc1c8c4bf
+      description: |-
+        This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+        This playbook enriches the Cortex XDR incident. The enrichment is done on the involved endpoint and Mitre technique ID information, and sets the 'Malware-Investigation and Response' layout.
+      id: 6692fa8a-7bab-4e48-82d3-33cf01b0cf69
       iscommand: false
       name: SOCaaS - Cortex XDR Malware - Incident Enrichment
       playbookId: a3154fd7-21d8-4067-8c32-cd7bcd4afe07
       type: playbook
       version: -1
-    taskid: 197c5278-c15c-4eb0-8b03-876dc1c8c4bf
+    taskid: 6692fa8a-7bab-4e48-82d3-33cf01b0cf69
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
           "x": 480,
-          "y": 885
+          "y": 1595
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "12"
+      - "15"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      caseDescription:
+        simple: ${MSSPortal.Case.description}
+      caseTitle:
+        simple: ${MSSPortal.Case.caseTitle}
+      customerId:
+        simple: ${MSSPortal.Case.customerId}
+      investigationCaseId:
+        simple: ${MSSPortal.Case.id}
+      name:
+        simple: ${MSSPortal.Case.caseTitle}
+      severity:
+        simple: ${MSSPortal.Case.priority}
+      sourceAlertId:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      sourceCreatedAt:
+        complex:
+          accessor: creation_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceId:
+        simple: ${MSSPortal.Case.caseSource}
+      sourceModifiedAt:
+        complex:
+          accessor: modification_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceRaw:
+        simple: ${PaloAltoNetworksXDR.Incident}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-create-alert command: Returns a MSSPortal alert'
+      id: a059e8ff-858a-4d77-8dca-02b4834dbd07
+      iscommand: true
+      name: Create an alert to the case
+      script: '|||mssportal-create-alert'
+      type: regular
+      version: -1
+    taskid: a059e8ff-858a-4d77-8dca-02b4834dbd07
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 895
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 3
+      hours: 0
+      minutes: 0
+      weeks: 0
+    task:
+      brand: MSS Portal - MDR
+      description: 'mssportal-create-task command: Returns a MSSPortal task'
+      id: c20cd9d9-2ba5-4e39-8f78-9ac0a23bfcb6
+      iscommand: false
+      name: Handle Malware on VIP or SERVER
+      type: regular
+      version: -1
+    taskid: c20cd9d9-2ba5-4e39-8f78-9ac0a23bfcb6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2820
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ea9a4abe-7e51-46c8-8edd-cd3e812c3b3c
+      iscommand: false
+      name: Get customer id
+      script: a4743b1e-d208-4ff0-8272-d272c558ca46
+      type: regular
+      version: -1
+    taskid: ea9a4abe-7e51-46c8-8edd-cd3e812c3b3c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 582.5,
+          "y": 195
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      limit:
+        simple: "1"
+      searchText:
+        simple: Malware on host
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-find-playbook command: Returns a MSSPortal Playbook'
+      id: 27a48b99-1a9d-4523-8d3f-95bb7f0ac34f
+      iscommand: true
+      name: Find Malwre on host playbook on the portal
+      script: '|||mssportal-find-playbook'
+      type: regular
+      version: -1
+    taskid: 27a48b99-1a9d-4523-8d3f-95bb7f0ac34f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1245
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      caseId:
+        simple: ${MSSPortal.Case.id}
+      playbookId:
+        simple: ${MSSPortal.Playbook.content.[0].id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-activate-playbook command: activate portal playbook
+        in the case'
+      id: e13dc3eb-ea75-4a1a-8dfd-6047faeba433
+      iscommand: true
+      name: Activate portal's  Malware on host playbook in the case
+      script: '|||mssportal-activate-playbook'
+      type: regular
+      version: -1
+    taskid: e13dc3eb-ea75-4a1a-8dfd-6047faeba433
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1420
         }
       }
 version: -1
@@ -746,7 +905,7 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 2485,
+        "height": 3010,
         "width": 2100,
         "x": 50,
         "y": 50
