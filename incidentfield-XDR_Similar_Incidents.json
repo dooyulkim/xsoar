@@ -1,6 +1,4 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
 		"Cortex XDR Incident",
@@ -8,9 +6,7 @@
 		"Cortex XDR Device Control Violations",
 		"Cortex XDR Disconnected endpoints"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrsimilarincidents",
 	"closeForm": false,
@@ -21,7 +17,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "incidentid",
-			"orgType": "url",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -34,7 +29,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "created",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -47,7 +41,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "name",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -60,7 +53,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "incidentsimilarity",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -73,7 +65,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "username",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -86,7 +77,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "hostname",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -99,7 +89,6 @@
 			"isDefault": true,
 			"isReadOnly": false,
 			"key": "osactorcommandline",
-			"orgType": "shortText",
 			"required": false,
 			"script": "",
 			"selectValues": null,
@@ -122,16 +111,14 @@
 	"hidden": false,
 	"id": "incident_xdrsimilarincidents",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Similar Incidents",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "grid",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
@@ -153,6 +140,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
