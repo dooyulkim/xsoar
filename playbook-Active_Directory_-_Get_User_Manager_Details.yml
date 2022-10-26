@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.5.1
+    itemVersion: 1.5.0
     packID: Active_Directory_Query
-    packName: Active Directory Query
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -39,7 +38,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -94,7 +92,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -148,7 +145,6 @@ tasks:
                 - operator: uniq
           operator: isNotEmpty
       label: Username
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -185,7 +181,6 @@ tasks:
         }
       }
   "4":
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -227,7 +222,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -279,7 +273,6 @@ tasks:
                 - operator: uniq
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -312,7 +305,6 @@ tasks:
         }
       }
   "7":
-    continueonerrortype: ""
     id: "7"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -360,7 +352,6 @@ tasks:
         }
       }
   "10":
-    continueonerrortype: ""
     id: "10"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -407,7 +398,6 @@ tasks:
         }
       }
   "12":
-    continueonerrortype: ""
     id: "12"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -434,7 +424,6 @@ tasks:
         }
       }
   "13":
-    continueonerrortype: ""
     id: "13"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -464,7 +453,6 @@ tasks:
         }
       }
   "16":
-    continueonerrortype: ""
     id: "16"
     ignoreworker: false
     isautoswitchedtoquietmode: false
