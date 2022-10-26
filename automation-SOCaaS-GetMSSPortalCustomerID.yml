@@ -7,9 +7,9 @@ contentitemexportablefields:
     fromServerVersion: ""
     itemVersion: ""
     packID: ""
-    packName: ""
     propagationLabels:
     - all
+    remote: true
     toServerVersion: ""
 dockerimage: demisto/xsoar-tools-hf:1.0.0.31061
 enabled: true
