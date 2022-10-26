@@ -1,7 +1,6 @@
 {
 	"autorun": true,
-	"cacheVersn": 0,
-	"closureScript": "7246a027-7c21-41a3-8ac4-120f2119d179",
+	"closureScript": "",
 	"color": "#54CEC7",
 	"days": 0,
 	"daysR": 0,
@@ -18,12 +17,11 @@
 	"hoursR": 0,
 	"id": "SOCaaS - Cortex XDR Incident",
 	"itemVersion": "",
-	"layout": "cd57a660-3f9a-4c6f-8e01-ace4335780d8",
+	"layout": "Cortex XDR Incident",
 	"locked": false,
 	"name": "SOCaaS - Cortex XDR Incident",
 	"onChangeRepAlg": 0,
 	"packID": "",
-	"packName": "",
 	"playbookId": "1ac8a067-8edf-47c2-8021-ddfde8011533",
 	"preProcessingScript": "",
 	"propagationLabels": [
