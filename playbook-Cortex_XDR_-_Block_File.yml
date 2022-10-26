@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.19
+    itemVersion: 4.8.18
     packID: CortexXDR
-    packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -25,7 +24,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -54,7 +52,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -100,7 +97,6 @@ tasks:
                 root: inputs.HashList
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -133,7 +129,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -183,7 +178,6 @@ tasks:
             value:
               simple: Cortex XDR - IR
       label: "yes"
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
