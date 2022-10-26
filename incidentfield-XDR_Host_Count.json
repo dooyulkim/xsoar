@@ -1,14 +1,10 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
 		"Cortex XDR Incident",
 		"Cortex XDR Port Scan"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrhostcount",
 	"closeForm": false,
@@ -24,21 +20,21 @@
 	"hidden": false,
 	"id": "incident_xdrhostcount",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Host Count",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "number",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
 	"placeholder": "",
-	"propagationLabels": [],
+	"propagationLabels": [
+		"all"
+	],
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
@@ -55,6 +51,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
