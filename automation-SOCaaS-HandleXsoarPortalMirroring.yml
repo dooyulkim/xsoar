@@ -1,0 +1,58 @@
+commonfields:
+  id: 7246a027-7c21-41a3-8ac4-120f2119d179
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must: []
+  should:
+  - MSS Portal - MDR|||mssportal-update-case
+dockerimage: demisto/python3:3.10.7.35188
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SOCaaS-HandleXsoarPortalMirroring
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('SOCaaS-HandleXsoarPortalMirroring', 'start', __line__())
+
+
+
+
+  def main():
+      try:
+          args = demisto.args()
+          xdr_status = args.get('new')
+          print(xdr_status)
+          id = demisto.context()["MSSPortal"]["Case"]["id"]
+          case = demisto.executeCommand("mssportal-get-case", {'id': id})
+          if(case.nbTelusPendingTasks == 0 and case.nbCustomerClosedTasks == case.nbCustomerTasks):
+              demisto.executeCommand("mssportal-resolve-case", {'id': id})
+          else:
+              raise DemistoException('The incident cannot be resolved until all the tasks are closed on mssportal.')
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+         # return_error(f'Failed to execute HandleXsoarPortalMirroring. Error: {res}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('HandleXsoarPortalMirroring', 'end', __line__())
+
+  register_module_line('SOCaaS-HandleXsoarPortalMirroring', 'end', __line__())
+scripttarget: 0
+subtype: python3
+tags:
+- post-processing
+type: python
