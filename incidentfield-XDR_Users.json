@@ -1,6 +1,4 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
 		"Cortex XDR Device Control Violations",
@@ -8,9 +6,7 @@
 		"Cortex XDR Incident",
 		"Cortex XDR Port Scan"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrusers",
 	"closeForm": false,
@@ -26,16 +22,14 @@
 	"hidden": false,
 	"id": "incident_xdrusers",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Users",
 	"neverSetAsRequired": false,
 	"openEnded": true,
-	"orgType": "multiSelect",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
@@ -57,6 +51,5 @@
 	"useAsKpi": true,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
