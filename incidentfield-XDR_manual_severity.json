@@ -1,11 +1,7 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": true,
 	"associatedTypes": null,
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrmanualseverity",
 	"closeForm": false,
@@ -21,16 +17,14 @@
 	"hidden": false,
 	"id": "incident_xdrmanualseverity",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR manual severity",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "shortText",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
@@ -52,6 +46,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
