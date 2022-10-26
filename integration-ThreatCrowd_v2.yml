@@ -1,0 +1,629 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: ThreatCrowd_v2
+  version: -1
+configuration:
+- defaultvalue: https://www.threatcrowd.org/searchApi/v2/
+  display: Server
+  name: server_url
+  required: true
+  type: 0
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: How many results per indicator to fetch. For full data use -1.
+  defaultvalue: "50"
+  display: Max number of results per indicator
+  name: entry_limit
+  required: true
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.6
+    packID: Threat_Crowd
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Query Threat Crowd for reports.
+detaileddescription: '[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/threat-crowd-v2)'
+display: Threat Crowd v2
+image: data:image/png;base64,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
+name: ThreatCrowd_v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: An IP address for which to retrieve a report.
+      isArray: true
+      name: ip
+      required: true
+    - description: Maximum number of results per indicator to fetch.
+      name: limit
+    description: Get a report of an IP address.
+    name: ip
+    outputs:
+    - contextPath: IP.Address
+      description: IP address.
+      type: String
+    - contextPath: IP.Malicious.Vendor
+      description: The vendor reporting the IP address as malicious.
+      type: String
+    - contextPath: IP.Malicious.Description
+      description: A description explaining why the IP address was reported as malicious.
+      type: String
+    - contextPath: ThreatCrowd.IP.hashes
+      description: Hashes related to the ip.
+      type: String
+    - contextPath: ThreatCrowd.IP.permalink
+      description: The link to ip in the product.
+      type: String
+    - contextPath: ThreatCrowd.IP.references
+      description: References related to the ip.
+      type: String
+    - contextPath: ThreatCrowd.IP.resolutions
+      description: Resolutions related to the ip.
+      type: String
+    - contextPath: ThreatCrowd.IP.value
+      description: The ip value.
+      type: String
+    - contextPath: ThreatCrowd.IP.votes
+      description: The votes given to ip.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+  - arguments:
+    - default: true
+      description: The domain for which to retrieve a report.
+      isArray: true
+      name: domain
+      required: true
+    - description: Maximum number of results per indicator to fetch.
+      name: limit
+    description: Get a report of a domain.
+    name: domain
+    outputs:
+    - contextPath: Domain.Name
+      description: 'The domain name, for example: "google.com".'
+      type: String
+    - contextPath: Domain.Malicious.Vendor
+      description: The vendor reporting the domain as malicious.
+      type: String
+    - contextPath: Domain.Malicious.Description
+      description: A description explaining why the domain was reported as malicious.
+      type: String
+    - contextPath: ThreatCrowd.Domain.hashes
+      description: Hashes related to the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.permalink
+      description: A link to domain search in the product.
+      type: String
+    - contextPath: ThreatCrowd.Domain.emails
+      description: Emails related to the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.references
+      description: References related to the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.resolutions
+      description: Resolutions related to the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.subdomains
+      description: The subdomains related to the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.value
+      description: The name of the domain.
+      type: String
+    - contextPath: ThreatCrowd.Domain.votes
+      description: The votes given to the domain.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+  - arguments:
+    - default: true
+      description: The email address for which to retrieve a report.
+      isArray: true
+      name: email
+      required: true
+    - description: Maximum number of results per indicator to fetch.
+      name: limit
+    description: Get a report of an email address.
+    name: email
+    outputs:
+    - contextPath: ThreatCrowd.Account.value
+      description: The email address.
+      type: String
+    - contextPath: ThreatCrowd.Account.domains
+      description: The domains related to the email address.
+      type: String
+    - contextPath: ThreatCrowd.Account.permalink
+      description: The Link to the email address in the product.
+      type: String
+    - contextPath: ThreatCrowd.Account.references
+      description: The refernces related to the email address.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+  - arguments:
+    - description: The antivirus for which to retrieve a report.
+      isArray: true
+      name: antivirus
+      required: true
+    - description: Maximum number of results per indicator to fetch.
+      name: limit
+    description: Get a report of an antivirus.
+    name: threat-crowd-antivirus
+    outputs:
+    - contextPath: ThreatCrowd.AntiVirus.hashes
+      description: The hashes related to the antivirus.
+      type: String
+    - contextPath: ThreatCrowd.AntiVirus.permalink
+      description: The link to the antivitrus in the product.
+      type: String
+    - contextPath: ThreatCrowd.AntiVirus.references
+      description: The references of the antivirus.
+      type: Unknown
+    - contextPath: ThreatCrowd.AntiVirus.value
+      description: The name of the antivirus.
+      type: String
+  - arguments:
+    - default: true
+      description: The hash for which to retrieve a report.
+      isArray: true
+      name: file
+      required: true
+    - description: Maximum number of results per indicator to fetch.
+      name: limit
+    description: Get a report of a hash.
+    name: file
+    outputs:
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.Malicious.Vendor
+      description: The vendor that reported the file as malicious.
+      type: String
+    - contextPath: File.Malicious.Description
+      description: A description explaining why the file was determined to be malicious.
+      type: String
+    - contextPath: ThreatCrowd.File.sha1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: ThreatCrowd.File.references
+      description: The refernces related to the file.
+      type: String
+    - contextPath: ThreatCrowd.File.permalink
+      description: The link to the file in the product.
+      type: String
+    - contextPath: ThreatCrowd.File.ips
+      description: The ips related to the file.
+      type: String
+    - contextPath: ThreatCrowd.File.domains
+      description: The domains related to the file.
+      type: String
+    - contextPath: ThreatCrowd.File.value
+      description: The file identifier.
+      type: String
+    - contextPath: ThreatCrowd.File.scans
+      description: The scans related to thefile.
+      type: String
+    - contextPath: ThreatCrowd.File.md5
+      description: The MD5 of the file.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+  dockerimage: demisto/python3:3.9.8.24399
+  runonce: false
+  script: |
+    register_module_line('ThreatCrowd_v2', 'start', __line__())
+
+
+
+    from typing import Dict, Any, List, Optional, Tuple
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+
+    VENDOR = 'Threat Crowd'
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'  # ISO8601 format with UTC, default in XSOAR
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        def __init__(self, base_url: str, verify: bool, proxy: bool, reliability: DBotScoreReliability,
+                     entry_limit: int):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy)
+            self.reliability = reliability
+            self.entry_limit = entry_limit
+
+        def _get_limit_for_command(self, command_limit: int = None):
+            if command_limit:
+                return None if command_limit == -1 else command_limit
+            else:
+                return self.entry_limit
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def _get_list_without_empty(list_to_change: list) -> list:
+        if list_to_change:
+            return [entry for entry in list_to_change if entry]
+        return list_to_change
+
+
+    def handle_resolutions(resolutions: List[dict], limit: Optional[int]) -> List[dict]:
+        """ Gets a resolution section from response with following struct: [{"last_resolved": "2014-12-14", "domain": "example.com"}]
+            return a sorted list truncated to limit, desc by time."""
+
+        resolutions = resolutions[:limit]
+        resolutions.sort(key=lambda x: x['last_resolved'], reverse=True)
+        return resolutions
+
+
+    def _get_dbot_score(json_res: dict) -> Tuple[int, str]:
+        """
+        Calculates DBot score according to https://github.com/AlienVault-OTX/ApiV2/blob/master/README.md#votes
+        """
+        # checks that response is valid
+        if json_res.get('response_code') == '1':
+            votes = json_res.get('votes')
+            if votes == -1:
+                return Common.DBotScore.BAD, 'BAD'
+            elif votes == 0:
+                return Common.DBotScore.SUSPICIOUS, 'SUSPICIOUS'
+            elif votes == 1:
+                return Common.DBotScore.GOOD, 'GOOD'
+
+        return Common.DBotScore.NONE, 'None'
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def ip_command(client: Client, args: Dict[str, Any]) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        api_url = 'ip/report/'
+        entries_limit = client._get_limit_for_command(arg_to_number(args.get('limit'), 'limit', False))
+        ips = argToList(args.get('ip'))
+        for ip in ips:
+            res = client._http_request(method='GET', url_suffix=api_url, params={'ip': ip})
+
+            # adding value to both outputs and raw results as it is not provided in the API response
+            res['value'] = ip
+            score, score_str = _get_dbot_score(res)
+
+            dbot = Common.DBotScore(
+                ip, DBotScoreType.IP, VENDOR, score, reliability=client.reliability)
+            ip_object = Common.IP(ip, dbot)
+
+            hashes = res.get('hashes', [])[:entries_limit]
+            resolutions = handle_resolutions(res.get('resolutions', []), entries_limit)
+
+            markdown = f"### Threat crowd report for ip {ip}: \n  ### DBotScore: {score_str} \n" \
+                       f"{tableToMarkdown('Resolutions', resolutions, removeNull=True)} \n " \
+                       f"{tableToMarkdown('Hashes', hashes, headers='Hashes', removeNull=True)}" \
+                       f"{tableToMarkdown('References', res.get('references'), removeNull=True, headers='References')}"
+
+            outputs = {
+                'hashes': hashes,
+                'permalink': res.get('permalink'),
+                'resolutions': resolutions,
+                'references': res.get('references'),
+                'response_code': res.get('response_code'),
+                'votes': res.get('votes'),
+                'value': res.get('value')
+            }
+
+            # using res.copy() to avoid changing all previous entries's values.
+            command_results.append(CommandResults(
+                outputs_prefix='ThreatCrowd.IP',
+                outputs=outputs,
+                outputs_key_field='value',
+                indicator=ip_object,
+                readable_output=markdown,
+                raw_response=res.copy()
+
+            ))
+
+        return command_results
+
+
+    def email_command(client: Client, args: Dict[str, Any]) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        api_url = 'email/report/'
+        emails = argToList(args.get('email'))
+        for email in emails:
+            res = client._http_request(method='GET', url_suffix=api_url, params={'email': email})
+
+            # adding value to both outputs and raw results as it is not provided in the API response
+            res['value'] = email
+            score, score_str = _get_dbot_score(res)
+            dbot = Common.DBotScore(
+                email, DBotScoreType.EMAIL, VENDOR, score, reliability=client.reliability)
+            email_object = Common.EMAIL(email, dbot)
+
+            markdown = f"### Threat crowd report for Email {email} \n " \
+                       f"DBotScore: {score_str} \n {tableToMarkdown('Results', res, removeNull=True)}"
+
+            # using res.copy() to avoid changing all previous entries's values.
+            command_results.append(CommandResults(
+                outputs_prefix='ThreatCrowd.Account',
+                outputs=res.copy(),
+                outputs_key_field='value',
+                indicator=email_object,
+                readable_output=markdown,
+                raw_response=res.copy()
+
+            ))
+
+        return command_results
+
+
+    def domain_command(client: Client, args: Dict[str, Any]) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        api_url = 'domain/report/'
+        entries_limit = client._get_limit_for_command(arg_to_number(args.get('limit'), 'limit', False))
+        domains = argToList(args.get('domain'))
+        for domain in domains:
+            res = client._http_request(method='GET', url_suffix=api_url, params={'domain': domain})
+
+            # adding value to both outputs and raw results as it is not provided in the API response
+            res['value'] = domain
+            score, score_str = _get_dbot_score(res)
+            dbot = Common.DBotScore(
+                domain, DBotScoreType.DOMAIN, VENDOR, score, reliability=client.reliability)
+            domain_object = Common.Domain(domain, dbot)
+
+            markdown = f"### Threat crowd report for domain {domain} \n ### DBotScore: {score_str} \n"
+
+            subdomains = res.get('subdomains')[:entries_limit]
+            resolutions = handle_resolutions(res.get('resolutions', []), entries_limit)
+
+            markdown += f'{tableToMarkdown("Resolutions", resolutions, removeNull=True)} \n ' \
+                        f'{tableToMarkdown("Subdomains", subdomains, headers=["subdomains"])} \n'
+            res_to_show = res.copy()
+            res_to_show.pop("resolutions")
+            res_to_show.pop("subdomains")
+            markdown += f'{tableToMarkdown(" ", res_to_show, removeNull=True)}'
+
+            outputs = {
+                'hashes': res.get('hashes'),
+                'permalink': res.get('permalink'),
+                'resolutions': resolutions,
+                'references': res.get('references'),
+                'response_code': res.get('response_code'),
+                'votes': res.get('votes'),
+                'subdomains': subdomains,
+                'value': res.get('value')
+            }
+
+            # using res.copy() to avoid changing all previous entries's values.
+            command_results.append(CommandResults(
+                outputs_prefix='ThreatCrowd.Domain',
+                outputs=outputs,
+                outputs_key_field='value',
+                indicator=domain_object,
+                readable_output=markdown,
+                raw_response=res.copy()
+
+            ))
+
+        return command_results
+
+
+    def antivirus_command(client: Client, args: Dict[str, Any]) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        api_url = 'antivirus/report/'
+        antivirus_list = argToList(args.get('antivirus'))
+        entries_limit = client._get_limit_for_command(arg_to_number(args.get('limit'), 'limit', False))
+
+        for antivirus in antivirus_list:
+            res = client._http_request(method='GET', url_suffix=api_url, params={'antivirus': antivirus})
+
+            # adding value to both outputs and raw results as it is not provided in the API response
+            res['value'] = antivirus
+            res['hashes'] = res['hashes'][:entries_limit]
+
+            markdown = tableToMarkdown(f"Threat crowd report for antivirus {antivirus}", res, removeNull=True)
+
+            # using res.copy() to avoid changing all previous entries's values.
+            command_results.append(CommandResults(
+                outputs_prefix='ThreatCrowd.AntiVirus',
+                outputs=res.copy(),
+                outputs_key_field='value',
+                readable_output=markdown,
+                raw_response=res.copy()
+            ))
+
+        return command_results
+
+
+    def file_command(client: Client, args: Dict[str, Any]) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        api_url = 'file/report/'
+        files = argToList(args.get('file'))
+        entries_limit = client._get_limit_for_command(arg_to_number(args.get('limit'), 'limit', False))
+
+        for file_hash in files:
+            res = client._http_request(method='GET', url_suffix=api_url, params={'resource': file_hash})
+
+            # adding value to both outputs and raw results as it is not provided in the API response
+            res['value'] = file_hash
+
+            score, score_str = _get_dbot_score(res)
+            dbot = Common.DBotScore(
+                file_hash, DBotScoreType.FILE, VENDOR, score, reliability=client.reliability)
+            file_object = Common.File(dbot, md5=res.get('md5'), sha1=res.get('sha1'))
+
+            # removes empty entries returned by API
+            res['scans'] = _get_list_without_empty(res.get('scans'))[:entries_limit]
+
+            markdown = f"### Threat crowd report for File {file_hash}: \n ### DBotScore: {score_str} \n " \
+                       f"{tableToMarkdown('Results', res)}".replace('<br>', '')
+
+            # using res.copy() to avoid changing all previous entries's values.
+            command_results.append(CommandResults(
+                outputs_prefix='ThreatCrowd.File',
+                outputs=res.copy(),
+                outputs_key_field='value',
+                indicator=file_object,
+                readable_output=markdown,
+                raw_response=res.copy()
+            ))
+
+        return command_results
+
+
+    def test_module(client: Client) -> str:
+        try:
+            api_url = 'ip/report/'
+            client._http_request(method='GET', url_suffix=api_url, params={'ip': '1.1.1.1'})
+            message = 'ok'
+        except DemistoException as e:
+            if 'Forbidden' in str(e) or 'Authorization' in str(e):
+                message = 'Authorization Error: make sure API Key is correctly set.'
+            else:
+                raise e
+        return message
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        command_functions = {'email': email_command,
+                             'domain': domain_command,
+                             'ip': ip_command,
+                             'threat-crowd-antivirus': antivirus_command,
+                             'file': file_command}
+        command = demisto.command()
+
+        demisto.debug(f'Command being called is {command}')
+        try:
+            params = demisto.params()
+            base_url = params.get('server_url')
+            verify_certificate = not params.get('insecure', False)
+            proxy = params.get('proxy', False)
+            entry_limit = arg_to_number(params.get('entry_limit'), 'entry_limit', True)
+            if not entry_limit:
+                raise Exception("Please Provide a limit for number of entries. To receive all entries use -1")
+            reliability = params.get('integrationReliability')
+            reliability = reliability if reliability else DBotScoreReliability.C
+
+            if DBotScoreReliability.is_valid_type(reliability):
+                reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+            else:
+                raise Exception("Please provide a valid value for the Source Reliability parameter.")
+
+            client = Client(
+                base_url=base_url,
+                verify=verify_certificate,
+                proxy=proxy,
+                reliability=reliability,
+                entry_limit=entry_limit
+            )
+
+            if command == 'test-module':
+                result = test_module(client)
+                return_results(result)
+
+            else:
+                if command in command_functions:
+                    return_results(command_functions[command](client, demisto.args()))
+                else:
+                    raise NotImplementedError(f'command {command} is not implemented.')
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('ThreatCrowd_v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
