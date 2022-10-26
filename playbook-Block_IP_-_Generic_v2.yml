@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -146,7 +145,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -175,7 +173,6 @@ tasks:
         }
       }
   "2":
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -202,7 +199,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -236,7 +232,6 @@ tasks:
         }
       }
   "6":
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -308,7 +303,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "7"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -349,7 +343,6 @@ tasks:
               simple: inputs.IP
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -382,7 +375,6 @@ tasks:
         }
       }
   "11":
-    continueonerrortype: ""
     id: "11"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -404,7 +396,7 @@ tasks:
       id: d8d7576b-c4e9-48a6-8046-68f589b27e2e
       iscommand: false
       name: Add Indicator to Miner - Palo Alto MineMeld
-      playbookName: Add Indicator to Miner - Palo Alto MineMeld
+      playbookId: add_indicator_to_miner_-_palo_alto_mineMeld
       type: playbook
       version: -1
     taskid: d8d7576b-c4e9-48a6-8046-68f589b27e2e
@@ -448,7 +440,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "12"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -481,7 +472,6 @@ tasks:
         }
       }
   "13":
-    continueonerrortype: ""
     id: "13"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -517,7 +507,6 @@ tasks:
         }
       }
   "14":
-    continueonerrortype: ""
     id: "14"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -539,7 +528,7 @@ tasks:
       id: b8398534-32b9-4455-84d6-2dd09bd2a592
       iscommand: false
       name: PAN-OS - Block IP - Custom Block Rule
-      playbookName: PAN-OS - Block IP - Custom Block Rule
+      playbookId: PAN-OS - Block IP - Custom Block Rule
       type: playbook
       version: -1
     taskid: b8398534-32b9-4455-84d6-2dd09bd2a592
@@ -553,7 +542,6 @@ tasks:
         }
       }
   "15":
-    continueonerrortype: ""
     id: "15"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -575,7 +563,7 @@ tasks:
       id: 9828866a-b42c-4155-8681-d7b183b80fe2
       iscommand: false
       name: PAN-OS - Block IP - Static Address Group
-      playbookName: PAN-OS - Block IP - Static Address Group
+      playbookId: PAN-OS - Block IP - Static Address Group
       type: playbook
       version: -1
     taskid: 9828866a-b42c-4155-8681-d7b183b80fe2
@@ -589,7 +577,6 @@ tasks:
         }
       }
   "16":
-    continueonerrortype: ""
     id: "16"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -611,7 +598,7 @@ tasks:
       id: 9620e528-42f8-4c0d-8706-b46a73d188be
       iscommand: false
       name: PAN-OS - Block IP and URL - External Dynamic List
-      playbookName: PAN-OS - Block IP and URL - External Dynamic List
+      playbookId: PAN-OS - Block IP and URL - External Dynamic List
       type: playbook
       version: -1
     taskid: 9620e528-42f8-4c0d-8706-b46a73d188be
@@ -625,7 +612,6 @@ tasks:
         }
       }
   "17":
-    continueonerrortype: ""
     id: "17"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -658,7 +644,6 @@ tasks:
         }
       }
   "18":
-    continueonerrortype: ""
     id: "18"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -688,7 +673,6 @@ tasks:
         }
       }
   "19":
-    continueonerrortype: ""
     id: "19"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -718,7 +702,6 @@ tasks:
         }
       }
   "20":
-    continueonerrortype: ""
     id: "20"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -748,7 +731,6 @@ tasks:
         }
       }
   "21":
-    continueonerrortype: ""
     id: "21"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -770,7 +752,7 @@ tasks:
       id: 6c3dfdb9-9ac3-4a32-831b-67fc7bec6fd1
       iscommand: false
       name: PAN-OS DAG Configuration
-      playbookName: PAN-OS DAG Configuration
+      playbookId: PAN-OS DAG Configuration
       type: playbook
       version: -1
     taskid: 6c3dfdb9-9ac3-4a32-831b-67fc7bec6fd1
@@ -798,7 +780,6 @@ tasks:
             value:
               simple: "true"
       label: "yes"
-    continueonerrortype: ""
     id: "22"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -840,7 +821,6 @@ tasks:
                 root: inputs.StaticAddressGroup
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "23"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -889,7 +869,6 @@ tasks:
                 root: inputs.EDLServerIP
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -931,7 +910,6 @@ tasks:
                 root: inputs.DAG
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "25"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -965,7 +943,6 @@ tasks:
         }
       }
   "26":
-    continueonerrortype: ""
     id: "26"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1022,7 +999,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "27"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1055,7 +1031,6 @@ tasks:
         }
       }
   "28":
-    continueonerrortype: ""
     id: "28"
     ignoreworker: false
     isautoswitchedtoquietmode: false
