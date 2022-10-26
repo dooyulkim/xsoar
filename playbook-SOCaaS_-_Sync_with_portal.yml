@@ -4,7 +4,6 @@ contentitemexportablefields:
     fromServerVersion: ""
     itemVersion: ""
     packID: ""
-    packName: ""
     propagationLabels:
     - all
     toServerVersion: ""
@@ -15,7 +14,6 @@ outputs: []
 starttaskid: "0"
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -29,11 +27,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 1d972ef2-8170-4501-8724-bb47833f7dc0
+      id: 12386d1e-c7cd-4187-866e-c3e92f4b83f4
       iscommand: false
       name: ""
       version: -1
-    taskid: 1d972ef2-8170-4501-8724-bb47833f7dc0
+    taskid: 12386d1e-c7cd-4187-866e-c3e92f4b83f4
     timertriggers: []
     type: start
     view: |-
@@ -44,7 +42,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -95,13 +92,13 @@ tasks:
     task:
       brand: MSS Portal - MDR
       description: Create an alert using Portal's MDR API
-      id: e88bac21-d4f8-4e1b-8f9b-bdb23df01522
+      id: 7d773155-40f4-41a2-8597-d72f61c17ae1
       iscommand: true
       name: mssportal-create-alert
       script: MSS Portal - MDR|||mssportal-create-alert
       type: regular
       version: -1
-    taskid: e88bac21-d4f8-4e1b-8f9b-bdb23df01522
+    taskid: 7d773155-40f4-41a2-8597-d72f61c17ae1
     timertriggers: []
     type: regular
     view: |-
