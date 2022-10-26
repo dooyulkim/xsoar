@@ -1,15 +1,11 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
 		"IP",
 		"Domain",
 		"File"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrstatus",
 	"closeForm": false,
@@ -25,16 +21,14 @@
 	"hidden": false,
 	"id": "indicator_xdrstatus",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR status",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "singleSelect",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
@@ -59,6 +53,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
