@@ -28,7 +28,6 @@ contentitemexportablefields:
     fromServerVersion: ""
     itemVersion: ""
     packID: ""
-    packName: ""
     propagationLabels:
     - all
     toServerVersion: ""
@@ -2616,7 +2615,7 @@ script:
       required: true
     description: Upload an attachment to a threat
     name: mssportal-upload-threat-attachment
-  dockerimage: demisto/python3:3.10.5.31797
+  dockerimage: demisto/python3:3.10.5.31928
   runonce: false
   script: |
     register_module_line('SOCaaS - MSS Portal - AutoGen', 'start', __line__())
