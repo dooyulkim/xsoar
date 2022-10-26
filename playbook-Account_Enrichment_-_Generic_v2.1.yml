@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.5.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -271,7 +270,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -308,7 +306,6 @@ tasks:
               simple: inputs.Username
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -347,7 +344,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -400,7 +396,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -434,7 +429,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -474,7 +468,6 @@ tasks:
         }
       }
   "9":
-    continueonerrortype: ""
     id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -504,7 +497,6 @@ tasks:
         }
       }
   "11":
-    continueonerrortype: ""
     id: "11"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -534,7 +526,6 @@ tasks:
         }
       }
   "16":
-    continueonerrortype: ""
     id: "16"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -564,7 +555,6 @@ tasks:
         }
       }
   "18":
-    continueonerrortype: ""
     id: "18"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -576,8 +566,6 @@ tasks:
       - "29"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: SailPointIdentityIQ
@@ -604,7 +592,6 @@ tasks:
         }
       }
   "20":
-    continueonerrortype: ""
     id: "20"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -616,8 +603,6 @@ tasks:
       - "31"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: PingOne
@@ -644,7 +629,6 @@ tasks:
         }
       }
   "29":
-    continueonerrortype: ""
     id: "29"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -683,7 +667,6 @@ tasks:
         }
       }
   "31":
-    continueonerrortype: ""
     id: "31"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -722,7 +705,6 @@ tasks:
         }
       }
   "32":
-    continueonerrortype: ""
     id: "32"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -752,7 +734,6 @@ tasks:
         }
       }
   "33":
-    continueonerrortype: ""
     id: "33"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -764,8 +745,6 @@ tasks:
       - "34"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: Okta v2
@@ -792,7 +771,6 @@ tasks:
         }
       }
   "34":
-    continueonerrortype: ""
     id: "34"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -831,7 +809,6 @@ tasks:
         }
       }
   "42":
-    continueonerrortype: ""
     id: "42"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -861,7 +838,6 @@ tasks:
         }
       }
   "43":
-    continueonerrortype: ""
     id: "43"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -873,8 +849,6 @@ tasks:
       - "44"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: AWS - IAM
@@ -901,7 +875,6 @@ tasks:
         }
       }
   "44":
-    continueonerrortype: ""
     id: "44"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -940,7 +913,6 @@ tasks:
         }
       }
   "48":
-    continueonerrortype: ""
     id: "48"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -970,7 +942,6 @@ tasks:
         }
       }
   "49":
-    continueonerrortype: ""
     id: "49"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1026,7 +997,6 @@ tasks:
         }
       }
   "50":
-    continueonerrortype: ""
     id: "50"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1056,7 +1026,6 @@ tasks:
         }
       }
   "51":
-    continueonerrortype: ""
     id: "51"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1068,8 +1037,6 @@ tasks:
       - "52"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: SailPointIdentityNow
@@ -1096,7 +1063,6 @@ tasks:
         }
       }
   "52":
-    continueonerrortype: ""
     id: "52"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1144,7 +1110,6 @@ tasks:
           right:
             value: {}
       label: "yes"
-    continueonerrortype: ""
     id: "53"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1177,7 +1142,6 @@ tasks:
         }
       }
   "54":
-    continueonerrortype: ""
     id: "54"
     ignoreworker: false
     isautoswitchedtoquietmode: false
