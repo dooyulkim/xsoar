@@ -1,0 +1,1674 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: CyberTotal
+  version: -1
+configuration:
+- defaultvalue: https://cybertotal.cycraft.com
+  display: CyberTotal URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: A necessary token is a credential, used for CyberTotal API.
+  display: CyberTotal API Token
+  name: token
+  required: true
+  type: 4
+- display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- defaultvalue: "10"
+  display: Bad ip threshold
+  name: threshold_ip
+  required: false
+  type: 0
+- defaultvalue: "10"
+  display: Bad hash threshold
+  name: threshold_file
+  required: false
+  type: 0
+- defaultvalue: "10"
+  display: Bad domain threshold
+  name: threshold_domain
+  required: false
+  type: 0
+- defaultvalue: "10"
+  display: Bad url threshold
+  name: threshold_url
+  required: false
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- defaultvalue: "false"
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: 1.0.2
+    packID: CyberTotal
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: CyberTotal is a cloud-based threat intelligence service developed by
+  CyCraft.
+detaileddescription: "### Partner Contributed Integration\n#### Integration Author:
+  CyCraft Technology Corporation.\nSupport and maintenance for this integration are
+  provided by the author. Please use the following contact details:\n- **Email**:
+  [barry.liu@cycraft.com](mailto:barry.liu@cycraft.com)\n***\n## CyberTotal\n-  This
+  integration serves to enrich XSOAR indicators including IP addresses, URLs, domains,
+  and file hashes with CyberTotal information concerning reputation and whois data
+  for the purpose of triaging, validating, deciding action on and otherwise enriching
+  indicators in XSOAR. \n-  How to get CyberTotal API key:\n\t1. To Become CyberTotal's
+  user, you may need to contact CyCraft Support for details. (https://www.cycraft.com/en-us/contact)\n\t2.
+  Login to your CyberTotal account (https://cybertotal.cycraft.com/) and click on
+  your username on the upper right side of the CyberTotal Dashboard.\n\t3. In the
+  “Account Details” pop-up you will see your CyberTotal API Token, which is the API
+  key.\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/cyber-total)"
+display: CyberTotal (Partner Contribution)
+image: data:image/png;base64,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
+name: CyberTotal
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: List of IPs.
+      isArray: true
+      name: ip
+      required: true
+    - defaultValue: "10"
+      description: If the IP has reputation above the threshold then the IP defined
+        as malicious. If threshold not set, then threshold from instance configuration
+        is used.
+      name: threshold
+    description: Return IP information and reputation
+    name: ip
+    outputs:
+    - contextPath: CyberTotal.IP.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.IP.resource
+      description: ' The scan target sent to CyberTotal.'
+      type: string
+    - contextPath: CyberTotal.IP.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.IP.permalink
+      description: The link of this IP’s report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.IP.severity
+      description: Severity of this IP. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.IP.confidence
+      description: Confidence of this IP. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.IP.threat
+      description: Threat of this IP, which is a select from ‘High’, ‘Medium’ and
+        ‘Low’.
+      type: string
+    - contextPath: CyberTotal.IP.detection_engines
+      description: The number of all antivirus vendors scanned.
+      type: number
+    - contextPath: CyberTotal.IP.positive_detections
+      description: The number of antivirus vendors scanned with positive detection.
+      type: number
+    - contextPath: CyberTotal.IP.detection_ratio
+      description: The ratio of positive_detections and detection_engines.
+      type: string
+    - contextPath: CyberTotal.IP.message
+      description: Message about this search.
+      type: string
+    - contextPath: IP.Address
+      description: IP address
+      type: String
+    - contextPath: IP.DetectionEngines
+      description: The total number of engines that checked the indicator.
+      type: Number
+    - contextPath: IP.PositiveDetections
+      description: The number of engines that positively detected the indicator as
+        malicious.
+      type: Number
+    - contextPath: IP.Malicious.Vendor
+      description: The vendor reporting the IP address as malicious.
+      type: String
+    - contextPath: IP.Malicious.Description
+      description: A description explaining why the IP address was reported as malicious.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+  - arguments:
+    - default: true
+      description: list of hash(s).
+      isArray: true
+      name: file
+      required: true
+    - defaultValue: "10"
+      description: If the HASH has reputation above the threshold then the HASH defined
+        as malicious. If threshold not set, then threshold from instance configuration
+        is used.
+      name: threshold
+    description: Return file's information and reputation
+    name: file
+    outputs:
+    - contextPath: CyberTotal.File.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.File.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.File.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.File.permalink
+      description: The link of this HASH’s report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.File.severity
+      description: Severity of this HASH. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.File.confidence
+      description: Confidence of this HASH. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.File.threat
+      description: Threat of this HASH, which is a select from ‘High’, ‘Medium’ and
+        ‘Low’.
+      type: string
+    - contextPath: CyberTotal.File.detection_engines
+      description: The number of all antivirus vendors scanned.
+      type: number
+    - contextPath: CyberTotal.File.positive_detections
+      description: The number of antivirus vendors scanned with positive detection.
+      type: number
+    - contextPath: CyberTotal.File.detection_ratio
+      description: The ratio of positive_detections and detection_engines.
+      type: string
+    - contextPath: CyberTotal.File.message
+      description: Message about this search.
+      type: string
+    - contextPath: CyberTotal.File.size
+      description: Size of this file.
+      type: string
+    - contextPath: CyberTotal.File.md5
+      description: This file’s md5 value.
+      type: string
+    - contextPath: CyberTotal.File.sha1
+      description: This file’s sha1 value.
+      type: string
+    - contextPath: CyberTotal.File.sha256
+      description: This file’s sha256 value.
+      type: string
+    - contextPath: CyberTotal.File.extension
+      description: This file’s extension type.
+      type: string
+    - contextPath: CyberTotal.File.name
+      description: This file’s name, separated by ‘,’ if more than 2 names.
+      type: string
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA256
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.Name
+      description: The full file name (including file extension).
+      type: String
+    - contextPath: File.Extension
+      description: 'The file extension, for example: ''xls''.'
+      type: String
+    - contextPath: File.Size
+      description: The size of the file in bytes.
+      type: Number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+  - arguments:
+    - default: true
+      description: List of domains.
+      isArray: true
+      name: domain
+      required: true
+    - defaultValue: "10"
+      description: If the domain has reputation above the threshold then the domain
+        defined as malicious. If threshold not set, then threshold from instance configuration
+        is used.
+      name: threshold
+    description: Return domain information and reputation
+    name: domain
+    outputs:
+    - contextPath: CyberTotal.Domain.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.Domain.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.Domain.permalink
+      description: The link of this domain’s report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.Domain.severity
+      description: Severity of this domain. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.Domain.confidence
+      description: Confidence of this domain. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.Domain.threat
+      description: Threat of this domain, which is a select from ‘High’, ‘Medium’
+        and ‘Low’.
+      type: string
+    - contextPath: CyberTotal.Domain.detection_engines
+      description: The number of all antivirus vendors scanned.
+      type: number
+    - contextPath: CyberTotal.Domain.positive_detections
+      description: The number of antivirus vendors scanned with positive detection.
+      type: number
+    - contextPath: CyberTotal.Domain.detection_ratio
+      description: The ratio of positive_detections and detection_engines.
+      type: string
+    - contextPath: CyberTotal.Domain.message
+      description: Message about this search.
+      type: string
+    - contextPath: Domain.Name
+      description: 'The domain name, for example: "google.com".'
+      type: String
+    - contextPath: Domain.DetectionEngines
+      description: The total number of engines that checked the indicator.
+      type: Number
+    - contextPath: Domain.PositiveDetections
+      description: The number of engines that positively detected the indicator as
+        malicious.
+      type: Number
+    - contextPath: Domain.Malicious.Vendor
+      description: The vendor reporting the domain as malicious.
+      type: String
+    - contextPath: Domain.Malicious.Description
+      description: A description explaining why the domain was reported as malicious.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+  - arguments:
+    - default: true
+      description: List of url(s).
+      isArray: true
+      name: url
+      required: true
+    - defaultValue: "10"
+      description: If the URL has reputation above the threshold then the URL defined
+        as malicious. If threshold not set, then threshold from instance configuration
+        is used.
+      name: threshold
+    description: Return domain information and reputation
+    name: url
+    outputs:
+    - contextPath: CyberTotal.URL.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.URL.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.URL.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.URL.permalink
+      description: The link of this URL’s report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.URL.severity
+      description: Severity of this URL. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.URL.confidence
+      description: Confidence of this URL. The range is from 0 to 10.
+      type: number
+    - contextPath: CyberTotal.URL.threat
+      description: Threat of this URL, which is a select from ‘High’, ‘Medium’ and
+        ‘Low’.
+      type: string
+    - contextPath: CyberTotal.URL.detection_engines
+      description: The number of all antivirus vendors scanned.
+      type: number
+    - contextPath: CyberTotal.URL.positive_detections
+      description: The number of antivirus vendors scanned with positive detection.
+      type: number
+    - contextPath: CyberTotal.URL.detection_ratio
+      description: The ratio of positive_detections and detection_engines.
+      type: string
+    - contextPath: CyberTotal.URL.message
+      description: Message about this search.
+      type: string
+    - contextPath: URL.Data
+      description: The URL
+      type: String
+    - contextPath: URL.DetectionEngines
+      description: The total number of engines that checked the indicator.
+      type: String
+    - contextPath: URL.PositiveDetections
+      description: The number of engines that positively detected the indicator as
+        malicious.
+      type: String
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor reporting the URL as malicious.
+      type: String
+    - contextPath: URL.Malicious.Description
+      description: A description of the malicious URL.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+  - arguments:
+    - default: true
+      description: List of IP(s).
+      isArray: true
+      name: ip
+      required: true
+    description: Return ip whois information
+    name: cybertotal-ip-whois
+    outputs:
+    - contextPath: CyberTotal.WHOIS-IP.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.message
+      description: Message about this search.
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.permalink
+      description: The link of this whois report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.createdAt
+      description: 'Create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.updatedAt
+      description: 'Update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.status
+      description: Status of this IP
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.domain
+      description: Domain of this IP
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.domainMd5
+      description: MD5 translation of CyberTotal.WHOIS-IP.domain
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.domainUnicode
+      description: Encode CyberTotal.WHOIS-IP.domain by using unicode
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.nameservers
+      description: An array of all DNS nameservers
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrarName
+      description: The name of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrarEmail
+      description: The email address of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrarPhone
+      description: The phone number of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrarCreatedAt
+      description: 'Registrar create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.registrarUpdatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.registrarExpiresAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.auditCreatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.auditUpdatedAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-IP.registrant.name
+      description: The name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.organization
+      description: The organization name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.street
+      description: The street name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.city
+      description: The location city of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.state
+      description: The location state name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.zip
+      description: The post zip code of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.country
+      description: The country of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.registrant.address
+      description: The address of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.name
+      description: The name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.organization
+      description: The organization name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.street
+      description: The street name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.city
+      description: The location city of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.state
+      description: The location state name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.zip
+      description: The post zip code of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.country
+      description: The country of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.admin.address
+      description: The address of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.name
+      description: The name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.organization
+      description: The organization name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.street
+      description: The street name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.city
+      description: The location city of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.state
+      description: The location state name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.zip
+      description: The post zip code of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.country
+      description: The country of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.technical.address
+      description: The address of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.contactEmails
+      description: An array of all contact email address
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.contacts
+      description: An array of all contact details
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.contactNames
+      description: An array of all contact names
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.contactCountries
+      description: An array of all contact countries
+      type: string
+    - contextPath: CyberTotal.WHOIS-IP.domainAvailable
+      description: If this domain is available
+      type: boolean
+    - contextPath: CyberTotal.WHOIS-IP.expired
+      description: If this IP is expired
+      type: boolean
+  - arguments:
+    - default: true
+      description: List of URL(s).
+      isArray: true
+      name: url
+      required: true
+    description: Return url whois information
+    name: cybertotal-url-whois
+    outputs:
+    - contextPath: CyberTotal.WHOIS-URL.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.message
+      description: Message about this search.
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.permalink
+      description: The link of this whois report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.createdAt
+      description: 'Create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.updatedAt
+      description: 'Update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.status
+      description: Status of this IP
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.domain
+      description: Domain of this IP
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.domainMd5
+      description: MD5 translation of CyberTotal.WHOIS-URL.domain
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.domainUnicode
+      description: Encode CyberTotal.WHOIS-URL.domain by using unicode
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.nameservers
+      description: An array of all DNS nameservers
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrarName
+      description: The name of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrarEmail
+      description: The email address of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrarPhone
+      description: The phone number of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrarCreatedAt
+      description: 'Registrar create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.registrarUpdatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.registrarExpiresAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.auditCreatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.auditUpdatedAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-URL.registrant.name
+      description: The name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.organization
+      description: The organization name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.street
+      description: The street name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.city
+      description: The location city of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.state
+      description: The location state name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.zip
+      description: The post zip code of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.country
+      description: The country of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.registrant.address
+      description: The address of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.name
+      description: The name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.organization
+      description: The organization name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.street
+      description: The street name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.city
+      description: The location city of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.state
+      description: The location state name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.zip
+      description: The post zip code of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.country
+      description: The country of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.admin.address
+      description: The address of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.name
+      description: The name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.organization
+      description: The organization name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.street
+      description: The street name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.city
+      description: The location city of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.state
+      description: The location state name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.zip
+      description: The post zip code of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.country
+      description: The country of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.technical.address
+      description: The address of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.contactEmails
+      description: An array of all contact email address
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.contacts
+      description: An array of all contact details
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.contactNames
+      description: An array of all contact names
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.contactCountries
+      description: An array of all contact countries
+      type: string
+    - contextPath: CyberTotal.WHOIS-URL.domainAvailable
+      description: If this domain is available
+      type: boolean
+    - contextPath: CyberTotal.WHOIS-URL.expired
+      description: If this URL is expired
+      type: boolean
+  - arguments:
+    - default: true
+      description: List of domain(s).
+      isArray: true
+      name: domain
+      required: true
+    description: Return domain whois information
+    name: cybertotal-domain-whois
+    outputs:
+    - contextPath: CyberTotal.WHOIS-Domain.scan_date
+      description: 'Scan date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.task_id
+      description: The unique id of each scan in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.resource
+      description: The scan target sent to CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.message
+      description: Message about this search.
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.permalink
+      description: The link of this whois report in CyberTotal.
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.createdAt
+      description: 'Create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.updatedAt
+      description: 'Update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.status
+      description: Status of this Domain
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.domain
+      description: Top level Domain of this domain
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.domainMd5
+      description: MD5 translation of CyberTotal.WHOIS-Domain.domain
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.domainUnicode
+      description: Encode CyberTotal.WHOIS-Domain.domain by using unicode
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.nameservers
+      description: An array of all DNS nameservers
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrarName
+      description: The name of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrarEmail
+      description: The email address of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrarPhone
+      description: The phone number of registrar
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrarCreatedAt
+      description: 'Registrar create date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.registrarUpdatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.registrarExpiresAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.auditCreatedAt
+      description: 'Registrar update date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.auditUpdatedAt
+      description: 'Registrar expire date format: ISO 8601'
+      type: date
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.name
+      description: The name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.organization
+      description: The organization name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.street
+      description: The street name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.city
+      description: The location city of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.state
+      description: The location state name of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.zip
+      description: The post zip code of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.country
+      description: The country of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.registrant.address
+      description: The address of registrant
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.name
+      description: The name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.organization
+      description: The organization name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.street
+      description: The street name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.city
+      description: The location city of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.state
+      description: The location state name of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.zip
+      description: The post zip code of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.country
+      description: The country of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.admin.address
+      description: The address of admin
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.name
+      description: The name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.organization
+      description: The organization name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.street
+      description: The street name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.city
+      description: The location city of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.state
+      description: The location state name of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.zip
+      description: The post zip code of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.country
+      description: The country of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.technical.address
+      description: The address of technical
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.contactEmails
+      description: An array of all contact email address
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.contacts
+      description: An array of all contact details
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.contactNames
+      description: An array of all contact names
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.contactCountries
+      description: An array of all contact countries
+      type: string
+    - contextPath: CyberTotal.WHOIS-Domain.domainAvailable
+      description: If this domain is available
+      type: boolean
+    - contextPath: CyberTotal.WHOIS-Domain.expired
+      description: If this domain is expired
+      type: boolean
+  dockerimage: demisto/python3:3.8.6.12176
+  runonce: false
+  script: |
+    import traceback
+    from typing import Any, Dict, List
+    from urllib.parse import urlparse
+    from datetime import timezone
+
+    import dateparser
+    import requests
+
+
+
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+
+        def parse_reputation(self, cybertotal_result: dict, resource: str) -> Dict[str, Any]:
+            scan_time = datetime.fromtimestamp(cybertotal_result['scan_time'], timezone.utc).isoformat()
+            permalink = cybertotal_result['url']
+            url_path = urlparse(permalink).path
+            (_, _, task_id) = url_path.rpartition('/')
+
+            result = {
+                "permalink": permalink,
+                "resource": resource,
+                "positive_detections": 0,
+                "detection_engines": 0,
+                "scan_date": scan_time,
+                "task_id": task_id,
+                "detection_ratio": "0/0"
+            }
+
+            if 'basic' not in cybertotal_result:
+                result["message"] = "search success with no basic in cybertotal result"
+                return result
+            positive_detections = 0
+            detection_engines = 0
+            if 'reputation' in cybertotal_result['basic']:
+                if 'avVenders' in cybertotal_result['basic']['reputation']:
+                    detection_engines = len(cybertotal_result['basic']['reputation']['avVenders'])
+                    for avVender in cybertotal_result['basic']['reputation']['avVenders']:
+                        if avVender['detected']:
+                            positive_detections = positive_detections + 1
+            result['positive_detections'] = positive_detections
+            result['detection_engines'] = detection_engines
+            result['detection_ratio'] = str(positive_detections) + '/' + str(detection_engines)
+            result['message'] = 'search success'
+            if 'score' in cybertotal_result['basic']:
+                result['severity'] = cybertotal_result['basic']['score'].get('severity', -1)
+                result['confidence'] = cybertotal_result['basic']['score'].get('confidence', -1)
+                result['threat'] = cybertotal_result['basic']['score'].get('threat', '')
+            return result
+
+        def get_ip_reputation(self, ip: str) -> Dict[str, Any]:
+            """Gets the IP reputation using the '/_api/search/ip/basic' API endpoint
+
+            :type ip: ``str``
+            :param ip: IP address to get the reputation for
+
+            :return: dict containing the IP reputation as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/ip/basic/{ip}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_reputation(cybertotal_result, ip)
+
+        def get_url_reputation(self, url: str) -> Dict[str, Any]:
+            """Gets the URL reputation using the '/_api/search/url/basic' API endpoint
+
+            :type url: ``str``
+            :param url: URL to get the reputation for
+
+            :return: dict containing the URL reputation as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/url/basic?q={url}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_reputation(cybertotal_result, url)
+
+        def get_file_reputation(self, _hash: str) -> Dict[str, Any]:
+            """Gets the File reputation using the '/_api/search/hash/basic' API endpoint
+
+            :type file: ``str``
+            :param file: File to get the reputation for
+
+            :return: dict containing the File reputation as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/hash/basic/{_hash}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            result = self.parse_reputation(cybertotal_result, _hash)
+
+            if 'BasicInfo' not in cybertotal_result['basic']:
+                result["message"] = "search success with no BasicInfo in cybertotal result"
+                return result
+
+            basic = cybertotal_result['basic']['BasicInfo']
+            result['size'] = basic.get('filesize', '')
+            result['md5'] = basic.get('md5', '')
+            result['sha1'] = basic.get('sha1', '')
+            result['sha256'] = basic.get('sha256', '')
+            result['extension'] = basic.get('file_type_extension', '')
+            result['name'] = basic.get('display_name', '')
+            if type(result['name']) is list:
+                result['name'] = ', '.join(result['name'])
+            return result
+
+        def get_domain_reputation(self, domain: str) -> Dict[str, Any]:
+            """Gets the Domain reputation using the '/_api/search/domain/basic' API endpoint
+
+            :type domain: ``str``
+            :param domain: Domain to get the reputation for
+
+            :return: dict containing the Domain reputation as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/domain/basic/{domain}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_reputation(cybertotal_result, domain)
+
+        def parse_whois(self, cybertotal_result: dict, resource: str) -> Dict[str, Any]:
+            scan_time = datetime.fromtimestamp(cybertotal_result['scan_time'], timezone.utc).isoformat()
+            permalink = cybertotal_result['url']
+            url_path = urlparse(permalink).path
+            (_, _, task_id) = url_path.rpartition('/')
+
+            result = dict()
+            if 'whois' in cybertotal_result:
+                if len(cybertotal_result['whois']) > 0:
+                    result = cybertotal_result['whois'].pop(0)
+            result['permalink'] = permalink,
+            result['resource'] = resource,
+            result['scan_date'] = dateparser.parse(scan_time).strftime("%Y-%m-%d %H:%M:%S"),
+            result['task_id'] = task_id
+            result['message'] = "search success"
+            if 'createdAt' in result:
+                result['createdAt'] = datetime.fromtimestamp(result['createdAt'], timezone.utc).isoformat()
+            if 'updatedAt' in result:
+                result['updatedAt'] = datetime.fromtimestamp(result['updatedAt'], timezone.utc).isoformat()
+            if 'registrarCreatedAt' in result:
+                result['registrarCreatedAt'] = datetime.fromtimestamp(result['registrarCreatedAt'], timezone.utc).isoformat()
+            if 'registrarUpdatedAt' in result:
+                result['registrarUpdatedAt'] = datetime.fromtimestamp(result['registrarUpdatedAt'], timezone.utc).isoformat()
+            if 'registrarExpiresAt' in result:
+                result['registrarExpiresAt'] = datetime.fromtimestamp(result['registrarExpiresAt'], timezone.utc).isoformat()
+            if 'auditCreatedAt' in result:
+                result['auditCreatedAt'] = datetime.fromtimestamp(result['auditCreatedAt'], timezone.utc).isoformat()
+            if 'auditUpdatedAt' in result:
+                result['auditUpdatedAt'] = datetime.fromtimestamp(result['auditUpdatedAt'], timezone.utc).isoformat()
+            if 'rawResponse' in result:
+                result.pop('rawResponse')
+            return result
+
+        def get_ip_whois(self, ip: str) -> Dict[str, Any]:
+            """Gets the IP-whois information using the '/_api/search/ip/whois' API endpoint
+
+            :type ip: ``str``
+            :param ip: IP address to get the whois information for
+
+            :return: dict containing the IP whois information as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/ip/whois/{ip}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_whois(cybertotal_result, ip)
+
+        def get_url_whois(self, url: str) -> Dict[str, Any]:
+            """Gets the URL-whois information using the '/_api/search/url/whois' API endpoint
+
+            :type url: ``str``
+            :param url: URL to get the whois information for
+
+            :return: dict containing the URL whois information as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/url/whois?q={url}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_whois(cybertotal_result, url)
+
+        def get_domain_whois(self, domain: str) -> Dict[str, Any]:
+            """Gets the Domain-whois information using the '/_api/search/domain/whois' API endpoint
+
+            :type domain: ``str``
+            :param domain: Domain to get the whois information for
+
+            :return: dict containing the Domain whois information as returned from the API
+            :rtype: ``Dict[str, Any]``
+            """
+
+            cybertotal_result = self._http_request(
+                method='GET',
+                url_suffix=f'/_api/search/domain/whois/{domain}'
+            )
+            if 'task_state' in cybertotal_result:
+                return {'task_state': cybertotal_result['task_state'], 'message': 'this search is in progress, try again later...'}
+
+            return self.parse_whois(cybertotal_result, domain)
+
+
+    def ip_reputation_command(client: Client, args: Dict[str, Any], default_threshold: int) -> List[CommandResults]:
+        """ip command: Returns IP reputation for a list of IPs
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['ip']`` is a list of IPs or a single IP
+            ``args['threshold']`` threshold to determine whether an IP is malicious
+
+        :type default_threshold: ``int``
+        :param default_threshold:
+            default threshold to determine whether an IP is malicious
+            if threshold is not specified in the XSOAR arguments
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains IPs
+
+        :rtype: ``CommandResults``
+        """
+
+        ips = argToList(args.get('ip'))
+        if len(ips) == 0:
+            raise ValueError('IP(s) not specified')
+
+        threshold = int(args.get('threshold', default_threshold))
+
+        command_results: List[CommandResults] = []
+        ip_message_list: List[Dict[str, Any]] = []
+
+        for ip in ips:
+            ip_data = client.get_ip_reputation(ip)
+            if 'task_state' in ip_data:
+                task_state = ip_data.get('task_state', 'none')
+                demisto.debug(f'search this ip {ip} on cybertotal with status: {task_state}')
+                ip_message_list.append({'ip': ip})
+                continue
+
+            reputation = int(ip_data.get('positive_detections', 0))
+            if reputation == 0:
+                score = Common.DBotScore.NONE  # unknown
+            elif reputation >= threshold:
+                score = Common.DBotScore.BAD  # bad
+            elif reputation >= threshold / 2:
+                score = Common.DBotScore.SUSPICIOUS  # suspicious
+            else:
+                score = Common.DBotScore.GOOD  # good
+
+            dbot_score = Common.DBotScore(
+                indicator=ip,
+                indicator_type=DBotScoreType.IP,
+                integration_name='CyberTotal',
+                score=score,
+                malicious_description=f'CyberTotal returned reputation {reputation}'
+            )
+
+            ip_standard_context = Common.IP(
+                ip=ip,
+                detection_engines=ip_data.get('detection_engines', None),
+                positive_engines=ip_data.get('positive_detections', None),
+                dbot_score=dbot_score
+            )
+
+            readable_output = tableToMarkdown(f'IP: {ip}', ip_data)
+
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output,
+                    outputs_prefix='CyberTotal.IP',
+                    outputs_key_field='task_id',
+                    outputs=ip_data,
+                    indicator=ip_standard_context
+                )
+            )
+
+        if len(ip_message_list) > 0:
+            readable_output = tableToMarkdown('IP search in progress , please try again later', ip_message_list)
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output,
+                )
+            )
+
+        return command_results
+
+
+    def url_reputation_command(client: Client, args: Dict[str, Any], default_threshold: int) -> List[CommandResults]:
+        """url command: Returns URL reputation for a list of URLs
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['url']`` is a list of URLs or a single URL
+            ``args['threshold']`` threshold to determine whether an URL is malicious
+
+        :type default_threshold: ``int``
+        :param default_threshold:
+            default threshold to determine whether an URL is malicious
+            if threshold is not specified in the XSOAR arguments
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains URLs
+
+        :rtype: ``CommandResults``
+        """
+
+        urls = argToList(args.get('url'))
+        if len(urls) == 0:
+            raise ValueError('URL(s) not specified')
+
+        threshold = int(args.get('threshold', default_threshold))
+
+        url_message_list: List[Dict[str, Any]] = []
+        command_results: List[CommandResults] = []
+
+        for url in urls:
+            url_raw_response = client.get_url_reputation(url)
+            if 'task_state' in url_raw_response:
+                task_state = url_raw_response.get('task_state', 'none')
+                demisto.debug(f'search this url {url} on cybertotal with status: {task_state}')
+                url_message_list.append({'url': url})
+                continue
+
+            reputation = int(url_raw_response.get('positive_detections', 0))
+            if reputation == 0:
+                score = Common.DBotScore.NONE  # unknown
+            elif reputation >= threshold:
+                score = Common.DBotScore.BAD  # bad
+            elif reputation >= threshold / 2:
+                score = Common.DBotScore.SUSPICIOUS  # suspicious
+            else:
+                score = Common.DBotScore.GOOD  # good
+
+            dbot_score = Common.DBotScore(
+                indicator=url,
+                indicator_type=DBotScoreType.URL,
+                integration_name='CyberTotal',
+                score=score,
+                malicious_description=f'CyberTotal returned reputation {reputation}'
+            )
+
+            url_standard_context = Common.URL(
+                url=url,
+                detection_engines=url_raw_response.get('detection_engines'),
+                positive_detections=url_raw_response.get('positive_detections'),
+                dbot_score=dbot_score
+            )
+
+            readable_output = tableToMarkdown(f'URL {url}', url_raw_response)
+
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output,
+                    outputs_prefix='CyberTotal.URL',
+                    outputs_key_field='task_id',
+                    outputs=url_raw_response,
+                    indicator=url_standard_context
+                )
+            )
+
+        if len(url_message_list) > 0:
+            readable_output = tableToMarkdown('URL search in progress , please try again later', url_message_list)
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output
+                )
+            )
+
+        return command_results
+
+
+    def file_reputation_command(client: Client, args: Dict[str, Any], default_threshold: int) -> List[CommandResults]:
+        """file command: Returns File reputation for a list of Files
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['file']`` is a list of Files or a single File
+            ``args['threshold']`` threshold to determine whether an File is malicious
+
+        :type default_threshold: ``int``
+        :param default_threshold:
+            default threshold to determine whether an File is malicious
+            if threshold is not specified in the XSOAR arguments
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains Files
+
+        :rtype: ``CommandResults``
+        """
+
+        hashs = argToList(args.get('file'))
+        if len(hashs) == 0:
+            raise ValueError('HASH(s) not specified')
+
+        threshold = int(args.get('threshold', default_threshold))
+
+        hash_message_list: List[Dict[str, Any]] = []
+        command_results: List[CommandResults] = []
+
+        for _hash in hashs:
+            hash_reputation_response = client.get_file_reputation(_hash)
+            if 'task_state' in hash_reputation_response:
+                task_state = hash_reputation_response.get('task_state', 'none')
+                demisto.debug(f'search this file {_hash} on cybertotal with status: {task_state}')
+                hash_message_list.append({'file': _hash})
+                continue
+
+            reputation = int(hash_reputation_response.get('positive_detections', 0))
+            if reputation == 0:
+                score = Common.DBotScore.NONE  # unknown
+            elif reputation >= threshold:
+                score = Common.DBotScore.BAD  # bad
+            elif reputation >= threshold / 2:
+                score = Common.DBotScore.SUSPICIOUS  # suspicious
+            else:
+                score = Common.DBotScore.GOOD  # good
+
+            dbot_score = Common.DBotScore(
+                indicator=_hash,
+                indicator_type=DBotScoreType.FILE,
+                integration_name='CyberTotal',
+                score=score,
+                malicious_description=f'CyberTotal returned reputation {reputation}'
+            )
+
+            hash_standard_context = Common.File(
+                md5=hash_reputation_response.get('md5', None),
+                sha1=hash_reputation_response.get('sha1', None),
+                sha256=hash_reputation_response.get('sha256', None),
+                size=hash_reputation_response.get('size', None),
+                extension=hash_reputation_response.get('extension', None),
+                name=hash_reputation_response.get('name', None),
+                dbot_score=dbot_score
+            )
+
+            readable_output = tableToMarkdown(f'File {_hash}', hash_reputation_response)
+
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output,
+                    outputs_prefix='CyberTotal.File',
+                    outputs_key_field='task_id',
+                    outputs=hash_reputation_response,
+                    indicator=hash_standard_context
+                )
+            )
+
+        if len(hash_message_list) > 0:
+            readable_output = tableToMarkdown('File search in progress , please try again later', hash_message_list)
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output
+                )
+            )
+
+        return command_results
+
+
+    def domain_reputation_command(client: Client, args: Dict[str, Any], default_threshold: int) -> List[CommandResults]:
+        """domain command: Returns Domain reputation for a list of Domains
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['domain']`` is a list of Domains or a single Domain
+            ``args['threshold']`` threshold to determine whether an Domain is malicious
+
+        :type default_threshold: ``int``
+        :param default_threshold:
+            default threshold to determine whether an Domain is malicious
+            if threshold is not specified in the XSOAR arguments
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains Domains
+
+        :rtype: ``CommandResults``
+        """
+
+        domains = argToList(args.get('domain'))
+        if len(domains) == 0:
+            raise ValueError('domain(s) not specified')
+
+        threshold = int(args.get('threshold', default_threshold))
+
+        # Context standard for Domain class
+        domain_message_list: List[Dict[str, Any]] = []
+        command_results: List[CommandResults] = []
+
+        for domain in domains:
+            domain_data = client.get_domain_reputation(domain)
+            if 'task_state' in domain_data:
+                task_state = domain_data.get('task_state', 'none')
+                demisto.debug(f'search this domain {domain} on cybertotal with status: {task_state}')
+                domain_message_list.append({'domain': domain})
+                continue
+            reputation = int(domain_data.get('positive_detections', 0))
+            if reputation == 0:
+                score = Common.DBotScore.NONE  # unknown
+            elif reputation >= threshold:
+                score = Common.DBotScore.BAD  # bad
+            elif reputation >= threshold / 2:
+                score = Common.DBotScore.SUSPICIOUS  # suspicious
+            else:
+                score = Common.DBotScore.GOOD  # good
+
+            dbot_score = Common.DBotScore(
+                indicator=domain,
+                integration_name='CyberTotal',
+                indicator_type=DBotScoreType.DOMAIN,
+                score=score,
+                malicious_description=f'CyberTotal returned reputation {reputation}'
+            )
+
+            domain_standard_context = Common.Domain(
+                domain=domain,
+                positive_detections=domain_data.get('positive_detections', None),
+                detection_engines=domain_data.get('detection_engines', None),
+                dbot_score=dbot_score
+            )
+
+            readable_output = tableToMarkdown(f'Domain {domain}', domain_data)
+
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output,
+                    outputs_prefix='CyberTotal.Domain',
+                    outputs_key_field='task_id',
+                    outputs=domain_data,
+                    indicator=domain_standard_context
+                )
+            )
+
+        if len(domain_message_list) > 0:
+            readable_output = tableToMarkdown('Domain search in progress , please try again later', domain_message_list)
+            command_results.append(
+                CommandResults(
+                    readable_output=readable_output
+                )
+            )
+
+        return command_results
+
+
+    def ip_whois_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """cybertotal-ip-whois command: Returns IP whois information for a list of IPs
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['ip']`` is a list of IPs or a single IP
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains IPs
+
+        :rtype: ``CommandResults``
+        """
+
+        ips = argToList(args.get('ip'))
+        if len(ips) == 0:
+            raise ValueError('IP(s) not specified')
+
+        ip_data_list: List[Dict[str, Any]] = []
+
+        for ip in ips:
+            ip_data = client.get_ip_whois(ip)
+            ip_data_list.append(ip_data)
+
+        return CommandResults(
+            outputs_prefix='CyberTotal.WHOIS-IP',
+            outputs_key_field='task_id',
+            outputs=ip_data_list
+        )
+
+
+    def url_whois_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """cybertotal-url-whois command: Returns URL whois information for a list of URLs
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['url']`` is a list of URLs or a single URL
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains URLs
+
+        :rtype: ``CommandResults``
+        """
+
+        urls = argToList(args.get('url'))
+        if len(urls) == 0:
+            raise ValueError('URL(s) not specified')
+
+        url_data_list: List[Dict[str, Any]] = []
+
+        for url in urls:
+            url_data = client.get_url_whois(url)
+            url_data_list.append(url_data)
+
+        return CommandResults(
+            outputs_prefix='CyberTotal.WHOIS-URL',
+            outputs_key_field='task_id',
+            outputs=url_data_list
+        )
+
+
+    def domain_whois_command(client: Client, args: Dict[str, Any]) -> CommandResults:
+        """cybertotal-domain-whois command: Returns Domain whois information for a list of Domains
+
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+
+        :type args: ``Dict[str, Any]``
+        :param args:
+            all command arguments, usually passed from ``demisto.args()``.
+            ``args['domain']`` is a list of Domains or a single Domain
+
+        :return:
+            A ``CommandResults`` object that is then passed to ``return_results``,
+            that contains Domains
+
+        :rtype: ``CommandResults``
+        """
+
+        domains = argToList(args.get('domain'))
+        if len(domains) == 0:
+            raise ValueError('Domain(s) not specified')
+
+        domain_data_list: List[Dict[str, Any]] = []
+
+        for domain in domains:
+            domain_data = client.get_domain_whois(domain)
+            domain_data_list.append(domain_data)
+
+        return CommandResults(
+            outputs_prefix='CyberTotal.WHOIS-Domain',
+            outputs_key_field='task_id',
+            outputs=domain_data_list
+        )
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity and authentication'
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+        :type client: ``Client``
+        :param Client: CyberTotal client to use
+        :return: 'ok' if test passed, anything else will fail the test.
+        :rtype: ``str``
+        """
+
+        # INTEGRATION DEVELOPER TIP
+        # Client class should raise the exceptions, but if the test fails
+        # the exception text is printed to the Cortex XSOAR UI.
+        # If you have some specific errors you want to capture (i.e. auth failure)
+        # you should catch the exception here and return a string with a more
+        # readable output (for example return 'Authentication Error, API Key
+        # invalid').
+        # Cortex XSOAR will print everything you return different than 'ok' as
+        # an error
+        try:
+            client.get_domain_reputation('abc.com')
+        except DemistoException as e:
+            if 'Forbidden' in str(e):
+                return 'Authorization Error: make sure API Key is correctly set'
+            else:
+                raise e
+        return 'ok'
+
+
+    def main() -> None:
+
+        verify_certificate = not demisto.params().get('insecure', False)
+        cybertotal_url = demisto.params().get('url')
+        cybertotal_token = demisto.params().get('token')
+
+        proxy = demisto.params().get('proxy', False)
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            headers = {
+                'Authorization': f'Token {cybertotal_token}'
+            }
+            client = Client(
+                base_url=cybertotal_url,
+                verify=verify_certificate,
+                headers=headers,
+                proxy=proxy)
+
+            if demisto.command() == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+
+            elif demisto.command() == 'ip':
+                default_threshold = int(demisto.params().get('threshold_ip', '10'))
+                return_results(ip_reputation_command(client, demisto.args(), default_threshold))
+
+            elif demisto.command() == 'url':
+                default_threshold = int(demisto.params().get('threshold_url', '10'))
+                return_results(url_reputation_command(client, demisto.args(), default_threshold))
+
+            elif demisto.command() == 'domain':
+                default_threshold = int(demisto.params().get('threshold_domain', '10'))
+                return_results(domain_reputation_command(client, demisto.args(), default_threshold))
+
+            elif demisto.command() == 'file':
+                default_threshold = int(demisto.params().get('threshold_hash', '10'))
+                return_results(file_reputation_command(client, demisto.args(), default_threshold))
+
+            elif demisto.command() == 'cybertotal-ip-whois':
+                return_results(ip_whois_command(client, demisto.args()))
+
+            elif demisto.command() == 'cybertotal-url-whois':
+                return_results(url_whois_command(client, demisto.args()))
+
+            elif demisto.command() == 'cybertotal-domain-whois':
+                return_results(domain_whois_command(client, demisto.args()))
+
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+  subtype: python3
+  type: python
+system: true
