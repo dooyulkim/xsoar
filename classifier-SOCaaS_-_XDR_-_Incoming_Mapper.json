@@ -1,6 +1,5 @@
 {
 	"brands": null,
-	"cacheVersn": 0,
 	"defaultIncidentType": "",
 	"definitionId": "",
 	"description": "Maps incoming Cortex XDR incidents fields.",
@@ -1403,7 +1402,9 @@
 	"name": "SOCaaS - XDR - Incoming Mapper",
 	"nameRaw": "SOCaaS - XDR - Incoming Mapper",
 	"packID": "",
-	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
 	"sourceClassifierId": "Cortex XDR - IR-mapper",
 	"system": false,
 	"toServerVersion": "",
