@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.19
+    itemVersion: 4.8.18
     packID: CortexXDR
-    packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -108,7 +107,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -137,7 +135,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -167,7 +164,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -207,7 +203,6 @@ tasks:
         }
       }
   "15":
-    continueonerrortype: ""
     id: "15"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -253,7 +248,6 @@ tasks:
         }
       }
   "24":
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -281,8 +275,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Saves the email addresses to notify about the compromised host,
-        if any were configured in the playbook inputs.
+      description: Saves the email addresses to notify about the compromised host
+        if any emails were configured in the playbook inputs.
       id: 7a7a6ec8-c9fa-415a-87bc-bc507762e35e
       iscommand: false
       name: Save email addresses to notify
@@ -300,7 +294,6 @@ tasks:
         }
       }
   "32":
-    continueonerrortype: ""
     id: "32"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -334,7 +327,6 @@ tasks:
         }
       }
   "34":
-    continueonerrortype: ""
     id: "34"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -366,7 +358,6 @@ tasks:
         }
       }
   "37":
-    continueonerrortype: ""
     id: "37"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -409,7 +400,6 @@ tasks:
       }
   "40":
     continueonerror: true
-    continueonerrortype: ""
     id: "40"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -469,7 +459,6 @@ tasks:
         }
       }
   "42":
-    continueonerrortype: ""
     id: "42"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -500,7 +489,6 @@ tasks:
       }
   "45":
     continueonerror: true
-    continueonerrortype: ""
     id: "45"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -542,7 +530,6 @@ tasks:
         }
       }
   "46":
-    continueonerrortype: ""
     id: "46"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -601,7 +588,6 @@ tasks:
             value:
               simple: LateralMovementFirstDatetime
       label: "yes"
-    continueonerrortype: ""
     id: "48"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -635,7 +621,6 @@ tasks:
         }
       }
   "49":
-    continueonerrortype: ""
     id: "49"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -677,7 +662,6 @@ tasks:
         }
       }
   "50":
-    continueonerrortype: ""
     id: "50"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -739,7 +723,6 @@ tasks:
         }
       }
   "51":
-    continueonerrortype: ""
     id: "51"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -802,7 +785,6 @@ tasks:
         }
       }
   "52":
-    continueonerrortype: ""
     id: "52"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -843,7 +825,6 @@ tasks:
                 root: PANWHunting
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "54"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -878,7 +859,6 @@ tasks:
         }
       }
   "59":
-    continueonerrortype: ""
     id: "59"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -936,7 +916,7 @@ tasks:
       id: e02d1a26-fc02-47af-8409-b98f7206acb0
       iscommand: false
       name: PANW - Hunting and threat detection by indicator type V2
-      playbookName: PANW - Hunting and threat detection by indicator type V2
+      playbookId: PANW - Hunting and threat detection by indicator type V2
       type: playbook
       version: -1
     taskid: e02d1a26-fc02-47af-8409-b98f7206acb0
@@ -950,7 +930,6 @@ tasks:
         }
       }
   "60":
-    continueonerrortype: ""
     id: "60"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -980,7 +959,6 @@ tasks:
         }
       }
   "61":
-    continueonerrortype: ""
     id: "61"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1046,7 +1024,6 @@ tasks:
         }
       }
   "62":
-    continueonerrortype: ""
     id: "62"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1090,7 +1067,6 @@ tasks:
         }
       }
   "63":
-    continueonerrortype: ""
     id: "63"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1141,7 +1117,6 @@ tasks:
                 root: inputs.RoleForEscalation
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "64"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1175,7 +1150,6 @@ tasks:
         }
       }
   "65":
-    continueonerrortype: ""
     id: "65"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1206,7 +1180,6 @@ tasks:
         }
       }
   "66":
-    continueonerrortype: ""
     id: "66"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1263,7 +1236,6 @@ tasks:
                 root: PANWHunting
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "67"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1310,7 +1282,6 @@ tasks:
             value:
               simple: "true"
       label: "yes"
-    continueonerrortype: ""
     id: "68"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1344,7 +1315,6 @@ tasks:
         }
       }
   "69":
-    continueonerrortype: ""
     id: "69"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1375,7 +1345,6 @@ tasks:
         }
       }
   "70":
-    continueonerrortype: ""
     id: "70"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1430,7 +1399,6 @@ tasks:
         }
       }
   "71":
-    continueonerrortype: ""
     id: "71"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1474,7 +1442,6 @@ tasks:
             value:
               simple: "True"
       label: "yes"
-    continueonerrortype: ""
     id: "72"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1508,7 +1475,6 @@ tasks:
         }
       }
   "73":
-    continueonerrortype: ""
     id: "73"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1588,7 +1554,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "75"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1622,7 +1587,6 @@ tasks:
         }
       }
   "76":
-    continueonerrortype: ""
     id: "76"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1701,7 +1665,6 @@ tasks:
                 root: AttackerHostnames
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "77"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1735,7 +1698,6 @@ tasks:
         }
       }
   "78":
-    continueonerrortype: ""
     id: "78"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1767,7 +1729,6 @@ tasks:
         }
       }
   "79":
-    continueonerrortype: ""
     id: "79"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1829,7 +1790,6 @@ tasks:
         }
       }
   "80":
-    continueonerrortype: ""
     id: "80"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1846,8 +1806,6 @@ tasks:
       - "66"
     note: false
     quietmode: 0
-    results:
-    - XDRSyncScriptTaskID
     scriptarguments:
       incident_id:
         complex:
@@ -1881,7 +1839,6 @@ tasks:
         }
       }
   "81":
-    continueonerrortype: ""
     id: "81"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1921,7 +1878,6 @@ tasks:
         }
       }
   "82":
-    continueonerrortype: ""
     id: "82"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1959,7 +1915,6 @@ tasks:
         }
       }
   "83":
-    continueonerrortype: ""
     id: "83"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1992,7 +1947,6 @@ tasks:
         }
       }
   "84":
-    continueonerrortype: ""
     id: "84"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2033,7 +1987,6 @@ tasks:
         }
       }
   "86":
-    continueonerrortype: ""
     id: "86"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2063,7 +2016,6 @@ tasks:
         }
       }
   "87":
-    continueonerrortype: ""
     id: "87"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2093,7 +2045,6 @@ tasks:
         }
       }
   "88":
-    continueonerrortype: ""
     id: "88"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2123,7 +2074,6 @@ tasks:
         }
       }
   "89":
-    continueonerrortype: ""
     id: "89"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2153,7 +2103,6 @@ tasks:
         }
       }
   "90":
-    continueonerrortype: ""
     id: "90"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2183,7 +2132,6 @@ tasks:
         }
       }
   "91":
-    continueonerrortype: ""
     id: "91"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2231,7 +2179,6 @@ tasks:
       }
   "92":
     continueonerror: true
-    continueonerrortype: ""
     id: "92"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2268,7 +2215,6 @@ tasks:
       }
   "93":
     continueonerror: true
-    continueonerrortype: ""
     id: "93"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2325,7 +2271,6 @@ tasks:
       }
   "94":
     continueonerror: true
-    continueonerrortype: ""
     id: "94"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2364,7 +2309,6 @@ tasks:
         }
       }
   "95":
-    continueonerrortype: ""
     id: "95"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2406,7 +2350,6 @@ tasks:
         }
       }
   "96":
-    continueonerrortype: ""
     id: "96"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -2452,7 +2395,6 @@ tasks:
                 root: IncidentAlerts
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "97"
     ignoreworker: false
     isautoswitchedtoquietmode: false
