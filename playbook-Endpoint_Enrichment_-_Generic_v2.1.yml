@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -136,7 +135,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -165,7 +163,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -199,7 +196,6 @@ tasks:
         }
       }
   "2":
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -264,7 +260,6 @@ tasks:
               simple: inputs.Hostname
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -301,7 +296,6 @@ tasks:
         }
       }
   "4":
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -328,7 +322,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -367,7 +360,6 @@ tasks:
         }
       }
   "8":
-    continueonerrortype: ""
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -425,7 +417,6 @@ tasks:
       }
   "9":
     continueonerror: true
-    continueonerrortype: ""
     id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -464,7 +455,6 @@ tasks:
         }
       }
   "10":
-    continueonerrortype: ""
     id: "10"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -521,7 +511,6 @@ tasks:
         }
       }
   "16":
-    continueonerrortype: ""
     id: "16"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -551,7 +540,6 @@ tasks:
         }
       }
   "18":
-    continueonerrortype: ""
     id: "18"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -581,7 +569,6 @@ tasks:
         }
       }
   "19":
-    continueonerrortype: ""
     id: "19"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -611,7 +598,6 @@ tasks:
         }
       }
   "20":
-    continueonerrortype: ""
     id: "20"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -667,7 +653,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "22"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -701,7 +686,6 @@ tasks:
         }
       }
   "23":
-    continueonerrortype: ""
     id: "23"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -742,7 +726,6 @@ tasks:
         }
       }
   "24":
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -772,7 +755,6 @@ tasks:
         }
       }
   "26":
-    continueonerrortype: ""
     id: "26"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -801,7 +783,7 @@ tasks:
       id: d973a016-35b6-4e7c-88a5-9f4c60190224
       iscommand: false
       name: Endpoint Enrichment - Cylance Protect v2
-      playbookName: Endpoint Enrichment - Cylance Protect v2
+      playbookId: Endpoint Enrichment - Cylance Protect v2
       type: playbook
       version: -1
     taskid: d973a016-35b6-4e7c-88a5-9f4c60190224
@@ -815,7 +797,6 @@ tasks:
         }
       }
   "27":
-    continueonerrortype: ""
     id: "27"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -872,7 +853,6 @@ tasks:
                 root: FalconHostDevices
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "28"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -906,7 +886,6 @@ tasks:
         }
       }
   "29":
-    continueonerrortype: ""
     id: "29"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -945,7 +924,6 @@ tasks:
         }
       }
   "30":
-    continueonerrortype: ""
     id: "30"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -975,7 +953,6 @@ tasks:
         }
       }
   "31":
-    continueonerrortype: ""
     id: "31"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1032,7 +1009,6 @@ tasks:
         }
       }
   "32":
-    continueonerrortype: ""
     id: "32"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1094,7 +1070,6 @@ tasks:
             value:
               simple: McAfee ePO v2
       label: "yes"
-    continueonerrortype: ""
     id: "33"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1129,7 +1104,6 @@ tasks:
         }
       }
   "34":
-    continueonerrortype: ""
     id: "34"
     ignoreworker: false
     isautoswitchedtoquietmode: false
