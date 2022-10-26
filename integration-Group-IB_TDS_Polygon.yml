@@ -1,0 +1,980 @@
+category: Forensics & Malware Analysis
+commonfields:
+  id: Group-IB TDS Polygon
+  version: -1
+configuration:
+- defaultvalue: https://huntbox.group-ib.com
+  display: Server URL (e.g., https://huntbox.group-ib.com)
+  name: server
+  required: true
+  type: 0
+- display: API Key
+  name: api_key
+  required: true
+  type: 4
+- defaultvalue: english
+  display: Default reports language
+  name: report_language
+  options:
+  - english
+  - russian
+  required: true
+  type: 15
+- defaultvalue: "false"
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: 1.0.1
+    packID: Polygon
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: TDS Polygon is a Malware Detonation & Research platform designed for
+  deep dynamic analysis and enhanced indicators extraction. TDS Polygon analyzes submitted
+  files and urls and extracts deep IOCs that appear when malicious code is triggered
+  and executed. Polygon could be used either for application-level tasks (like smtp-based
+  mail filtering) and analytical purposes (files/urls analysis for verdict, report
+  and indicators).
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: Group-IB
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [tds@group-ib.com](mailto:tds@group-ib.com)
+  - **URL**: [https://tdswiki.group-ib.tech/about/summary/](https://tdswiki.group-ib.tech/about/summary/)
+  ***
+   ## Group-IB TDS Polygon
+  - This section explains how to configure the instance of Polygon in Cortex XSOAR.
+
+  1. Open TDS Huntbox web interface. (It may be like https://huntbox.group-ib.com)
+  2. Navigate to Profile and click Generate auth token.
+  3. Your server URL is the same as your Huntbox web interface URL.
+  3. API Key was generated in 2.
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/group-ib-tds-polygon)
+display: Group-IB TDS Polygon (Partner Contribution)
+image: data:image/png;base64,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
+name: Group-IB TDS Polygon
+script:
+  commands:
+  - arguments:
+    - description: File ID in Demisto
+      name: file_id
+      required: true
+    - description: Password for analyzed archive
+      name: password
+    description: Upload file for analysis
+    name: polygon-upload-file
+    outputs:
+    - contextPath: Polygon.Analysis.ID
+      description: Analysis ID in TDS
+      type: string
+    - contextPath: Polygon.Analysis.EntryID
+      description: File id in Demisto
+      type: string
+    - contextPath: Polygon.Analysis.FileName
+      description: Original file name
+      type: string
+    - contextPath: Polygon.Analysis.Status
+      description: The analysis status
+      type: string
+  - arguments:
+    - description: URL for analysis
+      name: url
+      required: true
+    description: Upload URL for analysis
+    name: polygon-upload-url
+    outputs:
+    - contextPath: Polygon.Analysis.ID
+      description: Analysis ID in TDS
+      type: string
+    - contextPath: Polygon.Analysis.URL
+      description: URL analyzed
+      type: string
+    - contextPath: Polygon.Analysis.Status
+      description: The analysis status
+      type: string
+  - arguments:
+    - description: Analysis ID in TDS. Comma separated values.
+      isArray: true
+      name: tds_analysis_id
+      required: true
+    description: Get TDS Polygon analysis info
+    name: polygon-analysis-info
+    outputs:
+    - contextPath: File.Name
+      description: The full file name (including file extension).
+      type: string
+    - contextPath: File.MD5
+      description: The MD5 hash of the file
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file
+      type: string
+    - contextPath: File.Type
+      description: File type
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor that reported the file as malicious
+      type: string
+    - contextPath: File.Malicious.Description
+      description: A description explaining why the file was determined to be malicious
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score
+      type: number
+    - contextPath: IP.Address
+      description: IP address
+      type: String
+    - contextPath: Domain.Name
+      description: The Domain name
+      type: String
+    - contextPath: Domain.DNS
+      description: A list of IP objects resolved by DNS.
+      type: String
+    - contextPath: URL.Data
+      description: The URL
+      type: String
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor that reported the url as malicious
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: A description explaining why the url was determined to be malicious
+      type: string
+    - contextPath: RegistryKey.Path
+      description: The path to the registry key
+      type: String
+    - contextPath: RegistryKey.Value
+      description: The value at the given RegistryKey.
+      type: String
+    - contextPath: Process.Name
+      description: Process name
+      type: String
+    - contextPath: Process.PID
+      description: Process PID
+      type: String
+    - contextPath: Process.CommandLine
+      description: Process Command Line
+      type: String
+    - contextPath: Process.Path
+      description: Process path
+      type: String
+    - contextPath: Process.StartTime
+      description: Process start time
+      type: date
+    - contextPath: Process.EndTime
+      description: Process end time
+      type: date
+    - contextPath: Polygon.Analysis.ID
+      description: TDS File ID
+      type: string
+    - contextPath: Polygon.Analysis.Name
+      description: File Name
+      type: string
+    - contextPath: Polygon.Analysis.Size
+      description: File Size
+      type: number
+    - contextPath: Polygon.Analysis.Started
+      description: Analysis start timestamp
+      type: date
+    - contextPath: Polygon.Analysis.Analyzed
+      description: Analysis finish timestamp
+      type: date
+    - contextPath: Polygon.Analysis.MD5
+      description: Analyzed file MD5 hash
+      type: string
+    - contextPath: Polygon.Analysis.SHA1
+      description: Analyzed file SHA1 hash
+      type: string
+    - contextPath: Polygon.Analysis.SHA256
+      description: Analyzed file SHA256
+      type: string
+    - contextPath: Polygon.Analysis.Result
+      description: Analysis verdict
+      type: boolean
+    - contextPath: Polygon.Analysis.Status
+      description: Analysis status
+      type: string
+    - contextPath: Polygon.Analysis.Verdict
+      description: Analysis verdict
+      type: string
+    - contextPath: Polygon.Analysis.Probability
+      description: Verdict probability
+      type: string
+    - contextPath: Polygon.Analysis.Families
+      description: Malware families
+      type: string
+    - contextPath: Polygon.Analysis.Score
+      description: Polygon score
+      type: number
+    - contextPath: Polygon.Analysis.Internet-connection
+      description: Internet availability
+      type: string
+    - contextPath: Polygon.Analysis.Type
+      description: File type
+      type: string
+    - contextPath: Polygon.Analysis.DumpExists
+      description: Network activity dump exists
+      type: boolean
+    - contextPath: Polygon.Analysis.File
+      description: The information about files in analysis
+    - contextPath: Polygon.Analysis.URL
+      description: The information about URL indicators
+    - contextPath: Polygon.Analysis.IP
+      description: The information about IP indicators
+    - contextPath: Polygon.Analysis.Domain
+      description: The information about Domain indicators
+    - contextPath: Polygon.Analysis.RegistryKey
+      description: The information about registry keys which were modified during
+        the analysis
+    - contextPath: Polygon.Analysis.Process
+      description: The information about processes started during the analysis
+  - arguments:
+    - description: Analysis ID in TDS
+      name: tds_analysis_id
+      required: true
+    description: Export an archive with TDS Polygon report to War Room
+    name: polygon-export-report
+    outputs:
+    - contextPath: File.Name
+      description: The report file name
+      type: string
+    - contextPath: File.EntryID
+      description: Report file ID in Demisto
+      type: string
+    - contextPath: File.Size
+      description: The report size
+      type: number
+    - contextPath: File.Type
+      description: The report file type
+      type: string
+    - contextPath: File.Info
+      description: The report file info
+      type: string
+  - arguments:
+    - description: Analysis ID in TDS
+      name: tds_analysis_id
+      required: true
+    description: The command allows you to download a network activity dump in case
+      the file/link is malicious.
+    name: polygon-export-pcap
+    outputs:
+    - contextPath: File.Name
+      description: The dump file name
+      type: string
+    - contextPath: File.EntryID
+      description: The dump file ID in Demisto
+      type: string
+    - contextPath: File.Size
+      description: The dump file size
+      type: number
+    - contextPath: File.Type
+      description: The dump file type
+      type: string
+    - contextPath: File.Info
+      description: The dump file info
+  - arguments:
+    - description: Analysis ID in TDS
+      name: tds_analysis_id
+      required: true
+    description: The command allows you to download a screen activity video in case
+      the file/link is malicious.
+    name: polygon-export-video
+    outputs:
+    - contextPath: File.Name
+      description: The video file name
+      type: string
+    - contextPath: File.EntryID
+      description: The video file ID in Demisto
+      type: string
+    - contextPath: File.Size
+      description: The video file size
+      type: number
+    - contextPath: File.Type
+      description: The video file type
+      type: string
+    - contextPath: File.Info
+      description: The video file info
+      type: string
+  - arguments:
+    - description: File hash (MD5, SHA1, SHA256)
+      isArray: true
+      name: file
+      required: true
+    description: Check file reputation
+    name: file
+    outputs:
+    - contextPath: File.MD5
+      description: The MD5 hash of the file
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor that reported the file as malicious
+      type: string
+    - contextPath: File.Malicious.Description
+      description: A description explaining why the file was determined to be malicious
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor that reported the file as malicious
+      type: string
+    - contextPath: DBotScore.Score
+      description: Malicious score
+      type: number
+    - contextPath: Polygon.Analysis.Score
+      description: Malware score in Polygon
+      type: number
+    - contextPath: Polygon.Analysis.MD5
+      description: The MD5 hash of the file
+      type: string
+    - contextPath: Polygon.Analysis.SHA1
+      description: The SHA1 hash of the file
+      type: string
+    - contextPath: Polygon.Analysis.SHA256
+      description: The SHA256 hash of the file
+      type: string
+    - contextPath: Polygon.Analysis.Found
+      description: File was found in cloud or not
+      type: bool
+    - contextPath: Polygon.Analysis.Verdict
+      description: Polygon verdict for file
+      type: bool
+    - contextPath: Polygon.Analysis.Malware-families
+      description: Malware families
+      type: string
+  dockerimage: demisto/python3:3.8.3.9324
+  runonce: false
+  script: |2
+
+
+
+    ''' IMPORTS '''
+    import requests
+    from io import StringIO
+    from typing import List
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+    INTEGRATION_NAME = "Group-IB TDS Polygon"
+    LANGUAGE_TO_CODE = {
+        "english": "en",
+        "russian": "ru"
+    }
+    FILE_TYPE = "F"
+    URL_TYPE = "U"
+
+    API = 'api/'
+    ANALGIN_UPLOAD = API + 'analgin/upload/'
+    ATTACHES = API + 'attaches/'
+    ATTACH = ATTACHES + "?id={}"
+    REPORT = ATTACHES + "{}/{}/{}/polygon_report/"
+    REPORT_EXPORT = ATTACHES + "{}/{}/{}/polygon_report_export/"
+    PCAP_EXPORT = ATTACHES + '{}/{}/{}/dump.pcap/dump.pcap/polygon_report_file_download/'
+    VIDEO_EXPORT = ATTACHES + '{}/{}/{}/shots/video.webm/video.webm/polygon_report_file_download/'
+    HASH_REPUTATION = API + 'reports/check_hash/{}/{}/'
+
+
+    class RegistryKey(Common.Indicator):
+        """
+        Registry Key indicator class
+        """
+        def __init__(self, path, value, name=None):
+            self.path = path
+            self.name = name
+            self.value = value
+
+        def to_context(self):
+            key_context = {
+                'Path': self.path,
+                'Name': self.name,
+                'Value': self.value
+            }
+            return {"RegistryKey": key_context}
+
+
+    class Process(Common.Indicator):
+        """
+        Process indicator class
+        """
+        def __init__(self, name, pid, hostname=None, md5=None, sha1=None,
+                     command_line=None, path=None, start_time=None, end_time=None,
+                     parent=None, sibling=None, child=None):
+            self.name = name
+            self.pid = pid
+            self.hostname = hostname
+            self.md5 = md5
+            self.sha1 = sha1
+            self.command_line = command_line
+            self.path = path
+            self.start_time = start_time
+            self.end_time = end_time
+            self.parent = parent
+            self.sibling = sibling
+            self.child = child
+
+        def to_context(self):
+            process_context = {
+                'Name': self.name,
+                'PID': self.pid,
+                'Hostname': self.hostname,
+                'MD5': self.md5,
+                'SHA1': self.sha1,
+                'CommandLine': self.command_line,
+                'Path': self.path,
+                'StartTime': self.start_time,
+                'EndTime': self.end_time,
+                'Parent': self.parent,
+                'Sibling': self.sibling,
+                'Child': self.child
+            }
+
+            return {"Process": process_context}
+
+
+    class Client(BaseClient):
+        def __init__(self, base_url, verify, api_key, language):
+            super().__init__(base_url=base_url, verify=verify)
+            self._language = language
+            self._headers = {'X-API-KEY': api_key}
+
+        def _check_report_available(self, file_info):
+            report = False
+            if "analgin_result" in file_info:
+                if "commit" in file_info.get("analgin_result", {}):
+                    if "reports" in file_info.get("analgin_result", {}):
+                        if len(file_info["analgin_result"].get("reports", [])):
+                            if "id" in file_info["analgin_result"]["reports"][0]:
+                                report = True
+            return report
+
+        def _get_fids(self, resp):
+            fids = resp.get("data", {}).get("ids", [])
+            if not fids:
+                err_msg = "There is no analysis ID in TDS response." \
+                          "Try to upload file/url one more time."
+                raise DemistoException(err_msg)
+            return fids[0]
+
+        def upload_file(self, file_name, file_path, password=""):
+            with open(file_path, 'rb') as f:
+                resp = self._http_request(
+                    method='post',
+                    url_suffix=ANALGIN_UPLOAD,
+                    files={'files': (file_name, f)},
+                    data=dict(language=self._language, password=password)
+                )
+            return self._get_fids(resp)
+
+        def upload_url(self, url):
+            resp = self._http_request(
+                method='post',
+                url_suffix=ANALGIN_UPLOAD,
+                files={'files': ("url.txt", StringIO(url))},
+                data=dict(language=self._language)
+            )
+            return self._get_fids(resp)
+
+        def get_attach(self, id=None):
+            url = ATTACH.format(id) if id else ATTACHES
+            results = self._http_request('get', url).get("data", {}).get("results", [])
+            if id:
+                try:
+                    results = results[0]
+                except Exception:
+                    raise DemistoException(f"File with ID={id} does not exist")
+            return results
+
+        def get_analysis_info(self, tds_analysis_id):
+            file = self.get_attach(tds_analysis_id)
+            resp = dict(file=file)
+            if self._check_report_available(file):
+                try:
+                    report = self._http_request('get', REPORT.format(tds_analysis_id,
+                                                                     file["analgin_result"]["commit"],
+                                                                     file["analgin_result"]["reports"][0]["id"]))
+                    if "data" in report:
+                        resp.update({'report': report['data']})
+                except Exception:
+                    pass
+            return resp
+
+        def get_url(self, file):
+            if self._check_report_available(file):
+                return self._http_request(
+                    method='get',
+                    url_suffix=file.get("file_url")[1:],
+                    resp_type="content"
+                ).decode()
+            raise DemistoException("No reports found")
+
+        def export_report(self, tds_analysis_id):
+            file = self.get_attach(tds_analysis_id)
+            if self._check_report_available(file):
+                return self._http_request(
+                    method='get',
+                    url_suffix=REPORT_EXPORT.format(tds_analysis_id,
+                                                    file["analgin_result"]["commit"],
+                                                    file["analgin_result"]["reports"][0]["id"]),
+                    resp_type="content"
+                )
+            raise DemistoException(f"No reports for analysis: {tds_analysis_id}")
+
+        def export_pcap(self, tds_analysis_id):
+            file = self.get_attach(tds_analysis_id)
+            if self._check_report_available(file):
+                return self._http_request(
+                    method='get',
+                    url_suffix=PCAP_EXPORT.format(tds_analysis_id,
+                                                  file["analgin_result"]["commit"],
+                                                  file["analgin_result"]["reports"][0]["id"]),
+                    resp_type="content"
+                )
+            raise DemistoException(f"No reports for analysis: {tds_analysis_id}")
+
+        def export_video(self, tds_analysis_id):
+            file = self.get_attach(tds_analysis_id)
+            if self._check_report_available(file):
+                return self._http_request(
+                    method='get',
+                    url_suffix=VIDEO_EXPORT.format(tds_analysis_id,
+                                                   file["analgin_result"]["commit"],
+                                                   file["analgin_result"]["reports"][0]["id"]),
+                    resp_type="content"
+                )
+            raise DemistoException(f"No reports for analysis: {tds_analysis_id}")
+
+        def get_hash_reputation(self, hash_type, hash_value):
+            return self._http_request(
+                method='get',
+                url_suffix=HASH_REPUTATION.format(hash_type, hash_value)
+            ).get("data", {})
+
+
+    def drop_prefix(id_with_prefix):
+        return id_with_prefix[1:]
+
+
+    def serialize_report_info(report, analysis_type):
+        info = report.get('info', {})
+        res = {
+            "Verdict": "Malicious" if info.get("verdict") else "Benign",
+            "Started": info.get("started"),
+            "Analyzed": info.get("ended"),
+            "Internet-connection": "Available" if info.get("internet_available") else "Unavailable",
+        }
+        if info.get('verdict'):
+            res.update({
+                "Probability": "{:.2f}%".format(info.get("probability", 0.0)),
+                "Families": ", ".join(info.get("families", [])),
+                "Score": info.get("score", 0),
+                "DumpExists": any(map(lambda vals: len(vals) > 0, report.get("network", {}).values()))
+            })
+        if analysis_type == FILE_TYPE:
+            res.update({
+                "Type": report.get("target", {}).get("file", {}).get("type")
+            })
+        else:
+            res.update({
+                "URL": report.get("target", {}).get("url")
+            })
+        return res
+
+
+    def serialize_analysis_info(info, analysis_type, report):
+        res = {
+            'ID': analysis_type + str(info.get("id", "")),
+            'Status': 'Finished' if report else 'In Progress',
+            'Result': info.get('verdict')
+        }
+        if analysis_type == FILE_TYPE:
+            res.update({
+                'Name': info.get("original_filename"),
+                'Size': info.get('file_size'),
+                'MD5': info.get('md5'),
+                'SHA1': info.get('sha1'),
+                'SHA256': info.get('sha256'),
+            })
+        return res
+
+
+    def get_human_readable_analysis_info(analysis_info):
+        return tableToMarkdown(
+            f"Analysis {analysis_info.get('ID')}",
+            analysis_info,
+            removeNull=True
+        )
+
+
+    def get_main_indicator(report, analysis_type):
+        score = Common.DBotScore.GOOD
+        malicious = None
+        if report.get("info", {}).get("verdict"):
+            score = Common.DBotScore.BAD
+            malicious = "Verdict probability: {}%".format(
+                report.get("info", {}).get("probability")
+            )
+            signatures: list = []
+            for signature in report.get("signatures", []):
+                if signature.get("name") == "yara_rules":
+                    signatures += [s.get('ioc') for s in signature.get('marks', [])]
+            if signatures:
+                malicious += ", iocs: {}".format(", ".join(signatures))
+        if analysis_type == FILE_TYPE:
+            tfile = report.get("target", {}).get("file", {})
+            return Common.File(
+                name=tfile.get("name"),
+                file_type=tfile.get("type"),
+                md5=tfile.get("md5"),
+                sha1=tfile.get("sha1"),
+                sha256=tfile.get("sha256"),
+                dbot_score=Common.DBotScore(
+                    indicator=tfile.get("md5"),
+                    indicator_type=DBotScoreType.FILE,
+                    integration_name=INTEGRATION_NAME,
+                    score=score,
+                    malicious_description=malicious
+                )
+            )
+        else:
+            url = report.get("target", {}).get("url")
+            return Common.URL(
+                url=url,
+                dbot_score=Common.DBotScore(
+                    indicator=url,
+                    indicator_type=DBotScoreType.URL,
+                    integration_name=INTEGRATION_NAME,
+                    score=score,
+                    malicious_description=malicious
+                )
+            )
+
+
+    def get_packages_indicators(report):
+        ids = []
+        for package in report.get("packages", []):
+            info = package.get('file_info', {})
+            file = Common.File(
+                name=info.get('name'),
+                file_type=info.get('type'),
+                md5=info.get('md5'),
+                sha1=info.get('sha1'),
+                sha256=info.get('sha256'),
+                dbot_score=Common.DBotScore(
+                    indicator=info.get('sha1'),
+                    indicator_type=DBotScoreType.FILE,
+                    integration_name=INTEGRATION_NAME,
+                    score=0
+                )
+            )
+            ids.append(file)
+        return ids
+
+
+    def get_network_indicators(report):
+        ids: List[Common.Indicator] = []
+        network = report.get('network', {})
+        for dns in network.get('dns', []):
+            domain = Common.Domain(
+                domain=dns.get('request'),
+                dns=", ".join([answer.get('data') for answer in dns.get('answers')]),
+                dbot_score=Common.DBotScore(
+                    indicator=dns.get('request'),
+                    indicator_type=DBotScoreType.DOMAIN,
+                    integration_name=INTEGRATION_NAME,
+                    score=0
+                )
+            )
+            ids.append(domain)
+        for host in network.get('hosts', []) + [h[0] for h in network.get('dead_hosts', [])]:
+            ip = Common.IP(
+                ip=host,
+                dbot_score=Common.DBotScore(
+                    indicator=host,
+                    indicator_type=DBotScoreType.IP,
+                    integration_name=INTEGRATION_NAME,
+                    score=0
+                )
+            )
+            ids.append(ip)
+        for http in network.get('http', []):
+            url = Common.URL(
+                url=http.get('uri'),
+                dbot_score=Common.DBotScore(
+                    indicator=http.get('uri'),
+                    indicator_type=DBotScoreType.URL,
+                    integration_name=INTEGRATION_NAME,
+                    score=0
+                )
+            )
+            ids.append(url)
+
+        return ids
+
+
+    def get_monitor_indicators(report):
+        ids: List[Common.Indicator] = []
+        for p in report.get('goo_monitor', {}).get('processes', []):
+            process = Process(
+                name=p.get('basename'),
+                pid=str(p.get('pid')),
+                command_line=p.get('cmdline'),
+                start_time=p.get('started_at'),
+                end_time=p.get('exited_at'),
+                path=p.get('filename'),
+            )
+            ids.append(process)
+            for regkey in p.get('regkeys', []):
+                if regkey.get('action') == 'regkey_written':
+                    reg = RegistryKey(
+                        path=regkey.get('ioc'),
+                        value=str(regkey.get('value'))
+                    )
+                    ids.append(reg)
+
+        return ids
+
+
+    def get_report_indicators(report, analysis_type):
+        indicators = [get_main_indicator(report, analysis_type)]
+        indicators += get_packages_indicators(report)
+        indicators += get_network_indicators(report)
+        indicators += get_monitor_indicators(report)
+
+        return indicators
+
+
+    def analysis_info_command(client, args):
+        tds_analysis_id_array = argToList(args.get('tds_analysis_id'))
+        all_results = []
+        for tds_analysis_id in tds_analysis_id_array:
+            analysis_type = tds_analysis_id[0]
+            res = client.get_analysis_info(drop_prefix(tds_analysis_id))
+            analysis_info = serialize_analysis_info(res.get('file'), analysis_type, report='report' in res)
+            indicators = []
+            if 'report' in res:
+                if analysis_type == URL_TYPE:
+                    res['report']['target']['url'] = client.get_url(res.get('file'))
+                analysis_info.update(serialize_report_info(res['report'], analysis_type))
+                indicators = get_report_indicators(res["report"], analysis_type)
+            human_readable = get_human_readable_analysis_info(analysis_info)
+            results = CommandResults(
+                readable_output=human_readable,
+                outputs_prefix="Polygon.Analysis",
+                outputs_key_field="ID",
+                outputs=analysis_info,
+                indicators=indicators,
+                raw_response=res
+            )
+            all_results.append(results)
+        return all_results
+
+
+    def export_report_command(client, args):
+        tds_analysis_id = drop_prefix(args.get('tds_analysis_id'))
+        report = client.export_report(tds_analysis_id)
+        demisto.results(fileResult(
+            filename='report.tar',
+            data=report
+        ))
+
+
+    def export_pcap_command(client, args):
+        tds_analysis_id = drop_prefix(args.get('tds_analysis_id'))
+        pcap = client.export_pcap(tds_analysis_id)
+        demisto.results(fileResult(
+            filename='dump.pcap',
+            data=pcap
+        ))
+
+
+    def export_video_command(client, args):
+        tds_analysis_id = drop_prefix(args.get('tds_analysis_id'))
+        video = client.export_video(tds_analysis_id)
+        if not video:
+            return_results("No screen activity detected")
+        else:
+            demisto.results(fileResult(
+                filename='video.webm',
+                data=video
+            ))
+
+
+    def upload_url_command(client, args):
+        url = args.get('url')
+        res = client.upload_url(url)
+        res = f"{URL_TYPE}{res}"
+        outputs = {
+            'ID': res,
+            'URL': url,
+            'Status': 'In Progress',
+        }
+        results = CommandResults(
+            readable_output=tableToMarkdown("Url uploaded successfully", outputs),
+            outputs_prefix='Polygon.Analysis',
+            outputs_key_field='ID',
+            outputs=outputs,
+            raw_response=res
+        )
+        return results
+
+
+    def upload_file_command(client, args):
+        file_id = args.get('file_id')
+        password = args.get('password')
+        file_obj = demisto.getFilePath(file_id)
+        # Ignoring non ASCII
+        file_name = file_obj.get('name', '').encode('ascii', 'ignore')
+        file_path = file_obj.get('path')
+        res = client.upload_file(file_name, file_path, password)
+        res = f"{FILE_TYPE}{res}"
+        outputs = {
+            'ID': res,
+            'EntryID': file_id,
+            'FileName': file_obj.get('name'),
+            'Status': 'In Progress'
+        }
+        results = CommandResults(
+            readable_output=tableToMarkdown("File uploaded successfully", outputs),
+            outputs_prefix='Polygon.Analysis',
+            outputs_key_field='ID',
+            outputs=outputs,
+            raw_response=res
+        )
+        return results
+
+
+    def file_command(client, args):
+        files = argToList(args.get('file'))
+        all_results = []
+        for file in files:
+            hash_type = get_hash_type(file)
+            if hash_type != "Unknown":
+                res = client.get_hash_reputation(hash_type, file)
+                analysis_info = {
+                    hash_type.upper(): file,
+                    'Found': res.get('found'),
+                    'Verdict': res.get('verdict'),
+                    'Score': res.get('score'),
+                    'Malware-families': res.get('malware_families')
+                }
+                score = Common.DBotScore.NONE
+                malicious = None
+                if res.get("found"):
+                    if res.get("verdict"):
+                        score = Common.DBotScore.BAD
+                        malicious = "TDS Polygon score: {}".format(res.get('score'))
+                        if res.get('malware_families'):
+                            malicious += ", {}".format(", ".join(res.get("malware_families", [])))
+                    else:
+                        score = Common.DBotScore.GOOD
+                dbot_score = Common.DBotScore(
+                    indicator=file,
+                    indicator_type=DBotScoreType.FILE,
+                    integration_name=INTEGRATION_NAME,
+                    score=score,
+                    malicious_description=malicious
+                )
+                indicator = Common.File(**{hash_type: file, "dbot_score": dbot_score})
+                result = CommandResults(
+                    outputs_prefix="Polygon.Analysis",
+                    outputs_key_field=hash_type.upper(),
+                    outputs=analysis_info,
+                    indicators=[indicator],
+                    raw_response=res
+                )
+                all_results.append(result)
+        return all_results
+
+
+    def test_module(client):
+        client.get_attach()
+        return 'ok'
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        params = demisto.params()
+        base_url = params.get('server')
+        api_key = params.get('api_key')
+        verify_certificate = not params.get('insecure', False)
+        report_language = LANGUAGE_TO_CODE[params.get('report_language')]
+
+        # Remove proxy if not set to true in params
+        handle_proxy()
+
+        command = demisto.command()
+        LOG(f'Command being called is {command}')
+        try:
+            client = Client(
+                base_url=base_url,
+                api_key=api_key,
+                verify=verify_certificate,
+                language=report_language
+            )
+            commands = {
+                'polygon-upload-file': upload_file_command,
+                'polygon-upload-url': upload_url_command,
+                'polygon-analysis-info': analysis_info_command,
+                'polygon-export-report': export_report_command,
+                'polygon-export-pcap': export_pcap_command,
+                'polygon-export-video': export_video_command,
+                'file': file_command
+            }
+
+            if command == 'test-module':
+                return_results(test_module(client))
+            elif command in ['polygon-export-report', 'polygon-export-pcap', 'polygon-export-video']:
+                commands[command](client, demisto.args())
+            elif command in ['polygon-analysis-info', 'file']:
+                results = commands[command](client, demisto.args())
+                for r in results:
+                    return_results(r)
+            elif command in ['polygon-upload-file', 'polygon-upload-url']:
+                return_results(commands[command](client, demisto.args()))
+
+        # Log exceptions
+        except Exception as err:
+            return_error(f'Failed to execute {command} command. Error: {str(err)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+  subtype: python3
+  type: python
+system: true
