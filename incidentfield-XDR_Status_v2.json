@@ -1,15 +1,10 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
 		"Cortex XDR Incident",
-		"Cortex XDR Port Scan",
-		"SOCaaS - Cortex XDR Incident"
+		"Cortex XDR Port Scan"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrstatusv2",
 	"closeForm": false,
@@ -25,16 +20,14 @@
 	"hidden": false,
 	"id": "incident_xdrstatusv2",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Status v2",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "singleSelect",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
@@ -65,6 +58,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
