@@ -1,5 +1,4 @@
 {
-	"cacheVersn": 0,
 	"close": null,
 	"definitionId": "",
 	"description": "",
@@ -886,7 +885,6 @@
 	"mobile": null,
 	"name": "SOCaaS - Cortex XDR Incident",
 	"packID": "",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"propagationLabels": [],
 	"quickView": null,
 	"quickViewV2": null,
