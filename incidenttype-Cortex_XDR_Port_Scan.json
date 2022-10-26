@@ -1,6 +1,5 @@
 {
 	"autorun": true,
-	"cacheVersn": 0,
 	"closureScript": "",
 	"color": "#e91d63",
 	"days": 0,
@@ -17,13 +16,12 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Cortex XDR Port Scan",
-	"itemVersion": "4.8.19",
+	"itemVersion": "2.3.3",
 	"layout": "Cortex XDR Port Scan",
 	"locked": false,
 	"name": "Cortex XDR Port Scan",
 	"onChangeRepAlg": 1,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
