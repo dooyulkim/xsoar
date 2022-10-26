@@ -7,9 +7,9 @@ contentitemexportablefields:
     fromServerVersion: ""
     itemVersion: ""
     packID: ""
-    packName: ""
     propagationLabels:
     - all
+    remote: true
     toServerVersion: ""
 dependson:
   must: []
