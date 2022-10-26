@@ -1,15 +1,9 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
-		"Cortex XDR Incident",
-		"Cortex XDR Port Scan",
-		"SOCaaS - Cortex XDR Incident"
+		"Cortex XDR Incident"
 	],
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "xdrstatus",
 	"closeForm": false,
@@ -17,7 +11,7 @@
 	"content": true,
 	"defaultRows": null,
 	"definitionId": "",
-	"description": "Deprecated from version 6.0.0. Please use XDR Status v2 instead",
+	"description": "",
 	"editForm": true,
 	"fieldCalcScript": "",
 	"fromServerVersion": "5.0.0",
@@ -25,21 +19,21 @@
 	"hidden": false,
 	"id": "incident_xdrstatus",
 	"isReadOnly": false,
-	"itemVersion": "4.8.19",
+	"itemVersion": "4.8.18",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Status",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "shortText",
 	"ownerOnly": false,
 	"packID": "CortexXDR",
-	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
 	"placeholder": "",
-	"propagationLabels": [],
+	"propagationLabels": [
+		"all"
+	],
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
@@ -56,6 +50,5 @@
 	"useAsKpi": false,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
