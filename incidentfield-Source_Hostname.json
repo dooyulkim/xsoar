@@ -1,11 +1,7 @@
 {
-	"aliasTo": "",
-	"aliases": null,
 	"associatedToAll": true,
 	"associatedTypes": null,
-	"autoCompleteTags": null,
 	"breachScript": "",
-	"cacheVersn": 0,
 	"caseInsensitive": true,
 	"cliName": "sourcehostname",
 	"closeForm": false,
@@ -21,21 +17,21 @@
 	"hidden": false,
 	"id": "incident_sourcehostname",
 	"isReadOnly": false,
-	"itemVersion": "3.3.23",
+	"itemVersion": "3.3.26",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Source Hostname",
 	"neverSetAsRequired": false,
 	"openEnded": false,
-	"orgType": "shortText",
 	"ownerOnly": false,
 	"packID": "CommonTypes",
-	"packName": "Common Types",
 	"packPropagationLabels": [
 		"all"
 	],
 	"placeholder": "",
-	"propagationLabels": [],
+	"propagationLabels": [
+		"all"
+	],
 	"required": false,
 	"runScriptAfterUpdate": false,
 	"script": "",
@@ -52,6 +48,5 @@
 	"useAsKpi": true,
 	"validatedError": "",
 	"validationRegex": "",
-	"version": -1,
-	"x2_fields": ""
+	"version": -1
 }
