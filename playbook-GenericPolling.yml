@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -72,7 +71,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -102,7 +100,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -153,7 +150,6 @@ tasks:
         }
       }
   "2":
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -188,7 +184,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -231,7 +226,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -259,7 +253,6 @@ tasks:
         }
       }
   "6":
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
