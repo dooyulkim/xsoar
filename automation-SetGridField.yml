@@ -42,21 +42,21 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.0.0
-    itemVersion: 1.8.1
+    fromServerVersion: ""
+    itemVersion: ""
     packID: CommonScripts
-    packName: Common Scripts
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
 dockerimage: demisto/pandas:1.0.0.26289
+enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SetGridField
 pswd: ""
 runas: DBotWeakRole
-runonce: false
+runonce: true
 script: "register_module_line('SetGridField', 'start', __line__())\n# STD Libraries\nfrom
   typing import Optional, List, Dict, Any\n# 3-rd party libraries\nimport pandas as
   pd\nimport phrases_case\n# Local packages\n\n\n\n\n\ndef normalized_string(phrase:
