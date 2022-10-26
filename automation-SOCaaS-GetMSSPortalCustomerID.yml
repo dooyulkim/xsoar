@@ -1,0 +1,70 @@
+commonfields:
+  id: a4743b1e-d208-4ff0-8272-d272c558ca46
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/xsoar-tools-hf:1.0.0.31061
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SOCaaS-GetMSSPortalCustomerID
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('SOCaaS-GetMSSPortalCustomerID', 'start', __line__())
+
+
+  """Base Script for Cortex XSOAR (aka Demisto)
+  This is an empty script with some basic structure according
+  to the code conventions.
+  MAKE SURE YOU REVIEW/REPLACE ALL THE COMMENTS MARKED AS "TODO"
+  Developer Documentation: https://xsoar.pan.dev/docs/welcome
+  Code Conventions: https://xsoar.pan.dev/docs/integrations/code-conventions
+  Linting: https://xsoar.pan.dev/docs/integrations/linting
+  """
+
+  from typing import Dict, Any
+  import traceback
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  def main():
+      try:
+          sys_conf = demisto.executeCommand("demisto-api-get", {"uri": "/system/config"})[0]["Contents"]["response"]["sysConf"]
+          tsp_customer_id = sys_conf.get("tsp_customer_id")
+          if not tsp_customer_id:
+              raise Exception("Sorry, tsp_customer_id is not found. Please add it to server configuration under About -> troubleshoot")
+          result = CommandResults(
+              readable_output=f'Portal Customer ID : {tsp_customer_id}',
+              outputs_prefix='MSSPortal',
+              outputs_key_field='tsp_customer_id',
+              outputs={'tsp_customer_id': tsp_customer_id}
+          )
+          return_results(result)
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('SOCaaS-GetMSSPortalCustomerID', 'end', __line__())
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
