@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.5
+    itemVersion: 2.3.6
     packID: CommonPlaybooks
-    packName: Common Playbooks
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -102,7 +101,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -135,7 +133,6 @@ tasks:
         }
       }
   "4":
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -171,7 +168,6 @@ tasks:
         }
       }
   "5":
-    continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -207,7 +203,6 @@ tasks:
         }
       }
   "6":
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -243,7 +238,6 @@ tasks:
         }
       }
   "10":
-    continueonerrortype: ""
     id: "10"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -270,7 +264,6 @@ tasks:
         }
       }
   "11":
-    continueonerrortype: ""
     id: "11"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -519,7 +512,6 @@ tasks:
                 root: Severities
           operator: isExists
       label: Low
-    continueonerrortype: ""
     id: "15"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -559,7 +551,6 @@ tasks:
         }
       }
   "16":
-    continueonerrortype: ""
     id: "16"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -601,7 +592,6 @@ tasks:
         }
       }
   "18":
-    continueonerrortype: ""
     id: "18"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -666,7 +656,6 @@ tasks:
         }
       }
   "19":
-    continueonerrortype: ""
     id: "19"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -708,7 +697,6 @@ tasks:
         }
       }
   "24":
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -736,7 +724,7 @@ tasks:
       id: 1a13e3e0-18fb-4c0f-8866-9d56b0df1017
       iscommand: false
       name: Calculate Severity By Email Authenticity
-      playbookName: Calculate Severity By Email Authenticity
+      playbookId: Calculate Severity By Email Authenticity
       type: playbook
       version: -1
     taskid: 1a13e3e0-18fb-4c0f-8866-9d56b0df1017
@@ -750,7 +738,6 @@ tasks:
         }
       }
   "25":
-    continueonerrortype: ""
     id: "25"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -786,7 +773,6 @@ tasks:
         }
       }
   "26":
-    continueonerrortype: ""
     id: "26"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -832,7 +818,6 @@ tasks:
               simple: inputs.MicrosoftHeadersSeverityCheck
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "27"
     ignoreworker: false
     isautoswitchedtoquietmode: false
