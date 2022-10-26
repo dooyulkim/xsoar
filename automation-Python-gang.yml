@@ -1,0 +1,35 @@
+commonfields:
+  id: ce1de3bc-38ce-45cf-80bb-0562b329960b
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.8.5.10845
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: Python-gang
+outputs:
+- contextPath: PythonGang.IP
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  incidents_info = demisto.context()
+  abuseipdb = incidents_info.get("AbuseIPDB")
+
+  readable_outputs = "## Python Gang"
+  readable_outputs += tableToMarkdown("Python Gang", abuseipdb.get('IP'), headers=['AbuseConfidenceScore', 'Address', 'Geo'])
+
+  return_outputs(readable_output=readable_outputs)
+scripttarget: 0
+subtype: python3
+tags:
+- dynamic-section
+type: python
