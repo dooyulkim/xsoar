@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.19
+    itemVersion: 4.8.18
     packID: CortexXDR
-    packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -18,7 +17,12 @@ inputs:
   key: endpoint_id
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    complex:
+      accessor: Endpoint.endpoint_id
+      root: PaloAltoNetworksXDR
+      transformers:
+      - operator: uniq
 - description: A comma-separated list of hostnames.
   key: hostname
   playbookInputQuery: null
@@ -57,7 +61,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -86,7 +89,6 @@ tasks:
         }
       }
   "1":
-    continueonerrortype: ""
     id: "1"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -157,7 +159,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -190,7 +191,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -240,7 +240,6 @@ tasks:
                 root: inputs.hostname
           operator: isNotEmpty
       label: IP or Hostname
-    continueonerrortype: ""
     id: "4"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -274,7 +273,6 @@ tasks:
         }
       }
   "6":
-    continueonerrortype: ""
     id: "6"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -333,7 +331,6 @@ tasks:
         }
       }
   "7":
-    continueonerrortype: ""
     id: "7"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -373,7 +370,6 @@ tasks:
         }
       }
   "8":
-    continueonerrortype: ""
     id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -415,7 +411,6 @@ tasks:
         }
       }
   "9":
-    continueonerrortype: ""
     id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -455,7 +450,6 @@ tasks:
         }
       }
   "10":
-    continueonerrortype: ""
     id: "10"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -514,7 +508,6 @@ tasks:
             value:
               simple: inputs.endpoint_id
       label: "yes"
-    continueonerrortype: ""
     id: "11"
     ignoreworker: false
     isautoswitchedtoquietmode: false
