@@ -9,13 +9,16 @@ contentitemexportablefields:
     packID: ""
     propagationLabels:
     - all
-    remote: true
     toServerVersion: ""
 dockerimage: demisto/xsoar-tools-hf:1.0.0.31061
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
 name: SOCaaS-GetMSSPortalCustomerID
+outputs:
+- contextPath: MSSPortal.tsp_customer_id
+  description: MSS Portal Customer ID
+  type: number
 pswd: ""
 runas: DBotWeakRole
 runonce: false
