@@ -2615,8 +2615,8 @@ script:
       required: true
     description: Upload an attachment to a threat
     name: mssportal-upload-threat-attachment
-  dockerimage: demisto/python3:3.8.3.9324
-  runonce: false
+  dockerimage: demisto/python3:3.10.7.33922
+  runonce: true
   script: |
     register_module_line('SOCaaS - MSS Portal - AutoGen', 'start', __line__())
 
