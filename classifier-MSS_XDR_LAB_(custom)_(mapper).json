@@ -1,0 +1,283 @@
+{
+	"brands": [
+		""
+	],
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "61975540-7927-408c-8dad-57b29005f861_custom-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Cortex XDR Incident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Agent Version": {
+					"complex": {
+						"accessor": "[0].agent_version",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Alert Category": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "alert_categories",
+						"transformers": []
+					}
+				},
+				"Alert ID": {
+					"complex": {
+						"accessor": "[0].alertid",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Alert Type": {
+					"complex": {
+						"accessor": "[0].alerttype",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Endpoint": {
+					"complex": {
+						"accessor": "[0].endpoint_id",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Event Type": {
+					"complex": {
+						"accessor": "[0].event_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"File SHA256": {
+					"complex": {
+						"accessor": "[0].filesha256",
+						"filters": [],
+						"root": "file_artifacts",
+						"transformers": []
+					}
+				},
+				"MD5": {
+					"complex": {
+						"accessor": "[0].actor_process_image_md5",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"OS": {
+					"complex": {
+						"accessor": "[0].agent_os_sub_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"OS Type": {
+					"complex": {
+						"accessor": "[0].agent_os_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"SHA256": {
+					"complex": {
+						"accessor": "[0].file_sha256",
+						"filters": [],
+						"root": "file_artifacts",
+						"transformers": []
+					}
+				},
+				"Tags": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "tags",
+						"transformers": []
+					}
+				},
+				"XDR URL": {
+					"complex": {
+						"filters": [],
+						"root": "xdr_url",
+						"transformers": []
+					}
+				},
+				"details": {
+					"complex": {
+						"accessor": "[0].description",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"complex": {
+						"filters": [],
+						"root": "resolved_timestamp",
+						"transformers": []
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": []
+					}
+				}
+			}
+		},
+		"SOCaaS - Cortex XDR Incident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Agent Version": {
+					"complex": {
+						"accessor": "[0].agent_version",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Alert Category": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "alert_categories",
+						"transformers": []
+					}
+				},
+				"Alert ID": {
+					"complex": {
+						"accessor": "[0].alertid",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Alert Type": {
+					"complex": {
+						"accessor": "[0].alerttype",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Endpoint": {
+					"complex": {
+						"accessor": "[0].endpoint_id",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Event Type": {
+					"complex": {
+						"accessor": "[0].event_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"File SHA256": {
+					"complex": {
+						"accessor": "[0].filesha256",
+						"filters": [],
+						"root": "file_artifacts",
+						"transformers": []
+					}
+				},
+				"MD5": {
+					"complex": {
+						"accessor": "[0].actor_process_image_md5",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"OS": {
+					"complex": {
+						"accessor": "[0].agent_os_sub_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"OS Type": {
+					"complex": {
+						"accessor": "[0].agent_os_type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"SHA256": {
+					"complex": {
+						"accessor": "[0].file_sha256",
+						"filters": [],
+						"root": "file_artifacts",
+						"transformers": []
+					}
+				},
+				"Tags": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "tags",
+						"transformers": []
+					}
+				},
+				"details": {
+					"complex": {
+						"accessor": "[0].description",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"complex": {
+						"filters": [],
+						"root": "resolved_timestamp",
+						"transformers": []
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "MSS_XDR_LAB (custom) (mapper)",
+	"nameRaw": "MSS_XDR_LAB (custom) (mapper)",
+	"packID": "",
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
