@@ -1,0 +1,29 @@
+{
+	"brands": [
+		""
+	],
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "61975540-7927-408c-8dad-57b29005f861_custom",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "MSS_XDR_LAB (custom) (classifier)",
+	"nameRaw": "MSS_XDR_LAB (custom) (classifier)",
+	"packID": "",
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
