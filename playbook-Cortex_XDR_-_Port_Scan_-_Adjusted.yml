@@ -2,9 +2,8 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.19
+    itemVersion: 4.8.18
     packID: CortexXDR
-    packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -98,7 +97,6 @@ starttaskid: "0"
 system: true
 tasks:
   "0":
-    continueonerrortype: ""
     id: "0"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -132,7 +130,6 @@ tasks:
         }
       }
   "3":
-    continueonerrortype: ""
     id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -175,7 +172,6 @@ tasks:
         }
       }
   "24":
-    continueonerrortype: ""
     id: "24"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -222,7 +218,6 @@ tasks:
         }
       }
   "32":
-    continueonerrortype: ""
     id: "32"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -256,7 +251,6 @@ tasks:
         }
       }
   "34":
-    continueonerrortype: ""
     id: "34"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -294,7 +288,6 @@ tasks:
         }
       }
   "37":
-    continueonerrortype: ""
     id: "37"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -347,7 +340,6 @@ tasks:
       }
   "40":
     continueonerror: true
-    continueonerrortype: ""
     id: "40"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -417,7 +409,6 @@ tasks:
       }
   "45":
     continueonerror: true
-    continueonerrortype: ""
     id: "45"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -469,7 +460,6 @@ tasks:
         }
       }
   "46":
-    continueonerrortype: ""
     id: "46"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -538,7 +528,6 @@ tasks:
             value:
               simple: LateralMovementFirstDatetime
       label: "yes"
-    continueonerrortype: ""
     id: "48"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -572,7 +561,6 @@ tasks:
         }
       }
   "49":
-    continueonerrortype: ""
     id: "49"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -624,7 +612,6 @@ tasks:
         }
       }
   "50":
-    continueonerrortype: ""
     id: "50"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -695,7 +682,6 @@ tasks:
         }
       }
   "51":
-    continueonerrortype: ""
     id: "51"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -758,7 +744,6 @@ tasks:
         }
       }
   "63":
-    continueonerrortype: ""
     id: "63"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -809,7 +794,6 @@ tasks:
                 root: inputs.RoleForEscalation
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "64"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -891,7 +875,6 @@ tasks:
                 root: modules
           operator: isExists
       label: "yes"
-    continueonerrortype: ""
     id: "75"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -925,7 +908,6 @@ tasks:
         }
       }
   "76":
-    continueonerrortype: ""
     id: "76"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -971,7 +953,6 @@ tasks:
         }
       }
   "86":
-    continueonerrortype: ""
     id: "86"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1001,7 +982,6 @@ tasks:
         }
       }
   "88":
-    continueonerrortype: ""
     id: "88"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1031,7 +1011,6 @@ tasks:
         }
       }
   "91":
-    continueonerrortype: ""
     id: "91"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1085,7 +1064,6 @@ tasks:
         }
       }
   "96":
-    continueonerrortype: ""
     id: "96"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1112,7 +1090,6 @@ tasks:
         }
       }
   "97":
-    continueonerrortype: ""
     id: "97"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1143,7 +1120,6 @@ tasks:
         }
       }
   "98":
-    continueonerrortype: ""
     id: "98"
     ignoreworker: false
     isautoswitchedtoquietmode: false
@@ -1200,7 +1176,6 @@ tasks:
                 root: IncidentAlerts
           operator: isNotEmpty
       label: "yes"
-    continueonerrortype: ""
     id: "100"
     ignoreworker: false
     isautoswitchedtoquietmode: false
