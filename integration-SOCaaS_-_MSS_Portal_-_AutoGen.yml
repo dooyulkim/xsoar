@@ -2633,7 +2633,7 @@ script:
             headers = self._headers
 
             response = self._http_request(
-                'put', f'v1/cases/{id_}/acknowledgement', headers=headers)
+                'put', f'v1/cases/{id_}/acknowledgement', headers=headers, resp_type='text')
 
             return response
 
@@ -2654,12 +2654,12 @@ script:
             return response
 
         def activate_playbook_request(self, activateplaybookrequest_caseid, activateplaybookrequest_playbookid, activateplaybookrequest_excludedtaskids):
-            data = assign_params(caseId=activateplaybookrequest_caseid, playbookId=activateplaybookrequest_playbookid,
+            data = assign_params(values_to_ignore=(None, ''), caseId=activateplaybookrequest_caseid, playbookId=activateplaybookrequest_playbookid,
                                  excludedTaskIds=activateplaybookrequest_excludedtaskids)
             headers = self._headers
 
             response = self._http_request(
-                'post', 'v1/tasks/from-playbook', json_data=data, headers=headers)
+                'post', 'v1/tasks/from-playbook', json_data=data, headers=headers, resp_type='text')
 
             return response
 
@@ -2703,7 +2703,7 @@ script:
             headers = self._headers
 
             response = self._http_request(
-                'put', f'v1/cases/{id_}/incid_ent', headers=headers)
+                'put', f'v1/cases/{id_}/incident', headers=headers, resp_type='text')
 
             return response
 
@@ -3255,7 +3255,7 @@ script:
             headers = self._headers
 
             response = self._http_request(
-                'put', f'v1/cases/{id_}/resolution', json_data=data, headers=headers)
+                'put', f'v1/cases/{id_}/resolution', json_data=data, headers=headers, resp_type='text')
 
             return response
 
@@ -3265,7 +3265,7 @@ script:
             headers = self._headers
 
             response = self._http_request(
-                'put', f'v1/cases/{id_}', json_data=data, headers=headers)
+                'put', f'v1/cases/{id_}', json_data=data, headers=headers, resp_type='text')
 
             return response
 
@@ -3382,9 +3382,9 @@ script:
         response = client.acknowledge_case_request(id_)
         command_results = CommandResults(
             readable_output=f'MSSPortal Case {id_} acknowledged',
-            outputs_prefix='MSSPortal',
-            outputs_key_field='',
-            outputs=response,
+            #outputs_prefix='MSSPortal',
+           # outputs_key_field='',
+          #  outputs=response,
             raw_response=response
         )
 
@@ -3427,8 +3427,7 @@ script:
         activateplaybookrequest_excludedtaskids = argToList(
             args.get('activateplaybookrequest_excludedtaskids', []))
 
-        response = client.activate_playbook_request(
-            activateplaybookrequest_caseid, activateplaybookrequest_playbookid, activateplaybookrequest_excludedtaskids)
+        response = client.activate_playbook_request(activateplaybookrequest_caseid, activateplaybookrequest_playbookid, activateplaybookrequest_excludedtaskids)
         command_results = CommandResults(
             readable_output=f'MSSPortal playbook {activateplaybookrequest_playbookid} was activated in the case {activateplaybookrequest_caseid}',
             outputs_prefix='MSSPortal',
