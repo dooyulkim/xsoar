@@ -18,7 +18,7 @@ dockerimage: demisto/python3:3.10.7.35188
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
-name: SOCaaS-HandleXsoarPortalMirrorin
+name: SOCaaS-HandleXsoarPortalMirroring
 pswd: ""
 runas: DBotWeakRole
 runonce: false
