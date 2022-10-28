@@ -9,6 +9,7 @@ contentitemexportablefields:
     packID: ""
     propagationLabels:
     - all
+    remote: true
     toServerVersion: ""
 dependson:
   must: []
@@ -33,10 +34,10 @@ script: |
           args = demisto.args()
           xdr_status = args.get('new')
           print(xdr_status)
-          id = demisto.context()["MSSPortal"]["CaseInfo"]["id"]
-          case = demisto.executeCommand("mssportal-find-case", {'_id': id})
+          id = demisto.context()["MSSPortal"]["Case"]["id"]
+          case = demisto.executeCommand("mssportal-get-case", {'id': id})
           if(case.nbTelusPendingTasks == 0 and case.nbCustomerClosedTasks == case.nbCustomerTasks):
-              demisto.executeCommand("mssportal-resolve-case", {'_id': id})
+              demisto.executeCommand("mssportal-resolve-case", {'id': id})
           else:
               raise DemistoException('The incident cannot be resolved until all the tasks are closed on mssportal.')
       except Exception as ex:
@@ -46,6 +47,8 @@ script: |
 
   if __name__ in ('__main__', '__builtin__', 'builtins'):
       main()
+
+  register_module_line('HandleXsoarPortalMirroring', 'end', __line__())
 
   register_module_line('SOCaaS-HandleXsoarPortalMirroring', 'end', __line__())
 scripttarget: 0
