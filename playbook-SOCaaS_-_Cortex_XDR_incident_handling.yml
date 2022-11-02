@@ -69,14 +69,14 @@ tasks:
       '#default#':
       - "4"
       "yes":
-      - "3"
+      - "29"
     note: false
     quietmode: 2
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: b095498e-9b26-4138-8936-b7d74e3e38bc
+      id: ""
       iscommand: false
       name: Should handle the incident?
       type: condition
@@ -109,7 +109,7 @@ tasks:
       casecreation_casesource:
         simple: XSOAR_CORTEX_XDR
       casecreation_casetitle:
-        simple: ${PaloAltoNetworksXDR.Incident.description}
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
       casecreation_customerid:
         simple: ${MSSPortal.CustomerInfo.id}
       casecreation_description:
@@ -131,13 +131,13 @@ tasks:
     task:
       brand: ""
       description: 'mssportal-create-case command: Returns a MSSPortal case'
-      id: 33d75bae-9def-479d-8789-1cf9d33e3772
+      id: 45d852d9-f5a0-4dd1-8a6b-9c83d5ded932
       iscommand: true
       name: Create a case in portal
       script: '|||mssportal-create-case'
       type: regular
       version: -1
-    taskid: 33d75bae-9def-479d-8789-1cf9d33e3772
+    taskid: 45d852d9-f5a0-4dd1-8a6b-9c83d5ded932
     timertriggers: []
     type: regular
     view: |-
@@ -234,19 +234,19 @@ tasks:
     task:
       brand: ""
       description: 'mssportal-resolve-case command:  resolve case in MSS Portal'
-      id: 1999e1eb-4bb9-4425-82fd-66c3a0d5bd97
+      id: 1ecc8853-eb78-4170-8777-c60836217990
       iscommand: true
       name: Close incident
       script: '|||mssportal-resolve-case'
       type: regular
       version: -1
-    taskid: 1999e1eb-4bb9-4425-82fd-66c3a0d5bd97
+    taskid: 1ecc8853-eb78-4170-8777-c60836217990
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 890,
+          "x": 910,
           "y": 2820
         }
       }
@@ -568,13 +568,13 @@ tasks:
     task:
       brand: ""
       description: Create a task
-      id: 209fbfaf-d2a7-449a-8ee4-0ec2228cabb7
+      id: f1349690-d014-43eb-88c5-55e514a72d26
       iscommand: true
       name: Create portal task to clean up hosts
       script: '|||mssportal-create-task'
       type: regular
       version: -1
-    taskid: 209fbfaf-d2a7-449a-8ee4-0ec2228cabb7
+    taskid: f1349690-d014-43eb-88c5-55e514a72d26
     timertriggers: []
     type: regular
     view: |-
@@ -764,13 +764,13 @@ tasks:
     task:
       brand: ""
       description: 'mssportal-create-alert command: Returns a MSSPortal alert'
-      id: 354f4672-6b65-41d7-875c-17ddb80bf7af
+      id: fa3d51cd-46cf-4962-8328-fa452002e3e0
       iscommand: true
       name: Create an alert to the case
       script: '|||mssportal-create-alert'
       type: regular
       version: -1
-    taskid: 354f4672-6b65-41d7-875c-17ddb80bf7af
+    taskid: fa3d51cd-46cf-4962-8328-fa452002e3e0
     timertriggers: []
     type: regular
     view: |-
@@ -901,13 +901,13 @@ tasks:
     task:
       brand: ""
       description: Activate playbook
-      id: e61befe2-f162-4e81-8971-e8c4a888298d
+      id: 8197d272-53b3-4dae-83bb-adbebb6b3524
       iscommand: true
       name: Activate portal's  Malware on host playbook in the case
       script: '|||mssportal-activate-playbook'
       type: regular
       version: -1
-    taskid: e61befe2-f162-4e81-8971-e8c4a888298d
+    taskid: 8197d272-53b3-4dae-83bb-adbebb6b3524
     timertriggers: []
     type: regular
     view: |-
@@ -915,6 +915,79 @@ tasks:
         "position": {
           "x": 480,
           "y": 1420
+        }
+      }
+  "29":
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Find cases
+      id: ea8363b1-f0ef-4351-8b31-d53a1a7d1ce0
+      iscommand: true
+      name: Verify Case Source ID Exists
+      script: '|||mssportal-find-cases'
+      type: regular
+      version: -1
+    taskid: ea8363b1-f0ef-4351-8b31-d53a1a7d1ce0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 370
+        }
+      }
+  "30":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: MSSPortal.PageCaseInfo.totalElements
+          operator: greaterThan
+          right:
+            value:
+              simple: "0"
+      label: "yes"
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 05a98199-7c5b-444b-89ff-d0609ee50d2c
+      iscommand: false
+      name: Case Exists?
+      type: condition
+      version: -1
+    taskid: 05a98199-7c5b-444b-89ff-d0609ee50d2c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 545
         }
       }
 version: -1
