@@ -76,7 +76,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ""
+      id: b095498e-9b26-4138-8936-b7d74e3e38bc
       iscommand: false
       name: Should handle the incident?
       type: condition
@@ -927,18 +927,23 @@ tasks:
       - "30"
     note: false
     quietmode: 0
+    scriptarguments:
+      alertId:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      customerId:
+        simple: ${MSSPortal.CustomerInfo.id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Find cases
-      id: ea8363b1-f0ef-4351-8b31-d53a1a7d1ce0
+      id: 8c2cda15-5e1e-4312-8aa7-f1d53f00438e
       iscommand: true
       name: Verify Case Source ID Exists
       script: '|||mssportal-find-cases'
       type: regular
       version: -1
-    taskid: ea8363b1-f0ef-4351-8b31-d53a1a7d1ce0
+    taskid: 8c2cda15-5e1e-4312-8aa7-f1d53f00438e
     timertriggers: []
     type: regular
     view: |-
@@ -954,11 +959,11 @@ tasks:
       - - left:
             iscontext: true
             value:
-              simple: MSSPortal.PageCaseInfo.totalElements
-          operator: greaterThan
+              simple: MSSPortal.PageCaseInfo.empty
+          operator: isEqualString
           right:
             value:
-              simple: "0"
+              simple: "false"
       label: "yes"
     id: "30"
     ignoreworker: false
@@ -975,12 +980,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 05a98199-7c5b-444b-89ff-d0609ee50d2c
+      id: 07abacab-601e-485c-8fa7-23fc7429fdbe
       iscommand: false
       name: Case Exists?
       type: condition
       version: -1
-    taskid: 05a98199-7c5b-444b-89ff-d0609ee50d2c
+    taskid: 07abacab-601e-485c-8fa7-23fc7429fdbe
     timertriggers: []
     type: condition
     view: |-
