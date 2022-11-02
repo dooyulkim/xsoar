@@ -9,7 +9,13 @@
 	"detached": false,
 	"disabled": false,
 	"extractSettings": {
-		"fieldCliNameToExtractSettings": {},
+		"fieldCliNameToExtractSettings": {
+			"xdrincidentid": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
 		"mode": "Specific"
 	},
 	"fromServerVersion": "",
