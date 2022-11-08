@@ -960,7 +960,7 @@ tasks:
             iscontext: true
             value:
               simple: MSSPortal.PageCaseInfo.empty
-          operator: isTrue
+          operator: isFalse
       label: "yes"
     id: "30"
     ignoreworker: false
@@ -977,12 +977,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: cc763c4e-bad2-4f2f-8ae2-1644bafe900e
+      id: cf85bbff-c26e-4ea4-8909-2f796211cf45
       iscommand: false
       name: Case Exists?
       type: condition
       version: -1
-    taskid: cc763c4e-bad2-4f2f-8ae2-1644bafe900e
+    taskid: cf85bbff-c26e-4ea4-8909-2f796211cf45
     timertriggers: []
     type: condition
     view: |-
