@@ -63,8 +63,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.3.23
+    itemVersion: 2.4.1
     packID: ServiceNow
+    packName: ServiceNow
     packPropagationLabels:
     - all
     propagationLabels: []
