@@ -18,14 +18,6 @@ inputs:
     complex:
       accessor: alert_id
       root: PaloAltoNetworksXDR.Incident.alerts
-- description: ""
-  key: incident_id
-  playbookInputQuery: null
-  required: false
-  value:
-    complex:
-      accessor: incident_id
-      root: PaloAltoNetworksXDR.Incident
 name: Scenario
 outputs:
 - contextPath: Scenario
@@ -42,7 +34,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "7"
+      - "5"
     note: false
     quietmode: 0
     separatecontext: false
@@ -70,59 +62,30 @@ tasks:
             iscontext: true
             value:
               complex:
-                accessor: Incident.alerts.source
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      iscontext: true
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR
+                accessor: source
+                root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
             value:
-              simple: NGFW
+              simple: XDR Agent
       - - left:
             iscontext: true
             value:
               complex:
                 accessor: host_ip_list
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: in
           right:
             value:
-              simple: lists.authorized devices
+              simple: lists.Authorizedhosts
       label: Benign Security Test
     - condition:
       - - left:
             iscontext: true
             value:
               complex:
-                accessor: Incident.alerts.source
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      iscontext: true
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR
+                accessor: source
+                root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
             value:
@@ -132,24 +95,17 @@ tasks:
             value:
               complex:
                 accessor: host_ip_list
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: input.alerts
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
             value:
-              simple: lists.authorized devices
+              simple: lists.Authorizedhosts
       - - left:
             iscontext: true
             value:
-              simple: PaloAltoNetworksXDR.Incident.network_artifacts.network_remote_port
+              complex:
+                accessor: network_remote_port
+                root: PaloAltoNetworksXDR.Incident.network_artifacts
           operator: isEqualNumber
           right:
             value:
@@ -174,19 +130,19 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: 327e8d57-7565-4e80-80ae-f738b4051ca6
+      id: 01ac7dac-53ea-4a62-8b90-c04c27aa94f7
       iscommand: false
       name: Choose playbook by category
       type: condition
       version: -1
-    taskid: 327e8d57-7565-4e80-80ae-f738b4051ca6
+    taskid: 01ac7dac-53ea-4a62-8b90-c04c27aa94f7
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 240,
-          "y": 400
+          "y": 240
         }
       }
   "6":
@@ -201,12 +157,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: aeb1c76f-cdde-4cad-879c-877db3b0e690
+      id: 1de72c23-6168-4846-8d2e-7b3ac0464f4b
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: aeb1c76f-cdde-4cad-879c-877db3b0e690
+    taskid: 1de72c23-6168-4846-8d2e-7b3ac0464f4b
     timertriggers: []
     type: title
     view: |-
@@ -214,43 +170,6 @@ tasks:
         "position": {
           "x": 240,
           "y": 770
-        }
-      }
-  "7":
-    continueonerrortype: ""
-    id: "7"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "5"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      incident_id:
-        complex:
-          root: inputs.incident_id
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: Cortex XDR - IR
-      description: Returns additional data for the specified incident, for example,
-        related alerts, file artifacts, network artifacts, and so on.
-      id: ff7aed39-de8b-4ac3-8df3-b06886c4e683
-      iscommand: true
-      name: Cortex XDR - get incident extra data
-      script: Cortex XDR - IR|||xdr-get-incident-extra-data
-      type: regular
-      version: -1
-    taskid: ff7aed39-de8b-4ac3-8df3-b06886c4e683
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 240,
-          "y": 215
         }
       }
   "8":
@@ -268,19 +187,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 17233131-ef7a-4ab8-82ad-1ff4dbce7fcc
+      id: ae1e6bf4-79bc-490e-86b0-c3dde578af8d
       iscommand: false
       name: Other alert category
       type: title
       version: -1
-    taskid: 17233131-ef7a-4ab8-82ad-1ff4dbce7fcc
+    taskid: ae1e6bf4-79bc-490e-86b0-c3dde578af8d
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 740,
-          "y": 590
+          "x": 760,
+          "y": 510
         }
       }
   "9":
@@ -296,30 +215,30 @@ tasks:
     quietmode: 0
     scriptarguments:
       keys:
-        simple: Match,ID
+        simple: BenignSecurity
       parent:
         simple: Scenario
       values:
-        simple: true,${inputs.alert_id}
+        simple: "true"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set multiple keys/values to the context.
-      id: 090d047b-e950-4f3a-8083-d6632065e293
+      id: 492b5026-33ae-4e0b-8675-60dd390ce8e1
       iscommand: false
       name: Benign Security Test
       script: SetMultipleValues
       type: regular
       version: -1
-    taskid: 090d047b-e950-4f3a-8083-d6632065e293
+    taskid: 492b5026-33ae-4e0b-8675-60dd390ce8e1
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": -180,
-          "y": 590
+          "y": 495
         }
       }
   "10":
@@ -335,30 +254,60 @@ tasks:
     quietmode: 0
     scriptarguments:
       keys:
-        simple: Match,ID
+        simple: IPSAlert
       parent:
         simple: Scenario
       values:
-        simple: true,${inputs.alert_id}
+        simple: "true"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set multiple keys/values to the context.
-      id: 181fcd0b-ee31-4939-8afa-d317e9898f50
+      id: b5047719-46f8-4393-8328-401f0cfb229d
       iscommand: false
       name: NGFW Alert IPS
       script: SetMultipleValues
       type: regular
       version: -1
-    taskid: 181fcd0b-ee31-4939-8afa-d317e9898f50
+    taskid: b5047719-46f8-4393-8328-401f0cfb229d
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 240,
-          "y": 590
+          "y": 525
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "This playbook is used to loop over every alert in a Cortex XDR
+        incident. \nSupported alert categories:\n- Malware\n- Port Scan"
+      id: deb19048-c816-45dc-85d4-9befad9679b1
+      iscommand: false
+      name: Cortex XDR Alerts Handling
+      playbookId: Cortex XDR Alerts Handling
+      type: playbook
+      version: -1
+    taskid: deb19048-c816-45dc-85d4-9befad9679b1
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -240,
+          "y": 820
         }
       }
 version: -1
@@ -367,9 +316,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 780,
-        "width": 1300,
-        "x": -180,
+        "height": 860,
+        "width": 1380,
+        "x": -240,
         "y": 55
       }
     }
