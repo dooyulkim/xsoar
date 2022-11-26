@@ -11,7 +11,7 @@ contentitemexportablefields:
 id: d702f63a-a525-4139-8031-9f79abb651df
 inputs:
 - description: 'each alert in cortex xdr case '
-  key: alert
+  key: alert_id
   playbookInputQuery: null
   required: true
   value:
@@ -40,7 +40,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "1"
+      - "7"
     note: false
     quietmode: 0
     separatecontext: false
@@ -57,155 +57,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 235,
-          "y": 65
-        }
-      }
-  "1":
-    conditions:
-    - condition:
-      - - left:
-            iscontext: true
-            value:
-              simple: inputs.alert.source
-          operator: isEqualString
-          right:
-            value:
-              simple: XDR Agent
-      - - left:
-            iscontext: true
-            value:
-              simple: inputs.alerts.host_ip
-          operator: in
-          right:
-            value:
-              simple: list.authorizedhost
-      label: "yes"
-    continueonerrortype: ""
-    id: "1"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#default#':
-      - "3"
-      "yes":
-      - "2"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 7a72f385-0e5c-4fd9-8568-61c8b1ff3b7b
-      iscommand: false
-      name: 'Scenario Match? '
-      type: condition
-      version: -1
-    taskid: 7a72f385-0e5c-4fd9-8568-61c8b1ff3b7b
-    timertriggers: []
-    type: condition
-    view: |-
-      {
-        "position": {
-          "x": 235,
-          "y": 220
-        }
-      }
-  "2":
-    continueonerrortype: ""
-    id: "2"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    scriptarguments:
-      keys:
-        simple: Match
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Set multiple keys/values to the context.
-      id: 46a155ec-16c3-40b1-8e60-78d17bcb0992
-      iscommand: false
-      name: Flag match
-      script: SetMultipleValues
-      type: regular
-      version: -1
-    taskid: 46a155ec-16c3-40b1-8e60-78d17bcb0992
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": -120,
-          "y": 410
-        }
-      }
-  "3":
-    continueonerrortype: ""
-    id: "3"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    scriptarguments:
-      key:
-        simple: Match
-      value:
-        simple: "false"
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Set a value in context under the key you entered.
-      id: d3341656-7688-4ded-83ac-eb96ce17a488
-      iscommand: false
-      name: No Match
-      script: Set
-      type: regular
-      version: -1
-    taskid: d3341656-7688-4ded-83ac-eb96ce17a488
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 580,
-          "y": 410
-        }
-      }
-  "4":
-    continueonerrortype: ""
-    id: "4"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    separatecontext: true
-    skipunavailable: false
-    task:
-      brand: ""
-      description: "This playbook is used to loop over every alert in a Cortex XDR
-        incident. \nSupported alert categories:\n- Malware\n- Port Scan"
-      id: ff4f3ed5-d089-40f4-89fb-a6dab77e980c
-      iscommand: false
-      name: Cortex XDR Alerts Handling
-      playbookId: Cortex XDR Alerts Handling
-      type: playbook
-      version: -1
-    taskid: ff4f3ed5-d089-40f4-89fb-a6dab77e980c
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": -120,
-          "y": 590
+          "x": 240,
+          "y": 55
         }
       }
   "5":
@@ -273,19 +126,19 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: 66b67919-1a92-4dea-826d-166b4464a2c7
+      id: 6da19575-553c-4964-843d-769bc3851a8a
       iscommand: false
       name: Choose playbook by category
       type: condition
       version: -1
-    taskid: 66b67919-1a92-4dea-826d-166b4464a2c7
+    taskid: 6da19575-553c-4964-843d-769bc3851a8a
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 260
+          "x": 240,
+          "y": 420
         }
       }
   "6":
@@ -300,19 +153,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: bcc797d5-8e7e-4de8-8dd5-1f13890deb95
+      id: 007fc95c-05f8-4727-80f5-ec4b165a358d
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: bcc797d5-8e7e-4de8-8dd5-1f13890deb95
+    taskid: 007fc95c-05f8-4727-80f5-ec4b165a358d
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 610
+          "x": 240,
+          "y": 770
         }
       }
   "7":
@@ -336,20 +189,20 @@ tasks:
       brand: Cortex XDR - IR
       description: Returns additional data for the specified incident, for example,
         related alerts, file artifacts, network artifacts, and so on.
-      id: 79b1b08a-4a65-4427-841c-82a8bff1b085
+      id: b25df810-77cd-47ac-8e50-f89c35eb3f92
       iscommand: true
       name: Cortex XDR - get incident extra data
       script: Cortex XDR - IR|||xdr-get-incident-extra-data
       type: regular
       version: -1
-    taskid: 79b1b08a-4a65-4427-841c-82a8bff1b085
+    taskid: b25df810-77cd-47ac-8e50-f89c35eb3f92
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 85
+          "x": 240,
+          "y": 215
         }
       }
   "8":
@@ -367,19 +220,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: cd3ccf0b-bbd4-40f3-8f39-e590d79464f7
+      id: 36fcb67b-c576-4608-80bb-7aba339daa69
       iscommand: false
       name: Other alert category
       type: title
       version: -1
-    taskid: cd3ccf0b-bbd4-40f3-8f39-e590d79464f7
+    taskid: 36fcb67b-c576-4608-80bb-7aba339daa69
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
-          "x": 2040,
-          "y": 435
+          "x": 680,
+          "y": 595
         }
       }
   "9":
@@ -416,20 +269,20 @@ tasks:
         alert detection.\n\nThe playbook is designed to run as a sub-playbook in 'Cortex
         XDR Incident Handling - v3 & Cortex XDR Alerts Handling'. \nIt depends on
         the data from the parent playbooks and can not be used as a standalone version."
-      id: 5047b7a3-82cf-4218-8ef4-650875278421
+      id: ab7cef48-7894-476b-85ef-d43360eadd7e
       iscommand: false
       name: Cortex XDR - Port Scan - Adjusted
       playbookId: Cortex XDR - Port Scan - Adjusted
       type: playbook
       version: -1
-    taskid: 5047b7a3-82cf-4218-8ef4-650875278421
+    taskid: ab7cef48-7894-476b-85ef-d43360eadd7e
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 1600,
-          "y": 435
+          "x": 240,
+          "y": 595
         }
       }
   "10":
@@ -553,20 +406,20 @@ tasks:
         - Performs file detonation.
 
         The playbook is used as a sub- playbook in ‘Cortex XDR Incident Handling - v2’
-      id: a3338bba-8771-4740-8ece-ea200e39595e
+      id: 09044cae-0618-48fc-8c60-962d7552f21a
       iscommand: false
       name: Cortex XDR - Malware Investigation
       playbookId: Cortex XDR - Malware Investigation
       type: playbook
       version: -1
-    taskid: a3338bba-8771-4740-8ece-ea200e39595e
+    taskid: 09044cae-0618-48fc-8c60-962d7552f21a
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 1160,
-          "y": 435
+          "x": -200,
+          "y": 595
         }
       }
 version: -1
@@ -575,10 +428,10 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 620,
-        "width": 2540,
-        "x": -120,
-        "y": 65
+        "height": 780,
+        "width": 1260,
+        "x": -200,
+        "y": 55
       }
     }
   }
