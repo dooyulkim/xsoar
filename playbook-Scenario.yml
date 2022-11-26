@@ -16,8 +16,8 @@ inputs:
   required: true
   value:
     complex:
-      accessor: alerts
-      root: PaloAltoNetworksXDR.Incident.[0]
+      accessor: alert_id
+      root: PaloAltoNetworksXDR.Incident.alerts
 - description: ""
   key: incident_id
   playbookInputQuery: null
