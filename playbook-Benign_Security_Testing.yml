@@ -13,7 +13,7 @@ inputs:
 - description: 'each alert in cortex xdr case '
   key: alert
   playbookInputQuery: null
-  required: false
+  required: true
   value:
     complex:
       accessor: alerts
@@ -82,21 +82,21 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "5"
+      - "3"
       "yes":
-      - "4"
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: 0e6694e2-7456-434d-8fc8-4469eb9a15c8
+      id: 41005d46-3755-491d-886a-7e7cd660670e
       iscommand: false
       name: 'Scenario Match? '
       type: condition
       version: -1
-    taskid: 0e6694e2-7456-434d-8fc8-4469eb9a15c8
+    taskid: 41005d46-3755-491d-886a-7e7cd660670e
     timertriggers: []
     type: condition
     view: |-
@@ -106,15 +106,17 @@ tasks:
           "y": 210
         }
       }
-  "4":
+  "2":
     continueonerrortype: ""
-    id: "4"
+    id: "2"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     note: false
     quietmode: 0
     scriptarguments:
+      append:
+        simple: "true"
       key:
         simple: Match
       value:
@@ -124,25 +126,25 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: b1b818ca-59c1-4f96-86f8-4e2fc3fbc237
+      id: 240f253b-69b0-40e8-8a04-637c6c293e99
       iscommand: false
-      name: 'Flag as Match '
+      name: Flag match
       script: Set
       type: regular
       version: -1
-    taskid: b1b818ca-59c1-4f96-86f8-4e2fc3fbc237
+    taskid: 240f253b-69b0-40e8-8a04-637c6c293e99
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 10,
-          "y": 430
+          "x": -90,
+          "y": 400
         }
       }
-  "5":
+  "3":
     continueonerrortype: ""
-    id: "5"
+    id: "3"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
@@ -158,20 +160,20 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 3fe01c57-6a86-4b72-8685-18df7b7d6aa6
+      id: 2fc1c3f7-1774-4798-8981-df541c60e9b7
       iscommand: false
-      name: 'Flag Unmatched '
+      name: No Match
       script: Set
       type: regular
       version: -1
-    taskid: 3fe01c57-6a86-4b72-8685-18df7b7d6aa6
+    taskid: 2fc1c3f7-1774-4798-8981-df541c60e9b7
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 540,
-          "y": 420
+          "x": 610,
+          "y": 400
         }
       }
 version: -1
@@ -180,9 +182,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 475,
-        "width": 910,
-        "x": 10,
+        "height": 445,
+        "width": 1080,
+        "x": -90,
         "y": 50
       }
     }
