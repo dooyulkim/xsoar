@@ -15,7 +15,7 @@ inputs:
   playbookInputQuery: null
   required: true
   value:
-    simple: PaloAltoNetworksXDR.Incident.[0].alerts
+    simple: alert
 - description: Default value is yes. False means to stop execution
   key: 'Continue with execution '
   playbookInputQuery: null
@@ -78,7 +78,7 @@ tasks:
       - - left:
             iscontext: true
             value:
-              simple: PaloAltoNetworksXDR.Incident.[0].alerts.[0].action_remote_ip
+              simple: PaloAltoNetworksXDR.Incident.[0].alerts
           operator: in
           right:
             value:
@@ -100,12 +100,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 4c74be1c-cee8-42ce-8bc4-6c1eea63fdeb
+      id: d6fc814d-674f-4bec-867c-fe86b71ec90f
       iscommand: false
       name: 'Scenario Match? '
       type: condition
       version: -1
-    taskid: 4c74be1c-cee8-42ce-8bc4-6c1eea63fdeb
+    taskid: d6fc814d-674f-4bec-867c-fe86b71ec90f
     timertriggers: []
     type: condition
     view: |-
