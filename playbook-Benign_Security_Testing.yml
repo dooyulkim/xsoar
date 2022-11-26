@@ -9,7 +9,15 @@ contentitemexportablefields:
     - all
     toServerVersion: ""
 id: d702f63a-a525-4139-8031-9f79abb651df
-inputs: []
+inputs:
+- description: 'each alert in cortex xdr case '
+  key: alert
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: alerts
+      root: PaloAltoNetworksXDR.Incident.[0]
 name: Benign Security Testing
 outputs:
 - contextPath: Match
