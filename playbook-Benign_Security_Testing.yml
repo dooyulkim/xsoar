@@ -22,7 +22,7 @@ name: Benign Security Testing
 outputs:
 - contextPath: Match
   description: match
-  type: boolean
+  type: unknown
 quiet: true
 starttaskid: "0"
 tasks:
