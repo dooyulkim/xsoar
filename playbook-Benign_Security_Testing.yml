@@ -9,19 +9,7 @@ contentitemexportablefields:
     - all
     toServerVersion: ""
 id: d702f63a-a525-4139-8031-9f79abb651df
-inputs:
-- description: 'Alerts within the incident '
-  key: 'alerts '
-  playbookInputQuery: null
-  required: true
-  value:
-    simple: alert
-- description: Default value is yes. False means to stop execution
-  key: 'Continue with execution '
-  playbookInputQuery: null
-  required: true
-  value:
-    simple: "yes"
+inputs: []
 name: Benign Security Testing
 outputs:
 - contextPath: Match
@@ -38,7 +26,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "2"
+      - "1"
     note: false
     quietmode: 0
     separatecontext: false
@@ -106,78 +94,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -30,
-          "y": 360
-        }
-      }
-  "2":
-    conditions:
-    - condition:
-      - - left:
-            iscontext: true
-            value:
-              simple: 'inputs.Continue with execution '
-          operator: isEqualString
-          right:
-            value:
-              simple: "yes"
-      label: "yes"
-    continueonerrortype: ""
-    id: "2"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#default#':
-      - "3"
-      "yes":
-      - "1"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: b105e28a-fb1a-4300-8161-054e1d5e56dd
-      iscommand: false
-      name: Prompt User
-      type: condition
-      version: -1
-    taskid: b105e28a-fb1a-4300-8161-054e1d5e56dd
-    timertriggers: []
-    type: condition
-    view: |-
-      {
-        "position": {
           "x": 265,
-          "y": 190
-        }
-      }
-  "3":
-    continueonerrortype: ""
-    id: "3"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 182b9f40-674b-4d30-87b9-be4caa3b0492
-      iscommand: false
-      name: Exit
-      type: regular
-      version: -1
-    taskid: 182b9f40-674b-4d30-87b9-be4caa3b0492
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 610,
-          "y": 360
+          "y": 210
         }
       }
   "4":
@@ -210,8 +128,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -280,
-          "y": 570
+          "x": 10,
+          "y": 430
         }
       }
   "5":
@@ -226,26 +144,26 @@ tasks:
       key:
         simple: Match
       value:
-        simple: "False"
+        simple: "false"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 6f4aec6f-4967-4eff-8fd0-c40bed3e3c02
+      id: 4629b8e4-7b7a-4be2-8c21-c576b0d06ba5
       iscommand: false
       name: 'Flag Unmatched '
       script: Set
       type: regular
       version: -1
-    taskid: 6f4aec6f-4967-4eff-8fd0-c40bed3e3c02
+    taskid: 4629b8e4-7b7a-4be2-8c21-c576b0d06ba5
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 180,
-          "y": 560
+          "x": 540,
+          "y": 420
         }
       }
 version: -1
@@ -254,9 +172,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 615,
-        "width": 1270,
-        "x": -280,
+        "height": 475,
+        "width": 910,
+        "x": 10,
         "y": 50
       }
     }
