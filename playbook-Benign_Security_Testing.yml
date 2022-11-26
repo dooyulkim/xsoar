@@ -23,7 +23,10 @@ inputs:
   value:
     simple: "yes"
 name: Benign Security Testing
-outputs: []
+outputs:
+- contextPath: Match
+  description: match
+  type: boolean
 quiet: true
 starttaskid: "0"
 tasks:
