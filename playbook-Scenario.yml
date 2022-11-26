@@ -23,7 +23,9 @@ inputs:
   playbookInputQuery: null
   required: false
   value:
-    simple: PaloAltoNetworksXDR.Incident.incident_id
+    complex:
+      accessor: incident_id
+      root: PaloAltoNetworksXDR.Incident
 name: Scenario
 outputs:
 - contextPath: Scenario
