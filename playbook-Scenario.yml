@@ -18,7 +18,7 @@ inputs:
     complex:
       accessor: alerts
       root: PaloAltoNetworksXDR.Incident.[0]
-name: Benign Security Testing
+name: Scenario
 outputs:
 - contextPath: Match
   description: match
@@ -91,12 +91,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 41005d46-3755-491d-886a-7e7cd660670e
+      id: 7a72f385-0e5c-4fd9-8568-61c8b1ff3b7b
       iscommand: false
       name: 'Scenario Match? '
       type: condition
       version: -1
-    taskid: 41005d46-3755-491d-886a-7e7cd660670e
+    taskid: 7a72f385-0e5c-4fd9-8568-61c8b1ff3b7b
     timertriggers: []
     type: condition
     view: |-
@@ -126,13 +126,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 240f253b-69b0-40e8-8a04-637c6c293e99
+      id: a28e4d14-679e-432f-8cea-94e268dd86a6
       iscommand: false
       name: Flag match
       script: Set
       type: regular
       version: -1
-    taskid: 240f253b-69b0-40e8-8a04-637c6c293e99
+    taskid: a28e4d14-679e-432f-8cea-94e268dd86a6
     timertriggers: []
     type: regular
     view: |-
@@ -160,13 +160,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 2fc1c3f7-1774-4798-8981-df541c60e9b7
+      id: d3341656-7688-4ded-83ac-eb96ce17a488
       iscommand: false
       name: No Match
       script: Set
       type: regular
       version: -1
-    taskid: 2fc1c3f7-1774-4798-8981-df541c60e9b7
+    taskid: d3341656-7688-4ded-83ac-eb96ce17a488
     timertriggers: []
     type: regular
     view: |-
