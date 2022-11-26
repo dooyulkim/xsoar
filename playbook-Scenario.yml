@@ -26,7 +26,7 @@ inputs:
     simple: PaloAltoNetworksXDR.Incident.incident_id
 name: Scenario
 outputs:
-- contextPath: Match
+- contextPath: Scenario
   description: match
   type: unknown
 quiet: true
