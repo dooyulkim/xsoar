@@ -1,0 +1,208 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: d702f63a-a525-4139-8031-9f79abb651df
+inputs:
+- description: 'Alerts within the incident '
+  key: 'alerts '
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: PaloAltoNetworksXDR.Incident.[0].alerts
+- description: Default value is yes. False means to stop execution
+  key: 'Continue with execution '
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: "yes"
+name: Benign Security Testing
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ea7962db-48e7-42d1-8c29-fa6d70a7223d
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: ea7962db-48e7-42d1-8c29-fa6d70a7223d
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.[0].incident_sources
+          operator: hasLength
+          right:
+            value:
+              simple: "1"
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.[0].incident_sources
+          operator: isEqualString
+          right:
+            value:
+              simple: NGFW
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.[0].alerts.[0].action_remote_ip
+          operator: in
+          right:
+            value:
+              simple: list.authorizedhost
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4c74be1c-cee8-42ce-8bc4-6c1eea63fdeb
+      iscommand: false
+      name: 'Scenario Match? '
+      type: condition
+      version: -1
+    taskid: 4c74be1c-cee8-42ce-8bc4-6c1eea63fdeb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incident_id:
+        simple: PaloAltoNetworksXDR.Incident.[0].incident_id
+      manual_severity:
+        simple: LOW
+      resolve_comment:
+        simple: ' (100%) alerts in the case involving authorised security testing
+          device IP(s) '
+      status:
+        simple: RESOLVED_FALSE_POSITIVE
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Updates one or more fields of a specified incident. Missing fields
+        will be ignored. To remove the assignment for an incident, pass a null value
+        in the assignee email argument.
+      id: 3fcae172-1cef-41fa-8a58-fafa31b965ff
+      iscommand: true
+      name: 'All Match Update XDR and Close '
+      script: '|||xdr-update-incident'
+      type: regular
+      version: -1
+    taskid: 3fcae172-1cef-41fa-8a58-fafa31b965ff
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 10,
+          "y": 390
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incident_id:
+        simple: subplaybook-23.PaloAltoNetworksXDR.Incident.incident_id
+      resolve_comment:
+        simple: no alerts were identified involving authorized security testing device
+          IP addresses
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Updates one or more fields of a specified incident. Missing fields
+        will be ignored. To remove the assignment for an incident, pass a null value
+        in the assignee email argument.
+      id: 0629b69c-30b6-4061-8158-cfaef9642302
+      iscommand: true
+      name: Some match
+      script: '|||xdr-update-incident'
+      type: regular
+      version: -1
+    taskid: 0629b69c-30b6-4061-8158-cfaef9642302
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 530,
+          "y": 380
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 435,
+        "width": 900,
+        "x": 10,
+        "y": 50
+      }
+    }
+  }
