@@ -61,8 +61,8 @@ tasks:
       - - left:
             iscontext: true
             value:
-              simple: inputs.alerts.source
-          operator: hasLength
+              simple: inputs.alert.source
+          operator: isEqualString
           right:
             value:
               simple: XDR Agent
@@ -91,12 +91,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: b366d235-afe6-4c3e-837f-5e4aa9abf66b
+      id: 0e6694e2-7456-434d-8fc8-4469eb9a15c8
       iscommand: false
       name: 'Scenario Match? '
       type: condition
       version: -1
-    taskid: b366d235-afe6-4c3e-837f-5e4aa9abf66b
+    taskid: 0e6694e2-7456-434d-8fc8-4469eb9a15c8
     timertriggers: []
     type: condition
     view: |-
@@ -158,13 +158,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 4629b8e4-7b7a-4be2-8c21-c576b0d06ba5
+      id: 3fe01c57-6a86-4b72-8685-18df7b7d6aa6
       iscommand: false
       name: 'Flag Unmatched '
       script: Set
       type: regular
       version: -1
-    taskid: 4629b8e4-7b7a-4be2-8c21-c576b0d06ba5
+    taskid: 3fe01c57-6a86-4b72-8685-18df7b7d6aa6
     timertriggers: []
     type: regular
     view: |-
