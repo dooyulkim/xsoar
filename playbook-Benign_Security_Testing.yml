@@ -35,7 +35,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "1"
+      - "2"
     note: false
     quietmode: 0
     separatecontext: false
@@ -62,23 +62,15 @@ tasks:
       - - left:
             iscontext: true
             value:
-              simple: PaloAltoNetworksXDR.Incident.[0].incident_sources
+              simple: inputs.alerts.source
           operator: hasLength
           right:
             value:
-              simple: "1"
+              simple: XDR Agent
       - - left:
             iscontext: true
             value:
-              simple: PaloAltoNetworksXDR.Incident.[0].incident_sources
-          operator: isEqualString
-          right:
-            value:
-              simple: NGFW
-      - - left:
-            iscontext: true
-            value:
-              simple: PaloAltoNetworksXDR.Incident.[0].alerts
+              simple: inputs.alerts.host_ip
           operator: in
           right:
             value:
@@ -91,69 +83,71 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "3"
+      - "5"
       "yes":
-      - "2"
+      - "4"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: d6fc814d-674f-4bec-867c-fe86b71ec90f
+      id: b366d235-afe6-4c3e-837f-5e4aa9abf66b
       iscommand: false
       name: 'Scenario Match? '
       type: condition
       version: -1
-    taskid: d6fc814d-674f-4bec-867c-fe86b71ec90f
+    taskid: b366d235-afe6-4c3e-837f-5e4aa9abf66b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -30,
+          "y": 360
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: 'inputs.Continue with execution '
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b105e28a-fb1a-4300-8161-054e1d5e56dd
+      iscommand: false
+      name: Prompt User
+      type: condition
+      version: -1
+    taskid: b105e28a-fb1a-4300-8161-054e1d5e56dd
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
           "x": 265,
-          "y": 195
-        }
-      }
-  "2":
-    continueonerrortype: ""
-    id: "2"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    note: false
-    quietmode: 0
-    scriptarguments:
-      incident_id:
-        simple: PaloAltoNetworksXDR.Incident.[0].incident_id
-      manual_severity:
-        simple: LOW
-      resolve_comment:
-        simple: ' (100%) alerts in the case involving authorised security testing
-          device IP(s) '
-      status:
-        simple: RESOLVED_FALSE_POSITIVE
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Updates one or more fields of a specified incident. Missing fields
-        will be ignored. To remove the assignment for an incident, pass a null value
-        in the assignee email argument.
-      id: 3fcae172-1cef-41fa-8a58-fafa31b965ff
-      iscommand: true
-      name: 'All Match Update XDR and Close '
-      script: '|||xdr-update-incident'
-      type: regular
-      version: -1
-    taskid: 3fcae172-1cef-41fa-8a58-fafa31b965ff
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 10,
-          "y": 390
+          "y": 190
         }
       }
   "3":
@@ -164,33 +158,91 @@ tasks:
     isoversize: false
     note: false
     quietmode: 0
-    scriptarguments:
-      incident_id:
-        simple: subplaybook-23.PaloAltoNetworksXDR.Incident.incident_id
-      resolve_comment:
-        simple: no alerts were identified involving authorized security testing device
-          IP addresses
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Updates one or more fields of a specified incident. Missing fields
-        will be ignored. To remove the assignment for an incident, pass a null value
-        in the assignee email argument.
-      id: 0629b69c-30b6-4061-8158-cfaef9642302
-      iscommand: true
-      name: Some match
-      script: '|||xdr-update-incident'
+      id: 182b9f40-674b-4d30-87b9-be4caa3b0492
+      iscommand: false
+      name: Exit
       type: regular
       version: -1
-    taskid: 0629b69c-30b6-4061-8158-cfaef9642302
+    taskid: 182b9f40-674b-4d30-87b9-be4caa3b0492
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 530,
-          "y": 380
+          "x": 610,
+          "y": 360
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Match
+      value:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: b1b818ca-59c1-4f96-86f8-4e2fc3fbc237
+      iscommand: false
+      name: 'Flag as Match '
+      script: Set
+      type: regular
+      version: -1
+    taskid: b1b818ca-59c1-4f96-86f8-4e2fc3fbc237
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -280,
+          "y": 570
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: Match
+      value:
+        simple: "False"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 6f4aec6f-4967-4eff-8fd0-c40bed3e3c02
+      iscommand: false
+      name: 'Flag Unmatched '
+      script: Set
+      type: regular
+      version: -1
+    taskid: 6f4aec6f-4967-4eff-8fd0-c40bed3e3c02
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 560
         }
       }
 version: -1
@@ -199,9 +251,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 435,
-        "width": 900,
-        "x": 10,
+        "height": 615,
+        "width": 1270,
+        "x": -280,
         "y": 50
       }
     }
