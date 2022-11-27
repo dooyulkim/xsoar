@@ -20,8 +20,10 @@ inputs:
       root: PaloAltoNetworksXDR.Incident.alerts
 name: Scenario
 outputs:
-- contextPath: Scenario
+- contextPath: None
   description: match
+  type: unknown
+- contextPath: BenignSecurity
   type: unknown
 quiet: true
 starttaskid: "0"
