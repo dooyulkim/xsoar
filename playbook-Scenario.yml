@@ -63,6 +63,15 @@ tasks:
             value:
               complex:
                 accessor: source
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
@@ -73,6 +82,15 @@ tasks:
             value:
               complex:
                 accessor: host_ip_list
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: in
           right:
@@ -85,6 +103,15 @@ tasks:
             value:
               complex:
                 accessor: source
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
@@ -94,9 +121,18 @@ tasks:
             iscontext: true
             value:
               complex:
-                accessor: host_ip_list
-                root: PaloAltoNetworksXDR.Incident.alerts
-          operator: isEqualString
+                accessor: '[0].alerts.host_ip'
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
+                root: PaloAltoNetworksXDR.Incident
+          operator: containsGeneral
           right:
             value:
               simple: lists.Authorizedhosts
@@ -104,9 +140,18 @@ tasks:
             iscontext: true
             value:
               complex:
-                accessor: network_remote_port
-                root: PaloAltoNetworksXDR.Incident.network_artifacts
-          operator: isEqualNumber
+                accessor: network_artifacts.network_remote_port
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
+                root: PaloAltoNetworksXDR.Incident
+          operator: isEqualString
           right:
             value:
               simple: "443"
@@ -118,7 +163,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#default#':
-      - "8"
+      - "11"
       Benign Security Test:
       - "9"
       IPS(NGFW) Alerts for Public Facing Services:
@@ -130,12 +175,12 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: 01ac7dac-53ea-4a62-8b90-c04c27aa94f7
+      id: 63687dd7-d673-4f4a-8a0d-67172b2e3f4f
       iscommand: false
       name: Choose playbook by category
       type: condition
       version: -1
-    taskid: 01ac7dac-53ea-4a62-8b90-c04c27aa94f7
+    taskid: 63687dd7-d673-4f4a-8a0d-67172b2e3f4f
     timertriggers: []
     type: condition
     view: |-
@@ -172,36 +217,6 @@ tasks:
           "y": 770
         }
       }
-  "8":
-    continueonerrortype: ""
-    id: "8"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "6"
-    note: false
-    quietmode: 0
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      id: ae1e6bf4-79bc-490e-86b0-c3dde578af8d
-      iscommand: false
-      name: Other alert category
-      type: title
-      version: -1
-    taskid: ae1e6bf4-79bc-490e-86b0-c3dde578af8d
-    timertriggers: []
-    type: title
-    view: |-
-      {
-        "position": {
-          "x": 760,
-          "y": 510
-        }
-      }
   "9":
     continueonerrortype: ""
     id: "9"
@@ -214,24 +229,24 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      keys:
-        simple: BenignSecurity
-      parent:
-        simple: Scenario
-      values:
+      append:
         simple: "true"
+      key:
+        simple: BenignSecurity
+      value:
+        simple: ${inputs.alert_id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Set multiple keys/values to the context.
-      id: 492b5026-33ae-4e0b-8675-60dd390ce8e1
+      description: Set a value in context under the key you entered.
+      id: 54bef0da-a338-4b71-8f35-8ba0d036375f
       iscommand: false
       name: Benign Security Test
-      script: SetMultipleValues
+      script: Set
       type: regular
       version: -1
-    taskid: 492b5026-33ae-4e0b-8675-60dd390ce8e1
+    taskid: 54bef0da-a338-4b71-8f35-8ba0d036375f
     timertriggers: []
     type: regular
     view: |-
@@ -254,30 +269,30 @@ tasks:
     quietmode: 0
     scriptarguments:
       keys:
-        simple: IPSAlert
+        simple: Match, ID
       parent:
         simple: Scenario
       values:
-        simple: "true"
+        simple: (NGFW)IPS, ${inputs.alert_id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set multiple keys/values to the context.
-      id: b5047719-46f8-4393-8328-401f0cfb229d
+      id: 4a6e07a9-5290-47c6-8906-efc3122e7676
       iscommand: false
       name: NGFW Alert IPS
       script: SetMultipleValues
       type: regular
       version: -1
-    taskid: b5047719-46f8-4393-8328-401f0cfb229d
+    taskid: 4a6e07a9-5290-47c6-8906-efc3122e7676
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
           "x": 240,
-          "y": 525
+          "y": 495
         }
       }
   "11":
@@ -286,28 +301,37 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
     note: false
     quietmode: 0
-    separatecontext: true
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: None
+      value:
+        simple: ${inputs.alert_id}
+    separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: "This playbook is used to loop over every alert in a Cortex XDR
-        incident. \nSupported alert categories:\n- Malware\n- Port Scan"
-      id: deb19048-c816-45dc-85d4-9befad9679b1
+      description: Set a value in context under the key you entered.
+      id: 1d9f913d-0cdd-40f9-8fcf-ffa4b6e4fae8
       iscommand: false
-      name: Cortex XDR Alerts Handling
-      playbookId: Cortex XDR Alerts Handling
-      type: playbook
+      name: No match
+      script: Set
+      type: regular
       version: -1
-    taskid: deb19048-c816-45dc-85d4-9befad9679b1
+    taskid: 1d9f913d-0cdd-40f9-8fcf-ffa4b6e4fae8
     timertriggers: []
-    type: playbook
+    type: regular
     view: |-
       {
         "position": {
-          "x": -240,
-          "y": 820
+          "x": 690,
+          "y": 495
         }
       }
 version: -1
@@ -316,9 +340,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 860,
-        "width": 1380,
-        "x": -240,
+        "height": 780,
+        "width": 1250,
+        "x": -180,
         "y": 55
       }
     }
