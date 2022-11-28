@@ -20,8 +20,14 @@ inputs:
       root: PaloAltoNetworksXDR.Incident.alerts
 name: Scenario
 outputs:
-- contextPath: Match
-  description: 'list of matching scenarios and their alert id '
+- contextPath: (NGFW)IPS
+  description: alert_id that match this scenario
+  type: unknown
+- contextPath: BenginSecurity
+  description: alert_id that match this scenario
+  type: unknown
+- contextPath: None
+  description: alert_id that match this scenario
   type: unknown
 quiet: true
 starttaskid: "0"
