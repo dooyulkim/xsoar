@@ -101,7 +101,7 @@ tasks:
           operator: in
           right:
             value:
-              simple: lists.Authorizedhosts
+              simple: 10.2.12.3
       label: Benign Security Test
     - condition:
       - - left:
@@ -181,12 +181,12 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: 63687dd7-d673-4f4a-8a0d-67172b2e3f4f
+      id: d0594907-d400-47f6-8429-83577bd6032e
       iscommand: false
       name: Choose playbook by category
       type: condition
       version: -1
-    taskid: 63687dd7-d673-4f4a-8a0d-67172b2e3f4f
+    taskid: d0594907-d400-47f6-8429-83577bd6032e
     timertriggers: []
     type: condition
     view: |-
@@ -246,13 +246,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 408d5317-bf94-409b-8109-5a3bd2c7fd3c
+      id: 1ba22447-cc06-40be-8cf5-3263210b98b5
       iscommand: false
       name: Benign Security Test
       script: Set
       type: regular
       version: -1
-    taskid: 408d5317-bf94-409b-8109-5a3bd2c7fd3c
+    taskid: 1ba22447-cc06-40be-8cf5-3263210b98b5
     timertriggers: []
     type: regular
     view: |-
@@ -285,13 +285,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: d70bcfc2-7cb4-4858-8999-4572bfdc283e
+      id: 9496238b-4f13-4ade-8531-a8457bca1db5
       iscommand: false
       name: NGFW Alert IPS
       script: Set
       type: regular
       version: -1
-    taskid: d70bcfc2-7cb4-4858-8999-4572bfdc283e
+    taskid: 9496238b-4f13-4ade-8531-a8457bca1db5
     timertriggers: []
     type: regular
     view: |-
@@ -324,13 +324,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 42ee606e-70a9-48e5-8c18-3e8c0798e541
+      id: 707fc4fd-ee02-43aa-85c5-9aff9732a711
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: 42ee606e-70a9-48e5-8c18-3e8c0798e541
+    taskid: 707fc4fd-ee02-43aa-85c5-9aff9732a711
     timertriggers: []
     type: regular
     view: |-
