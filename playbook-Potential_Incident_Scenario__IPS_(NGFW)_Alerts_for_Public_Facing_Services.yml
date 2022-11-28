@@ -1,0 +1,37 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: bc14a178-f627-486d-8712-98d73d6330b1
+inputs: []
+name: 'Potential Incident Scenario: IPS (NGFW) Alerts for Public Facing Services'
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b132d3d0-7e7b-4903-867c-8819fe2c2c72
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b132d3d0-7e7b-4903-867c-8819fe2c2c72
+    timertriggers: []
+    type: start
+version: -1
