@@ -20,13 +20,13 @@ inputs:
       root: PaloAltoNetworksXDR.Incident.alerts
 name: Scenario
 outputs:
-- contextPath: None
+- contextPath: SummaryAlerts.None
   description: mapping of scenario to alerts_id
   type: unknown
-- contextPath: (NGFW)IPS
+- contextPath: SummaryAlerts.(NGFW)IPS
   description: mapping of scenario to alerts_id
   type: unknown
-- contextPath: 'BenignSecurity '
+- contextPath: 'SummaryAlerts.BenignSecurity '
   description: mapping of scenario to alerts_id
   type: unknown
 quiet: true
