@@ -240,13 +240,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 54bef0da-a338-4b71-8f35-8ba0d036375f
+      id: 0b169fbc-080a-4ce9-811b-19fcaa15b5c3
       iscommand: false
       name: Benign Security Test
       script: Set
       type: regular
       version: -1
-    taskid: 54bef0da-a338-4b71-8f35-8ba0d036375f
+    taskid: 0b169fbc-080a-4ce9-811b-19fcaa15b5c3
     timertriggers: []
     type: regular
     view: |-
@@ -268,24 +268,24 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      keys:
-        simple: Match, ID
-      parent:
-        simple: Scenario
-      values:
-        simple: (NGFW)IPS, ${inputs.alert_id}
+      append:
+        simple: "true"
+      key:
+        simple: (NGFW)IPS
+      value:
+        simple: ' ${inputs.alert_id}'
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Set multiple keys/values to the context.
-      id: 4a6e07a9-5290-47c6-8906-efc3122e7676
+      description: Set a value in context under the key you entered.
+      id: 8c406d10-c99e-481f-8201-7ead6494c99f
       iscommand: false
       name: NGFW Alert IPS
-      script: SetMultipleValues
+      script: Set
       type: regular
       version: -1
-    taskid: 4a6e07a9-5290-47c6-8906-efc3122e7676
+    taskid: 8c406d10-c99e-481f-8201-7ead6494c99f
     timertriggers: []
     type: regular
     view: |-
@@ -318,13 +318,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 1d9f913d-0cdd-40f9-8fcf-ffa4b6e4fae8
+      id: 0232a6cf-4984-4b6d-8217-82d9e385a792
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: 1d9f913d-0cdd-40f9-8fcf-ffa4b6e4fae8
+    taskid: 0232a6cf-4984-4b6d-8217-82d9e385a792
     timertriggers: []
     type: regular
     view: |-
