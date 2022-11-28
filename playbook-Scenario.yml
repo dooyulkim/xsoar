@@ -229,24 +229,24 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      keys:
-        simple: Alertid
-      parent:
-        simple: BenginSecurity
-      values:
+      append:
+        simple: "true"
+      key:
+        simple: BenignSecurity.Alert_id
+      value:
         simple: ${inputs.alert_id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Set multiple keys/values to the context.
-      id: 9b204aac-af5a-490f-8400-ef7bfd1c44d6
+      description: Set a value in context under the key you entered.
+      id: b1f4b555-8822-46b5-8d11-ad6afce3bfd4
       iscommand: false
       name: Benign Security Test
-      script: SetMultipleValues
+      script: Set
       type: regular
       version: -1
-    taskid: 9b204aac-af5a-490f-8400-ef7bfd1c44d6
+    taskid: b1f4b555-8822-46b5-8d11-ad6afce3bfd4
     timertriggers: []
     type: regular
     view: |-
@@ -268,24 +268,24 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      keys:
-        simple: Alert_id
-      parent:
-        simple: (NGFW)IPS
-      values:
+      append:
+        simple: "true"
+      key:
+        simple: (NGFW)IPS.Alert_id
+      value:
         simple: ${inputs.alert_id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Set multiple keys/values to the context.
-      id: 69f0b42e-284f-4734-8f9e-d2fe1e8f6d7a
+      description: Set a value in context under the key you entered.
+      id: f0015132-67b3-4273-83fc-86dd6571e95c
       iscommand: false
       name: NGFW Alert IPS
-      script: SetMultipleValues
+      script: Set
       type: regular
       version: -1
-    taskid: 69f0b42e-284f-4734-8f9e-d2fe1e8f6d7a
+    taskid: f0015132-67b3-4273-83fc-86dd6571e95c
     timertriggers: []
     type: regular
     view: |-
@@ -307,24 +307,24 @@ tasks:
     note: false
     quietmode: 0
     scriptarguments:
-      keys:
-        simple: Alert_id
-      parent:
-        simple: None
-      values:
+      append:
+        simple: "true"
+      key:
+        simple: None.Alert_id
+      value:
         simple: ${inputs.alert_id}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Set multiple keys/values to the context.
-      id: d3c75e16-c196-47fe-8779-56124ac3714f
+      description: Set a value in context under the key you entered.
+      id: e6907563-3e7a-49e8-87fd-b5f395f90281
       iscommand: false
       name: No match
-      script: SetMultipleValues
+      script: Set
       type: regular
       version: -1
-    taskid: d3c75e16-c196-47fe-8779-56124ac3714f
+    taskid: e6907563-3e7a-49e8-87fd-b5f395f90281
     timertriggers: []
     type: regular
     view: |-
