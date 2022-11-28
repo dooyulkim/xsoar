@@ -238,7 +238,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: BenignSecurity.Alert_id
+        simple: BenignSecurity
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -246,13 +246,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: b1f4b555-8822-46b5-8d11-ad6afce3bfd4
+      id: 408d5317-bf94-409b-8109-5a3bd2c7fd3c
       iscommand: false
       name: Benign Security Test
       script: Set
       type: regular
       version: -1
-    taskid: b1f4b555-8822-46b5-8d11-ad6afce3bfd4
+    taskid: 408d5317-bf94-409b-8109-5a3bd2c7fd3c
     timertriggers: []
     type: regular
     view: |-
@@ -277,7 +277,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: (NGFW)IPS.Alert_id
+        simple: (NGFW)IPS
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -285,13 +285,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: f0015132-67b3-4273-83fc-86dd6571e95c
+      id: d70bcfc2-7cb4-4858-8999-4572bfdc283e
       iscommand: false
       name: NGFW Alert IPS
       script: Set
       type: regular
       version: -1
-    taskid: f0015132-67b3-4273-83fc-86dd6571e95c
+    taskid: d70bcfc2-7cb4-4858-8999-4572bfdc283e
     timertriggers: []
     type: regular
     view: |-
@@ -316,7 +316,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: None.Alert_id
+        simple: None
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -324,13 +324,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: e6907563-3e7a-49e8-87fd-b5f395f90281
+      id: 42ee606e-70a9-48e5-8c18-3e8c0798e541
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: e6907563-3e7a-49e8-87fd-b5f395f90281
+    taskid: 42ee606e-70a9-48e5-8c18-3e8c0798e541
     timertriggers: []
     type: regular
     view: |-
