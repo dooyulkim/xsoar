@@ -1,0 +1,106 @@
+args:
+- description: Scenario list
+  name: list_stats
+  required: true
+commonfields:
+  id: 1950eeb2-e086-4f71-8339-512d30419012
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.8.37753
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SOCaaS-DetermineScenario
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  """Base Script for Cortex XSOAR (aka Demisto)
+  This is an empty script with some basic structure according
+  to the code conventions.
+  MAKE SURE YOU REVIEW/REPLACE ALL THE COMMENTS MARKED AS "TODO"
+  Developer Documentation: https://xsoar.pan.dev/docs/welcome
+  Code Conventions: https://xsoar.pan.dev/docs/integrations/code-conventions
+  Linting: https://xsoar.pan.dev/docs/integrations/linting
+  """
+
+  from typing import Dict, Any
+  import traceback
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  # TODO: REMOVE the following dummy function:
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          total = 0
+          # TODO: replace the invoked command function with yours
+          if demisto.context()["None"]:
+              None_alerts = len(demisto.context()["None"]['Alertid'])
+              total +=  None_alerts
+              Percent_None= round(None_alerts/total, 2) * 100
+
+
+              result = CommandResults(
+              readable_output=f'total percentage of no matching alerts: {Percent_None}',
+              outputs_prefix='SummaryAlerts.None',
+              outputs_key_field='total_percentage',
+              outputs={'total_percentage':  Percent_None}
+              )
+
+          if demisto.context()["BenignSecurity"]:
+              BenignSecurity = len(demisto.context()["BenignSecurity"]['Alertid'])
+              total+=  BenignSecurity
+              Percent_BenginSecurity = round( BenignSecurity/ total, 2) * 100
+
+
+              result = CommandResults(
+              readable_output=f'total percentage of BenignSecurity alerts: {Percent_BenginSecurity}',
+              outputs_prefix='SummaryAlerts.BenignSecurity',
+              outputs_key_field='total_percentage',
+              outputs={'total_percentage':  Percent_BenginSecurity}
+              )
+
+          if demisto.context()["(NGFW)IPS"]:
+              NGFW_IPS = len(demisto.context()["(NGFW)IPS"]['Alertid'])
+              total+= NGFW_IPS
+              Percent_NGFW_IPS =round(NGFW_IPS/total, 2) * 100
+
+              result = CommandResults(
+              readable_output=f'total percentage of BenignSecurity alerts: {Percent_NGFW_IPS}',
+              outputs_prefix='SummaryAlerts.(NGFW)IPS',
+              outputs_key_field='total_percentage',
+              outputs={'total_percentage':  Percent_NGFW_IPS}
+              )
+
+
+
+      except Exception as ex:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
