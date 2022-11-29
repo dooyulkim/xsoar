@@ -11,13 +11,13 @@ contentitemexportablefields:
 id: d702f63a-a525-4139-8031-9f79abb651df
 inputs:
 - description: 'each alert in cortex xdr case '
-  key: alerts
+  key: alert_id
   playbookInputQuery: null
   required: true
   value:
     complex:
-      accessor: alerts
-      root: PaloAltoNetworksXDR.Incident
+      accessor: alert_id
+      root: PaloAltoNetworksXDR.Incident.alerts
 name: Scenario
 outputs:
 - contextPath: SummaryAlerts.None
@@ -62,100 +62,16 @@ tasks:
         }
       }
   "5":
-    conditions:
-    - condition:
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: source
-                root: PaloAltoNetworksXDR.Incident.alerts
-          operator: isEqualString
-          right:
-            value:
-              simple: XDR Agent
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: host_ip_list
-                root: PaloAltoNetworksXDR.Incident.alerts
-          operator: containsGeneral
-          right:
-            value:
-              simple: 10.2.12.3
-      label: Benign Security Test
-    - condition:
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: source
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR.Incident.alerts
-          operator: isEqualString
-          right:
-            value:
-              simple: NGFW
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: '[0].alerts.host_ip'
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR.Incident
-          operator: containsGeneral
-          right:
-            value:
-              simple: lists.Authorizedhosts
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: network_artifacts.network_remote_port
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR.Incident
-          operator: isEqualString
-          right:
-            value:
-              simple: "443"
-      label: IPS(NGFW) Alerts for Public Facing Services
     continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      '#default#':
-      - "11"
-      Benign Security Test:
-      - "9"
-      IPS(NGFW) Alerts for Public Facing Services:
+      '#none#':
       - "10"
+      - "9"
+      - "11"
     note: false
     quietmode: 0
     separatecontext: false
@@ -163,14 +79,14 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: 7228394f-2dfa-444d-807e-81e3916ea50a
+      id: cc725ad0-6477-47eb-8144-625b8b2487b3
       iscommand: false
       name: Choose playbook by category
-      type: condition
+      type: regular
       version: -1
-    taskid: 7228394f-2dfa-444d-807e-81e3916ea50a
+    taskid: cc725ad0-6477-47eb-8144-625b8b2487b3
     timertriggers: []
-    type: condition
+    type: regular
     view: |-
       {
         "position": {
@@ -202,7 +118,7 @@ tasks:
       {
         "position": {
           "x": 240,
-          "y": 770
+          "y": 890
         }
       }
   "9":
@@ -222,19 +138,19 @@ tasks:
       key:
         simple: SummaryAlerts.BenignSecurity
       value:
-        simple: ${inputs.alert_id}
+        simple: ${inputs.alerts}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 28af0ad7-355a-4dbe-8df9-30792cc9772f
+      id: 134e732f-3840-4305-83d6-1b53303de334
       iscommand: false
       name: Benign Security Test
       script: Set
       type: regular
       version: -1
-    taskid: 28af0ad7-355a-4dbe-8df9-30792cc9772f
+    taskid: 134e732f-3840-4305-83d6-1b53303de334
     timertriggers: []
     type: regular
     view: |-
@@ -300,26 +216,26 @@ tasks:
       key:
         simple: SummaryAlerts.None
       value:
-        simple: ${inputs.alert_id}
+        simple: ${inputs.alerts}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: fe85408c-d766-4225-820d-784d063345d6
+      id: 4377d702-da76-49b9-8ebf-67a1fd11722c
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: fe85408c-d766-4225-820d-784d063345d6
+    taskid: 4377d702-da76-49b9-8ebf-67a1fd11722c
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 690,
-          "y": 495
+          "x": 750,
+          "y": 480
         }
       }
 version: -1
@@ -328,8 +244,8 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 780,
-        "width": 1250,
+        "height": 900,
+        "width": 1310,
         "x": -180,
         "y": 55
       }
