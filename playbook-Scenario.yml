@@ -11,13 +11,13 @@ contentitemexportablefields:
 id: d702f63a-a525-4139-8031-9f79abb651df
 inputs:
 - description: 'each alert in cortex xdr case '
-  key: alert_id
+  key: alertS
   playbookInputQuery: null
   required: true
   value:
     complex:
-      accessor: alert_id
-      root: PaloAltoNetworksXDR.Incident.alerts
+      accessor: alerts
+      root: PaloAltoNetworksXDR.Incident
 name: Scenario
 outputs:
 - contextPath: SummaryAlerts.None
@@ -69,15 +69,6 @@ tasks:
             value:
               complex:
                 accessor: source
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
           operator: isEqualString
           right:
@@ -88,17 +79,8 @@ tasks:
             value:
               complex:
                 accessor: host_ip_list
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
                 root: PaloAltoNetworksXDR.Incident.alerts
-          operator: in
+          operator: containsGeneral
           right:
             value:
               simple: 10.2.12.3
@@ -181,12 +163,12 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: d0594907-d400-47f6-8429-83577bd6032e
+      id: 7228394f-2dfa-444d-807e-81e3916ea50a
       iscommand: false
       name: Choose playbook by category
       type: condition
       version: -1
-    taskid: d0594907-d400-47f6-8429-83577bd6032e
+    taskid: 7228394f-2dfa-444d-807e-81e3916ea50a
     timertriggers: []
     type: condition
     view: |-
@@ -238,7 +220,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: BenignSecurity
+        simple: SummaryAlerts.BenignSecurity
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -246,13 +228,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 1ba22447-cc06-40be-8cf5-3263210b98b5
+      id: 28af0ad7-355a-4dbe-8df9-30792cc9772f
       iscommand: false
       name: Benign Security Test
       script: Set
       type: regular
       version: -1
-    taskid: 1ba22447-cc06-40be-8cf5-3263210b98b5
+    taskid: 28af0ad7-355a-4dbe-8df9-30792cc9772f
     timertriggers: []
     type: regular
     view: |-
@@ -277,7 +259,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: (NGFW)IPS
+        simple: SummaryAlerts.(NGFW)IPS
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -285,13 +267,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 9496238b-4f13-4ade-8531-a8457bca1db5
+      id: 85b63928-9e00-433d-8edd-cb142a666731
       iscommand: false
       name: NGFW Alert IPS
       script: Set
       type: regular
       version: -1
-    taskid: 9496238b-4f13-4ade-8531-a8457bca1db5
+    taskid: 85b63928-9e00-433d-8edd-cb142a666731
     timertriggers: []
     type: regular
     view: |-
@@ -316,7 +298,7 @@ tasks:
       append:
         simple: "true"
       key:
-        simple: None
+        simple: SummaryAlerts.None
       value:
         simple: ${inputs.alert_id}
     separatecontext: false
@@ -324,13 +306,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 707fc4fd-ee02-43aa-85c5-9aff9732a711
+      id: fe85408c-d766-4225-820d-784d063345d6
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: 707fc4fd-ee02-43aa-85c5-9aff9732a711
+    taskid: fe85408c-d766-4225-820d-784d063345d6
     timertriggers: []
     type: regular
     view: |-
