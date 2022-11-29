@@ -11,7 +11,7 @@ contentitemexportablefields:
 id: d702f63a-a525-4139-8031-9f79abb651df
 inputs:
 - description: 'each alert in cortex xdr case '
-  key: alertS
+  key: alerts
   playbookInputQuery: null
   required: true
   value:
