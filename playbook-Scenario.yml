@@ -62,16 +62,47 @@ tasks:
         }
       }
   "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.alerts.host_ip_list
+          operator: containsGeneral
+          right:
+            value:
+              simple: 10.1.2.13
+      label: BenignScan
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.network_artifacts.network_remote_port
+          operator: isEqualString
+          right:
+            value:
+              simple: "443"
+        - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Incident.alerts.host_ip_list
+          operator: isEqualString
+          right:
+            value:
+              simple: 10.1.2.13
+      label: IPS Alerts
     continueonerrortype: ""
     id: "5"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      '#none#':
-      - "10"
+      '#default#':
       - "11"
+      BenignScan:
       - "9"
+      IPS Alerts:
+      - "10"
     note: false
     quietmode: 0
     separatecontext: false
@@ -79,14 +110,14 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: f520eaf2-1796-4a0a-87b6-79118fae5796
+      id: 0b89754b-3421-4e2a-8a0a-f77ee84335c2
       iscommand: false
       name: Choose playbook by category
-      type: regular
+      type: condition
       version: -1
-    taskid: f520eaf2-1796-4a0a-87b6-79118fae5796
+    taskid: 0b89754b-3421-4e2a-8a0a-f77ee84335c2
     timertriggers: []
-    type: regular
+    type: condition
     view: |-
       {
         "position": {
@@ -122,52 +153,34 @@ tasks:
         }
       }
   "9":
-    conditions:
-    - condition:
-      - - left:
-            iscontext: true
-            value:
-              complex:
-                accessor: |
-                  host_ip_list
-                filters:
-                - - left:
-                      iscontext: true
-                      value:
-                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
-                    operator: isEqualString
-                    right:
-                      value:
-                        simple: inputs.alert_id
-                root: PaloAltoNetworksXDR.Incident.alerts
-          operator: containsString
-          right:
-            value:
-              simple: 10.2.12.3
-      label: "yes"
     continueonerrortype: ""
     id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
-    nexttasks:
-      "yes":
-      - "12"
     note: false
     quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: BenignScan
+      value:
+        simple: ${inputs.alert}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 06144659-e129-413f-85da-55c6815a51c0
+      id: 38ad7f9a-f412-4013-808d-4da01b7eb157
       iscommand: false
       name: Benign Security Test
-      type: condition
+      script: Set
+      type: regular
       version: -1
-    taskid: 06144659-e129-413f-85da-55c6815a51c0
+    taskid: 38ad7f9a-f412-4013-808d-4da01b7eb157
     timertriggers: []
-    type: condition
+    type: regular
     view: |-
       {
         "position": {
@@ -181,9 +194,6 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
-    nexttasks:
-      '#none#':
-      - "13"
     note: false
     quietmode: 0
     scriptarguments:
@@ -192,19 +202,19 @@ tasks:
       key:
         simple: SummaryAlerts.(NGFW)IPS
       value:
-        simple: ${inputs.alert_id}
+        simple: ${inputs.alert}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 85b63928-9e00-433d-8edd-cb142a666731
+      id: a3b9e97f-2781-4e67-8d2c-81ae9488f9e8
       iscommand: false
       name: NGFW Alert IPS
       script: Set
       type: regular
       version: -1
-    taskid: 85b63928-9e00-433d-8edd-cb142a666731
+    taskid: a3b9e97f-2781-4e67-8d2c-81ae9488f9e8
     timertriggers: []
     type: regular
     view: |-
@@ -220,9 +230,6 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
-    nexttasks:
-      '#none#':
-      - "14"
     note: false
     quietmode: 0
     scriptarguments:
@@ -231,19 +238,19 @@ tasks:
       key:
         simple: SummaryAlerts.None
       value:
-        simple: ${inputs.alerts}
+        simple: ${inputs.alert}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 845f5ed1-0ee2-4834-8111-57ad1c72f47e
+      id: 6d6e2c27-7df0-4d6d-89b3-93e063939bd3
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: 845f5ed1-0ee2-4834-8111-57ad1c72f47e
+    taskid: 6d6e2c27-7df0-4d6d-89b3-93e063939bd3
     timertriggers: []
     type: regular
     view: |-
@@ -251,123 +258,6 @@ tasks:
         "position": {
           "x": 750,
           "y": 480
-        }
-      }
-  "12":
-    continueonerrortype: ""
-    id: "12"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "6"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      keys:
-        simple: BenginScan
-      parent:
-        simple: SummaryAlert
-      values:
-        simple: ${inputs.alert_id}
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Set multiple keys/values to the context.
-      id: 6d31dd5b-5569-47dc-8a9b-dc8fc1bb444a
-      iscommand: false
-      name: Add AlertID to Scenario
-      script: SetMultipleValues
-      type: regular
-      version: -1
-    taskid: 6d31dd5b-5569-47dc-8a9b-dc8fc1bb444a
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": -270,
-          "y": 710
-        }
-      }
-  "13":
-    continueonerrortype: ""
-    id: "13"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "6"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      keys:
-        simple: (NGFW)Alerts
-      parent:
-        simple: SummaryAlert
-      values:
-        simple: ${inputs.alert_id}
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Set multiple keys/values to the context.
-      id: d137900f-6c56-4dad-8ea5-e84f131a687c
-      iscommand: false
-      name: Add AlertID to Scenario
-      script: SetMultipleValues
-      type: regular
-      version: -1
-    taskid: d137900f-6c56-4dad-8ea5-e84f131a687c
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 240,
-          "y": 700
-        }
-      }
-  "14":
-    continueonerrortype: ""
-    id: "14"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "6"
-    note: false
-    quietmode: 0
-    scriptarguments:
-      keys:
-        simple: No match
-      parent:
-        simple: SummaryAlert
-      values:
-        simple: ${inputs.alert_id}
-    separatecontext: false
-    skipunavailable: false
-    task:
-      brand: ""
-      description: Set multiple keys/values to the context.
-      id: 281c17dd-9cfc-49f3-8d34-047fad9aabc4
-      iscommand: false
-      name: Add AlertID to Scenario
-      script: SetMultipleValues
-      type: regular
-      version: -1
-    taskid: 281c17dd-9cfc-49f3-8d34-047fad9aabc4
-    timertriggers: []
-    type: regular
-    view: |-
-      {
-        "position": {
-          "x": 750,
-          "y": 710
         }
       }
   "15":
@@ -655,8 +545,8 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 1755,
-        "width": 1400,
-        "x": -270,
+        "width": 1390,
+        "x": -260,
         "y": 55
       }
     }
