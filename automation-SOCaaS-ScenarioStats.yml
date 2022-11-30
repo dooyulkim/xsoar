@@ -19,7 +19,7 @@ dockerimage: demisto/python3:3.10.8.37753
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
-name: SOCaaS-DetermineScenario
+name: SOCaaS-ScenarioStats
 pswd: ""
 runas: DBotWeakRole
 runonce: false
@@ -49,44 +49,27 @@ script: |+
       try:
           total = 0
           # TODO: replace the invoked command function with yours
-          if demisto.context()["None"]:
-              None_alerts = len(demisto.context()["None"]['Alertid'])
+          if demisto.context()["SummaryAlerts"]["None"] != None :
+              None_alerts = len(demisto.context()["SummaryAlerts"]["None"])
               total +=  None_alerts
               Percent_None= round(None_alerts/total, 2) * 100
 
+              appendContext("SummaryAlerts.None.Total", Percent_None)
 
-              result = CommandResults(
-              readable_output=f'total percentage of no matching alerts: {Percent_None}',
-              outputs_prefix='SummaryAlerts.None',
-              outputs_key_field='total_percentage',
-              outputs={'total_percentage':  Percent_None}
-              )
 
-          if demisto.context()["BenignSecurity"]:
-              BenignSecurity = len(demisto.context()["BenignSecurity"]['Alertid'])
+          if demisto.context()["SummaryAlerts"]["BenignSecurity"] != None:
+              BenignSecurity = len(demisto.context()["SummaryAlerts"]["BenignSecurity"])
               total+=  BenignSecurity
               Percent_BenginSecurity = round( BenignSecurity/ total, 2) * 100
 
+             appendContext("SummaryAlerts.BenignSecurity.Total",BenignSecurity)
 
-              result = CommandResults(
-              readable_output=f'total percentage of BenignSecurity alerts: {Percent_BenginSecurity}',
-              outputs_prefix='SummaryAlerts.BenignSecurity',
-              outputs_key_field='total_percentage',
-              outputs={'total_percentage':  Percent_BenginSecurity}
-              )
-
-          if demisto.context()["(NGFW)IPS"]:
-              NGFW_IPS = len(demisto.context()["(NGFW)IPS"]['Alertid'])
+          if demisto.context()["SummaryAlerts"]["(NGFW)IPS"] != None :
+              NGFW_IPS = len(demisto.context()["SummaryAlerts"]["(NGFW)IPS"])
               total+= NGFW_IPS
               Percent_NGFW_IPS =round(NGFW_IPS/total, 2) * 100
 
-              result = CommandResults(
-              readable_output=f'total percentage of BenignSecurity alerts: {Percent_NGFW_IPS}',
-              outputs_prefix='SummaryAlerts.(NGFW)IPS',
-              outputs_key_field='total_percentage',
-              outputs={'total_percentage':  Percent_NGFW_IPS}
-              )
-
+              appendContext("SummaryAlerts.(NGFW)IPS.Total", Percent_NGFW_IPS  )
 
 
       except Exception as ex:
