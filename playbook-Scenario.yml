@@ -21,13 +21,13 @@ inputs:
 name: Scenario
 outputs:
 - contextPath: SummaryAlerts.None
-  description: mapping of scenario to alerts_id
+  description: mapping of scenario to alerts
   type: unknown
 - contextPath: SummaryAlerts.(NGFW)IPS
-  description: mapping of scenario to alerts_id
+  description: mapping of scenario to alerts
   type: unknown
 - contextPath: 'SummaryAlerts.BenignSecurity '
-  description: mapping of scenario to alerts_id
+  description: mapping of scenario to alerts
   type: unknown
 quiet: true
 starttaskid: "0"
