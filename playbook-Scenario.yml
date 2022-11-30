@@ -11,13 +11,13 @@ contentitemexportablefields:
 id: d702f63a-a525-4139-8031-9f79abb651df
 inputs:
 - description: 'each alert in cortex xdr case '
-  key: alert_id
+  key: alert
   playbookInputQuery: null
   required: true
   value:
     complex:
-      accessor: alert_id
-      root: PaloAltoNetworksXDR.Incident.alerts
+      accessor: alerts
+      root: PaloAltoNetworksXDR.Incident
 name: Scenario
 outputs:
 - contextPath: SummaryAlerts.None
@@ -70,8 +70,8 @@ tasks:
     nexttasks:
       '#none#':
       - "10"
-      - "9"
       - "11"
+      - "9"
     note: false
     quietmode: 0
     separatecontext: false
@@ -79,12 +79,12 @@ tasks:
     task:
       brand: ""
       description: Choose playbook to run by alert category.
-      id: cc725ad0-6477-47eb-8144-625b8b2487b3
+      id: f520eaf2-1796-4a0a-87b6-79118fae5796
       iscommand: false
       name: Choose playbook by category
       type: regular
       version: -1
-    taskid: cc725ad0-6477-47eb-8144-625b8b2487b3
+    taskid: f520eaf2-1796-4a0a-87b6-79118fae5796
     timertriggers: []
     type: regular
     view: |-
@@ -122,41 +122,56 @@ tasks:
         }
       }
   "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: |
+                  host_ip_list
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: PaloAltoNetworksXDR.Incident.alerts.alert_id
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: inputs.alert_id
+                root: PaloAltoNetworksXDR.Incident.alerts
+          operator: containsString
+          right:
+            value:
+              simple: 10.2.12.3
+      label: "yes"
     continueonerrortype: ""
     id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
-      '#none#':
-      - "6"
+      "yes":
+      - "12"
     note: false
     quietmode: 0
-    scriptarguments:
-      append:
-        simple: "true"
-      key:
-        simple: SummaryAlerts.BenignSecurity
-      value:
-        simple: ${inputs.alerts}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 134e732f-3840-4305-83d6-1b53303de334
+      id: 06144659-e129-413f-85da-55c6815a51c0
       iscommand: false
       name: Benign Security Test
-      script: Set
-      type: regular
+      type: condition
       version: -1
-    taskid: 134e732f-3840-4305-83d6-1b53303de334
+    taskid: 06144659-e129-413f-85da-55c6815a51c0
     timertriggers: []
-    type: regular
+    type: condition
     view: |-
       {
         "position": {
-          "x": -180,
+          "x": -260,
           "y": 495
         }
       }
@@ -168,7 +183,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "6"
+      - "13"
     note: false
     quietmode: 0
     scriptarguments:
@@ -207,7 +222,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "6"
+      - "14"
     note: false
     quietmode: 0
     scriptarguments:
@@ -222,13 +237,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: 4377d702-da76-49b9-8ebf-67a1fd11722c
+      id: 845f5ed1-0ee2-4834-8111-57ad1c72f47e
       iscommand: false
       name: No match
       script: Set
       type: regular
       version: -1
-    taskid: 4377d702-da76-49b9-8ebf-67a1fd11722c
+    taskid: 845f5ed1-0ee2-4834-8111-57ad1c72f47e
     timertriggers: []
     type: regular
     view: |-
@@ -238,15 +253,410 @@ tasks:
           "y": 480
         }
       }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      keys:
+        simple: BenginScan
+      parent:
+        simple: SummaryAlert
+      values:
+        simple: ${inputs.alert_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set multiple keys/values to the context.
+      id: 6d31dd5b-5569-47dc-8a9b-dc8fc1bb444a
+      iscommand: false
+      name: Add AlertID to Scenario
+      script: SetMultipleValues
+      type: regular
+      version: -1
+    taskid: 6d31dd5b-5569-47dc-8a9b-dc8fc1bb444a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -270,
+          "y": 710
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      keys:
+        simple: (NGFW)Alerts
+      parent:
+        simple: SummaryAlert
+      values:
+        simple: ${inputs.alert_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set multiple keys/values to the context.
+      id: d137900f-6c56-4dad-8ea5-e84f131a687c
+      iscommand: false
+      name: Add AlertID to Scenario
+      script: SetMultipleValues
+      type: regular
+      version: -1
+    taskid: d137900f-6c56-4dad-8ea5-e84f131a687c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 240,
+          "y": 700
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      keys:
+        simple: No match
+      parent:
+        simple: SummaryAlert
+      values:
+        simple: ${inputs.alert_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set multiple keys/values to the context.
+      id: 281c17dd-9cfc-49f3-8d34-047fad9aabc4
+      iscommand: false
+      name: Add AlertID to Scenario
+      script: SetMultipleValues
+      type: regular
+      version: -1
+    taskid: 281c17dd-9cfc-49f3-8d34-047fad9aabc4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 710
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      caseSource:
+        simple: Cortex XDR
+      caseTitle:
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
+      casecreation_casesource:
+        simple: XSOAR_CORTEX_XDR
+      casecreation_casetitle:
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
+      casecreation_customerid:
+        simple: ${MSSPortal.CustomerInfo.id}
+      casecreation_description:
+        simple: ${PaloAltoNetworksXDR.Incident.description}
+      casecreation_priority:
+        simple: ${PaloAltoNetworksXDR.Incident.severity}
+      casecreation_servicecomponent:
+        simple: SOC
+      customerId:
+        simple: ${MSSPortal.tsp_customer_id}
+      description:
+        simple: ${PaloAltoNetworksXDR.Incident.description}
+      priority:
+        simple: ${PaloAltoNetworksXDR.Incident.severity}
+      serviceComponent:
+        simple: SOC
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-create-case command: Returns a MSSPortal case'
+      id: aaa9d88b-6e4d-468a-8836-a790cb86e6a7
+      iscommand: true
+      name: Create a case in portal
+      script: '|||mssportal-create-case'
+      type: regular
+      version: -1
+    taskid: aaa9d88b-6e4d-468a-8836-a790cb86e6a7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 1540
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 2
+    scriptarguments:
+      alertcreation_customerid:
+        simple: ${MSSPortal.CaseInfo.customerId}
+      alertcreation_name:
+        simple: ${MSSPortal.CaseInfo.caseTitle}
+      alertcreation_severity:
+        simple: ${MSSPortal.CaseInfo.priority}
+      alertcreation_sourcealertid:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      alertcreation_sourcecreatedat:
+        complex:
+          accessor: creation_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      alertcreation_sourceid:
+        simple: ${MSSPortal.CaseInfo.caseSource}
+      alertcreation_sourcemodifiedat:
+        complex:
+          accessor: modification_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      caseDescription:
+        simple: ${MSSPortal.Case.description}
+      caseTitle:
+        simple: ${MSSPortal.Case.caseTitle}
+      customerId:
+        simple: ${MSSPortal.Case.customerId}
+      investigationCaseId:
+        simple: ${MSSPortal.Case.id}
+      name:
+        simple: ${MSSPortal.Case.caseTitle}
+      severity:
+        simple: ${MSSPortal.Case.priority}
+      sourceAlertId:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      sourceCreatedAt:
+        complex:
+          accessor: creation_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceId:
+        simple: ${MSSPortal.Case.caseSource}
+      sourceModifiedAt:
+        complex:
+          accessor: modification_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceRaw:
+        simple: ${PaloAltoNetworksXDR.Incident}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-create-alert command: Returns a MSSPortal alert'
+      id: 2243fdcc-7e9a-4d5e-8591-20e1f0e19c8f
+      iscommand: true
+      name: Create an alert to the case
+      script: '|||mssportal-create-alert'
+      type: regular
+      version: -1
+    taskid: 2243fdcc-7e9a-4d5e-8591-20e1f0e19c8f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 1715
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      caseSource:
+        simple: Cortex XDR
+      caseTitle:
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
+      casecreation_casesource:
+        simple: XSOAR_CORTEX_XDR
+      casecreation_casetitle:
+        simple: ${PaloAltoNetworksXDR.Incident.description}  - ${PaloAltoNetworksXDR.Incident.incident_id}
+      casecreation_customerid:
+        simple: ${MSSPortal.CustomerInfo.id}
+      casecreation_description:
+        simple: ${PaloAltoNetworksXDR.Incident.description}
+      casecreation_priority:
+        simple: ${PaloAltoNetworksXDR.Incident.severity}
+      casecreation_servicecomponent:
+        simple: SOC
+      customerId:
+        simple: ${MSSPortal.tsp_customer_id}
+      description:
+        simple: ${PaloAltoNetworksXDR.Incident.description}
+      priority:
+        simple: ${PaloAltoNetworksXDR.Incident.severity}
+      serviceComponent:
+        simple: SOC
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-create-case command: Returns a MSSPortal case'
+      id: b54552e1-8d05-4622-8ec5-a2e29062d4b3
+      iscommand: true
+      name: Create a case in portal
+      script: '|||mssportal-create-case'
+      type: regular
+      version: -1
+    taskid: b54552e1-8d05-4622-8ec5-a2e29062d4b3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 1540
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 2
+    scriptarguments:
+      alertcreation_customerid:
+        simple: ${MSSPortal.CaseInfo.customerId}
+      alertcreation_name:
+        simple: ${MSSPortal.CaseInfo.caseTitle}
+      alertcreation_severity:
+        simple: ${MSSPortal.CaseInfo.priority}
+      alertcreation_sourcealertid:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      alertcreation_sourcecreatedat:
+        complex:
+          accessor: creation_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      alertcreation_sourceid:
+        simple: ${MSSPortal.CaseInfo.caseSource}
+      alertcreation_sourcemodifiedat:
+        complex:
+          accessor: modification_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      caseDescription:
+        simple: ${MSSPortal.Case.description}
+      caseTitle:
+        simple: ${MSSPortal.Case.caseTitle}
+      customerId:
+        simple: ${MSSPortal.Case.customerId}
+      investigationCaseId:
+        simple: ${MSSPortal.Case.id}
+      name:
+        simple: ${MSSPortal.Case.caseTitle}
+      severity:
+        simple: ${MSSPortal.Case.priority}
+      sourceAlertId:
+        simple: ${PaloAltoNetworksXDR.Incident.incident_id}
+      sourceCreatedAt:
+        complex:
+          accessor: creation_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceId:
+        simple: ${MSSPortal.Case.caseSource}
+      sourceModifiedAt:
+        complex:
+          accessor: modification_time
+          root: PaloAltoNetworksXDR.Incident
+          transformers:
+          - operator: TimeStampToDate
+      sourceRaw:
+        simple: ${PaloAltoNetworksXDR.Incident}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'mssportal-create-alert command: Returns a MSSPortal alert'
+      id: 0bc4f831-8105-407e-8692-093eaeee9c9c
+      iscommand: true
+      name: Create an alert to the case
+      script: '|||mssportal-create-alert'
+      type: regular
+      version: -1
+    taskid: 0bc4f831-8105-407e-8692-093eaeee9c9c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 1715
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 900,
-        "width": 1310,
-        "x": -180,
+        "height": 1755,
+        "width": 1400,
+        "x": -270,
         "y": 55
       }
     }
