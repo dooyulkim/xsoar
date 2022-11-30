@@ -49,26 +49,23 @@ script: |+
       try:
           total = 0
           # TODO: replace the invoked command function with yours
-          if demisto.context()["SummaryAlerts"]["None"] != None :
+          if "None" in demisto.context()["SummaryAlerts"] :
               None_alerts = len(demisto.context()["SummaryAlerts"]["None"])
               total +=  None_alerts
               Percent_None= round(None_alerts/total, 2) * 100
-
               appendContext("SummaryAlerts.None.Total", Percent_None)
 
 
-          if demisto.context()["SummaryAlerts"]["BenignSecurity"] != None:
+          if "BenignSecurity" in demisto.context()["SummaryAlerts"]:
               BenignSecurity = len(demisto.context()["SummaryAlerts"]["BenignSecurity"])
               total+=  BenignSecurity
               Percent_BenginSecurity = round( BenignSecurity/ total, 2) * 100
+              appendContext("SummaryAlerts.BenignSecurity.Total",BenignSecurity)
 
-             appendContext("SummaryAlerts.BenignSecurity.Total",BenignSecurity)
-
-          if demisto.context()["SummaryAlerts"]["(NGFW)IPS"] != None :
+          if  "(NGFW)IPS" in demisto.context()["SummaryAlerts"]:
               NGFW_IPS = len(demisto.context()["SummaryAlerts"]["(NGFW)IPS"])
               total+= NGFW_IPS
               Percent_NGFW_IPS =round(NGFW_IPS/total, 2) * 100
-
               appendContext("SummaryAlerts.(NGFW)IPS.Total", Percent_NGFW_IPS  )
 
 
